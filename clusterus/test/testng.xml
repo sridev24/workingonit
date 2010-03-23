@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"> 
+
+<suite name="singulus" verbose="1">
+ 
+    <test name="unit">
+        <classes>
+            <class name="org.workingonit.clusterus.singleton.election.IpLexicalElectionStrategyTest"/>
+        </classes>
+    </test>
+
+</suite>

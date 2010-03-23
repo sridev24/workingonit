@@ -1,0 +1,16 @@
+<figure><title>errnums PS/SQL package</title>
+<programlisting><![CDATA[CREATE OR REPLACE PACKAGE errnums
+IS 
+
+    exc_emp_too_young EXCEPTION;
+    en_emp_too_young CONSTANT INTEGER := -20200;
+    PRAGMA EXCEPTION_INIT (exc_emp_too_young, -20200);
+
+    exc_bal_too_low EXCEPTION;
+    en_bal_too_low CONSTANT INTEGER := -20100;
+    PRAGMA EXCEPTION_INIT (exc_bal_too_low, -20100);
+
+END errnums;
+]]></programlisting>
+</figure>
+

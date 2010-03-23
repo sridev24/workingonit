@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2009 Vladimir Ritz Bossicard
+
+    Licensed under the Apache License, Version 2.0 (the "License"); you may
+    not use this file except in compliance with the License. You may obtain
+    a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+    License for the specific language governing permissions and limitations
+    under the License.
+-->
+
+<ivy-module rev="$Id: ivy.xml 451 2009-01-21 21:45:04Z archie.cobbs $">
+
+    <info publication="20090810120000">
+        <license name="Common Public License - v 1.0" url="http://www.eclipse.org/legal/cpl-v10.html"/>
+        <description homepage="http://wiki.eclipse.org/Mylyn/Incubator/WikiText/">
+<p>Mylyn WikiText provides an extensible framework and tools for parsing, editing and presenting lightweight markup, including:</p>
+<ul>
+    <li>Editor for wiki files using a source editor paradigm with preview</li>
+    <li>Mylyn task editor integration making the task editor markup-aware for displaying and editing markup</li>
+    <li>Ant Tasks for converting markup to other formats</li>
+    <li>API a framework and API for handling lightweight markup</li>
+</ul>
+<p>WikiText has parsers for MediaWiki, Textile, Confluence, TracWiki and TWiki markup, and can be extended to support other languages. WikiText provides Ant tasks for converting lightweight markup to HTML, Eclipse Help, DocBook, DITA and XSL-FO. WikiText also provides an editor for editing such markup within Eclipse, and integrates with the Mylyn task editor causing it to be markup-aware. WikiText provides API for integrating wiki markup capabilities into Eclipse, RCP, stand-alone and server-side applications.</p>
+<p>For the installation, rename the downloaded file and remove the version information.</p>
+        </description>
+    </info>
+
+    <configurations>
+        <conf name="default" description="all components"/>
+        <conf name="core" description="core component"/>
+        <conf name="confluence" extends="core" description="confluence component"/>
+        <conf name="mediawiki" extends="core" description="mediawiki component"/>
+        <conf name="textile" extends="core" description="tracwiki component"/>
+        <conf name="tracwiki" extends="core" description="tracwiki component"/>
+        <conf name="twiki" extends="core" description="twiki component"/>
+    </configurations>
+
+    <publications>
+        <artifact name="wikitext" conf="default, core"/>
+        <artifact name="wikitext.confluence" conf="default, confluence"/>
+        <artifact name="wikitext.mediawiki" conf="default, mediawiki"/>
+        <artifact name="wikitext.textile" conf="default, textile"/>
+        <artifact name="wikitext.tracwiki" conf="default, tracwiki"/>
+        <artifact name="wikitext.twiki" conf="default, twiki"/>
+        <artifact name="javadoc" type="javadoc" ext="zip"/>
+        <artifact name="source" type="source" ext="zip"/>
+    </publications>
+
+</ivy-module>

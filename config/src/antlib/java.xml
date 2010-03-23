@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it
+  - under the terms of the GNU Lesser General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or (at your
+  - option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  - for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public License
+  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 338 $
+  - Last edit   : $Date: 2010-01-28 17:26:34 +0100 (Thu, 28 Jan 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<!DOCTYPE project>
+
+<antlib>
+
+    <macrodef name="compile">
+        <attribute name="srcDir" default="src/java"/>
+        <attribute name="compliance" default="1.6"/>
+        <attribute name="debug" default="on"/>
+        <attribute name="verbose" default="off"/>
+        <attribute name="deprecation" default="off"/>
+        <attribute name="optimization" default="off"/>
+        <element name="additional" optional="true"/>
+        <sequential>
+            <javac destdir="${classes.dir}"
+                    source="@{compliance}"
+                    target="@{compliance}"
+                    debug="@{debug}"
+                    verbose="@{verbose}"
+                    deprecation="@{deprecation}"
+                    optimize="@{optimization}"
+                    encoding="iso-8859-1"
+                    failonerror="yes"
+                    fork="yes"
+                    memoryMaximumSize="128m">
+                <src path="@{srcDir}"/>
+                <classpath>
+                    <path refid="endorsed.classpath"/>
+                    <path refid="distributed.classpath"/>
+                </classpath>
+                <additional/>
+            </javac>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="test.compile">
+        <attribute name="srcDir" default="test/java"/>
+        <attribute name="compliance" default="1.6"/>
+        <attribute name="debug" default="on"/>
+        <attribute name="verbose" default="off"/>
+        <attribute name="deprecation" default="off"/>
+        <attribute name="optimization" default="off"/>
+        <element name="additional" optional="true"/>
+        <sequential>
+            <javac destdir="${classes-test.dir}"
+                    source="@{compliance}"
+                    target="@{compliance}"
+                    debug="@{debug}"
+                    verbose="@{verbose}"
+                    deprecation="@{deprecation}"
+                    optimize="@{optimization}"
+                    encoding="iso-8859-1"
+                    failonerror="yes"
+                    fork="yes"
+                    memoryMaximumSize="128m">
+                <src path="@{srcDir}"/>
+                <classpath>
+                    <pathelement path="${classes.dir}"/>
+                    <path refid="endorsed.classpath"/>
+                    <path refid="distributed.classpath"/>
+                </classpath>
+                <additional/>
+            </javac>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="apt.run">
+        <attribute name="srcDir" default="src/java"/>
+        <attribute name="factory"/>
+        <attribute name="destDir" default="${target.dir}"/>
+        <element name="additional" optional="true"/>
+        <sequential>
+            <echo message="generating with @{factory}"/>
+            <apt srcdir="@{srcDir}"
+                    destdir="${target.dir}"
+                    debug="on"
+                    compile="false"
+                    factory="@{factory}"
+                    preprocessdir="@{destDir}">
+                <classpath>
+                    <pathelement path="${classes.dir}"/>
+                    <path refid="distributed.classpath"/>
+                    <path refid="endorsed.classpath"/>
+                </classpath>
+                <additional/>
+            </apt>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="jar">
+        <attribute name="destfile" default="${dist.dir}/org.workingonit.${project.name}-${project.version}.jar"/>
+        <attribute name="basedir" default="${target.dir}/classes"/>
+        <element name="additional" optional="true"/>
+        <sequential>
+            <jar destfile="@{destfile}" basedir="@{basedir}">
+                <fileset dir="src/java" includes="*.properties, resources/**, META-INF/**"/>
+                <manifest>
+                    <attribute name="Built-By" value="${user.name}"/>
+                    <attribute name="Built-Date" value="${TODAY}, ${TSTAMP}"/>
+
+                    <attribute name="Implementation-Title" value="${project.name}"/>
+                    <attribute name="Implementation-Version" value="${project.version}"/>
+                    <attribute name="Implementation-Vendor" value="org.workingonit"/>
+                </manifest>
+                <additional/>
+            </jar>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="war">
+        <attribute name="destfile" default="${dist.dir}/${project.name}-${project.version}.war"/>
+        <attribute name="basedir" default="src"/>
+        <element name="additional" optional="true"/>
+        <sequential>
+            <war destfile="@{destfile}"
+                    webxml="@{basedir}/conf/web.xml"
+                    update="false">
+                <zipfileset dir="@{basedir}/conf" includes="*.xml, *.properties, context/*" prefix="WEB-INF"/>
+    
+                <zipfileset dir="@{basedir}/web/pages" includes="*.jsp" prefix="WEB-INF/pages"/>
+                <zipfileset dir="@{basedir}/web" includes="themes/**, index.jsp" prefix=""/>
+    
+                <lib dir="${dist.dir}" includes="org.workingonit.${project.name}-${project.version}.jar"/>
+                <lib dir="lib/wtp"/>
+                <additional/>
+            </war>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="javadoc">
+        <attribute name="srcdir" default="src/java"/>
+        <attribute name="destdir" default="${dist.dir}/docs/javadoc"/>
+        <attribute name="project.years" default="${project.years}"/>
+        <attribute name="project.holder" default="Vladimir Ritz Bossicard"/>
+        <element name="additional" optional="true"/>
+        <sequential>
+            <javadoc source="${ant.java.version}"
+                    destdir="@{destdir}"
+                    overview="src/java/overview.html"
+                    author="true" version="true" public="true" use="false" nohelp="true"
+                    windowtitle="${project.name} ${project.version}"
+                    doctitle="${project.name} version ${project.version}&lt;br>API specification"
+                    header="&lt;b>${project.name}&lt;br>version ${project.version}&lt;/b>"
+                    bottom="Copyright &amp;#169; @{project.years} @{project.holder}. All Rights Reserved.&lt;br>&lt;font size='-1'>Generation date: ${TODAY}&lt;/font>"
+                    maxmemory="256M">
+                <packageset dir="@{srcdir}" defaultexcludes="yes">
+                </packageset>
+                <classpath>
+                    <path refid="endorsed.classpath"/>
+                    <path refid="distributed.classpath"/>
+                </classpath>
+                <additional/>
+            </javadoc>
+        </sequential>
+    </macrodef>
+
+</antlib>

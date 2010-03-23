@@ -1,0 +1,5 @@
+<example><title>Application startup</title>
+<programlisting><![CDATA[AuscultableApplicationListener INFO: Application 'kitchensink' started 
+        at Tue Dec 22 21:55:00 CET 2009
+AuscultableApplicationListener INFO:     version: 5.0.12]]></programlisting>
+</example>

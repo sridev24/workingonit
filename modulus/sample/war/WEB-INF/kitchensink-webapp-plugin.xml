@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin>
+
+    <classpath>
+        <include name="pdk/lib/mx4j"/>
+    </classpath>
+
+    <server name="kitchensink Server" version="1.x">
+        <property name="jmx.url" value="service:jmx:rmi:///jndi/rmi://localhost:18080/jmxrmi"/>
+
+        <config include="jmx"/>
+
+        <plugin type="autoinventory" class="org.hyperic.hq.product.jmx.MxServerDetector"/>
+        <plugin type="measurement" class="org.hyperic.hq.product.jmx.MxMeasurementPlugin"/>
+
+        <metric name="Availability"
+                template="com.acme.kitchensink:name=PlatformMBean:Availability"
+                category="AVAILABILITY"
+                indicator="true"/>
+
+        <service name="NoGroup">
+            <property name="OBJECT_NAME" value="com.acme.kitchensink.availability:name=NoGroupAvailabilityMBean"/>
+    
+            <plugin type="autoinventory"/>
+            <plugin type="measurement" class="org.hyperic.hq.product.jmx.MxMeasurementPlugin"/>
+
+            <metric name="Availability"
+                    template="${OBJECT_NAME}:Availability"
+                    category="AVAILABILITY"
+                    indicator="true"/>
+        </service>
+
+        <service name="Group 1">
+            <property name="OBJECT_NAME" value="com.acme.kitchensink.availability:name=Group1AvailabilityMBean"/>
+    
+            <plugin type="autoinventory"/>
+            <plugin type="measurement" class="org.hyperic.hq.product.jmx.MxMeasurementPlugin"/>
+
+            <metric name="Availability"
+                    template="${OBJECT_NAME}:Availability"
+                    category="AVAILABILITY"
+                    indicator="true"/>
+        </service>
+
+        <service name="Group 2">
+            <property name="OBJECT_NAME" value="com.acme.kitchensink.availability:name=Group2AvailabilityMBean"/>
+    
+            <plugin type="autoinventory"/>
+            <plugin type="measurement" class="org.hyperic.hq.product.jmx.MxMeasurementPlugin"/>
+
+            <metric name="Availability"
+                    template="${OBJECT_NAME}:Availability"
+                    category="AVAILABILITY"
+                    indicator="true"/>
+        </service>
+    </server>
+
+</plugin>

@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+
+<table xmlns="http://docbook.org/ns/docbook"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd"
+        frame="all">
+
+    <title>Third party libraries</title>
+
+    <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+        <colspec colname='module' colwidth='1*'/>
+        <colspec colname='license' colwidth='1.5*'/>
+        <colspec colname='homepage' colwidth='2*'/>
+        <thead>
+            <row>
+                <entry>Module, Version</entry>
+                <entry>License</entry>
+                <entry>Homepage</entry>
+            </row>
+        </thead>
+        <tbody>
+            <row>
+                <entry>ant, 1.7.1</entry>
+                <entry>Apache License, Version 2.0</entry>
+                <entry>http://ant.apache.org/</entry>
+            </row>
+            <row>
+                <entry>aopalliance, 1.0</entry>
+                <entry>Public Domain</entry>
+                <entry>http://aopalliance.sourceforge.net/</entry>
+            </row>
+            <row>
+                <entry>commons-codec, 1.3</entry>
+                <entry>Apache License, Version 2.0</entry>
+                <entry>http://commons.apache.org/codec/</entry>
+            </row>
+            <row>
+                <entry>commons-httpclient, 3.1</entry>
+                <entry>Apache License, Version 2.0</entry>
+                <entry>http://hc.apache.org/httpclient-3.x/</entry>
+            </row>
+            <row>
+                <entry>commons-lang, 2.4</entry>
+                <entry>Apache License, Version 2.0</entry>
+                <entry>http://commons.apache.org/lang/</entry>
+            </row>
+            <row>
+                <entry>commons-logging, 1.1.1</entry>
+                <entry>Apache License, Version 2.0</entry>
+                <entry>http://commons.apache.org/logging</entry>
+            </row>
+            <row>
+                <entry>freemarker, 2.3.15</entry>
+                <entry>BSD style</entry>
+                <entry>http://freemarker.sourceforge.net/</entry>
+            </row>
+            <row>
+                <entry>groovy, 1.5.7</entry>
+                <entry>Apache License, Version 2.0</entry>
+                <entry>http://groovy.codehaus.org/</entry>
+            </row>
+            <row>
+                <entry>jna, 3.0.9</entry>
+                <entry>GNU Lesser General Public License, version 2.1</entry>
+                <entry>https://jna.dev.java.net/</entry>
+            </row>
+            <row>
+                <entry>log4j, 1.2.15</entry>
+                <entry>Apache License, Version 2.0</entry>
+                <entry>http://projects.apache.org/projects/log4j.html</entry>
+            </row>
+            <row>
+                <entry>miglayout, 3.6.2</entry>
+                <entry>BSD License</entry>
+                <entry>http://www.miglayout.com/</entry>
+            </row>
+            <row>
+                <entry>servletapi, 2.4</entry>
+                <entry>Sun Microsystems, Inc. Binary Code License Agreement</entry>
+                <entry>http://java.sun.com/products/servlet/</entry>
+            </row>
+            <row>
+                <entry>slf4j, 1.5.6</entry>
+                <entry>SLF4J License</entry>
+                <entry>http://www.slf4j.org/</entry>
+            </row>
+            <row>
+                <entry>spring, 2.5.6</entry>
+                <entry>Apache License, Version 2.0</entry>
+                <entry>http://www.springframework.org/</entry>
+            </row>
+            <row>
+                <entry>svnkit, 1.2.2</entry>
+                <entry>The TMate Open Source License</entry>
+                <entry>http://www.svnkit.com/</entry>
+            </row>
+            <row>
+                <entry>testng, 5.8</entry>
+                <entry>Apache License, Version 2.0</entry>
+                <entry>http://www.testng.org/</entry>
+            </row>
+        </tbody>
+    </tgroup>
+</table>

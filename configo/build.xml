@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of Configo.
+  -
+  - Configo is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 380 $
+  - Last edit   : $Date: 2010-03-23 09:25:01 +0100 (Tue, 23 Mar 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<!DOCTYPE project>
+
+<project name="wkg configo" basedir="." default="release" 
+        xmlns:ivy="antlib:org.workingonit.ivy"
+        xmlns:project="antlib:org.workingonit.project"
+        xmlns:java="antlib:org.workingonit.java"
+        xmlns:testng="antlib:org.workingonit.testng"
+        xmlns:docbook="antlib:org.workingonit.docbook"
+        xmlns:release="antlib:org.workingonit.release">
+
+    <property file="build-local.properties"/>
+    <property file="build.properties"/>
+
+    <property name="project.years" value="2009"/>
+
+    <import file="conf/project-targets.xml"/>
+
+    <typedef resource="org/workingonit/antlib/project.xml" uri="antlib:org.workingonit.project"/>
+    <typedef resource="org/workingonit/antlib/ivy.xml" uri="antlib:org.workingonit.ivy"/>
+    <typedef resource="org/workingonit/antlib/java.xml" uri="antlib:org.workingonit.java"/>
+    <typedef resource="org/workingonit/antlib/testng.xml" uri="antlib:org.workingonit.testng"/>
+    <typedef resource="org/workingonit/antlib/docbook.xml" uri="antlib:org.workingonit.docbook"/>
+    <typedef resource="org/workingonit/antlib/release.xml" uri="antlib:org.workingonit.release"/>
+
+    <target name="init">
+        <ivy:download/>
+        <project:init ivyfile="conf/docbook-ivy.xml"/>
+        <project:init/>
+    </target>
+
+    <target name="compile" depends="init">
+        <java:compile/>
+        <java:test.compile/>
+    </target>
+
+    <target name="test" depends="compile">
+        <testng:suite.execute/>
+    </target>
+    
+    <target name="package" depends="compile">
+        <java:jar>
+            <additional>
+                <manifest>
+                    <attribute name="Main-Class" value="org.workingonit.configo.ConfigoSwing"/>
+                </manifest>
+                <zipgroupfileset dir="${distributed.lib.dir}" includes="**/*.jar"/>
+                <zipfileset dir="src/java" excludes="**/*.java"/>
+            </additional>
+        </java:jar>
+    </target>
+
+    <target name="documentation" depends="init">
+        <java:javadoc/>
+    </target>
+
+    <target name="pdf">
+        <docbook:pdf.generate draft="yes"/>
+    </target>
+
+    <target name="release" depends="test, package, documentation, pdf">
+        <release:sources/>
+        <release:package/>
+    </target>
+
+</project>

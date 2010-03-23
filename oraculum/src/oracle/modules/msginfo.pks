@@ -1,0 +1,14 @@
+CREATE OR REPLACE PACKAGE msginfo
+AS
+
+	FUNCTION text (
+		code_in IN INTEGER, 
+		type_in IN VARCHAR2,
+		use_sqlerrm IN BOOLEAN := TRUE) RETURN VARCHAR2;
+
+	FUNCTION NAME (
+		code_in IN INTEGER, 
+		type_in IN VARCHAR2) RETURN VARCHAR2;
+
+END msginfo;
+/

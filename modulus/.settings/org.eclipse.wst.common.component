@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="kitchensink">
+        <wb-resource deploy-path="/" source-path="/sample/web"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/sample/src/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test/java"/>
+        <wb-resource deploy-path="/WEB-INF/lib" source-path="/lib/wtp"/>
+        <wb-resource deploy-path="/" source-path="/sample/war/themes"/>
+        <property name="context-root" value="kitchensink"/>
+        <property name="java-output-path"/>
+    </wb-module>
+</project-modules>

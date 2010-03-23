@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of Configo.
+  -
+  - Configo is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 131 $
+  - Last edit   : $Date: 2009-04-21 13:26:37 +0200 (Tue, 21 Apr 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="configo" verbose="1">
+
+    <test name="unit">
+        <classes>
+            <class name="org.workingonit.configo.ConfigoTest"/>
+            <class name="org.workingonit.configo.model.ConfigurationDaoTest"/>
+            <class name="org.workingonit.configo.outputters.PropertyFileOutputterTest"/>
+        </classes>
+    </test>
+
+</suite>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 301 $
+  - Last edit   : $Date: 2009-12-13 21:42:29 +0100 (Sun, 13 Dec 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Sample Execution</title>
+
+    <para>Once our application has been implemented and configured, we're ready to run it in a cluster.  For this example, we will take the minimalistic approach of running the application in a two nodes cluster. So, <emphasis>Ladies and gentlemen, start your applications!</emphasis></para>
+    <para>As soon as the first application has been started, an election takes place and it won't be a surprise to anyone that this single node is declared the winner.  As a consequence the services under its management are started.</para>
+    <xi:include href="fragments/server1-startup.docbook"/>
+
+    <para>The second server is now started and an election is also taking place. This time however, the incumbent has already been elected and no singleton service is initialized.  Although two applications are now running concurrently, only one single instance of each <emphasis>business singleton</emphasis> is running.</para>
+    <xi:include href="fragments/server2-startup.docbook"/>
+    <para>Let's now take a look at what's happening in the first application. After the second server has joined the cluster, an election has also taken place but since the local node (<code>192.168.0.101:1390</code>) was already the reigning incumbent, no service was started.</para>
+
+    <xi:include href="fragments/server1-update.docbook"/>
+
+    <para>The next and final step is to make sure that the cluster can survive if the incumbent is <code>kill -9</code>'ed by an unscrupulous system administrator or overwhelmed by a bubbling <code>NullPointerException</code>.</para>
+
+    <para>We can see that the server #2 has received the notification that a node a disappeared from the cluster and a new election takes place.  Since the incumbent place is now vacant, it's another node that is elected, according to the defined <code>VotingProcedure</code> and it's again no surprise that the last application standing, in our case the server #2, is chosen and promptly starts its registered <code>SingletonService</code>.</para>
+
+    <xi:include href="fragments/server1-shutdown.docbook"/>
+
+    <para>That's it, we're done! We can now define a cluster with an unlimited number of nodes and still make sure that only one instance of each <emphasis>business singleton</emphasis> will be running at any given time.   Furthermore, everything is automatic and is applicable from standalone to web and Java EE applications.</para>
+
+</section>

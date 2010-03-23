@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/commons-logging/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/gwt/gwt-dev-2.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/gwt/gwt-user-2.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.asm-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.beans-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.context-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.core-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.expression-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.jdbc-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.transaction-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.web-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.web.servlet-3.0.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

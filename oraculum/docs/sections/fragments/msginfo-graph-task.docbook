@@ -1,0 +1,5 @@
+<figure><title>tablegraph Ant task</title>
+<programlisting><![CDATA[<tablegraph url="jdbc:oracle:thin:@sausalito:1521:XE" 
+    username="scott" password="tiger"
+    tables="msg_info" outFile="msg_info.dot"/>]]></programlisting>
+</figure>

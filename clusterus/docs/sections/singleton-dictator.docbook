@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 301 $
+  - Last edit   : $Date: 2009-12-13 21:42:29 +0100 (Sun, 13 Dec 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>The Singleton Dictator</title>
+
+    <para>A <emphasis>singleton dictator</emphasis> is simply responsible of managing the services that are considered as <emphasis>business singletons</emphasis>.  In our example application, the <code>SingletonManager</code> is responsible for starting and stopping several <code>SingletonService</code>s objects.  The class diagram is described in the next figure:</para>
+
+    <figure><title>SingletonManager implementation</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="images/singleton-manager.png" align="center" width="60%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+    <para>The Spring configuration for a basic singleton manager is trivial but Since the only dependencies are against the <code>ClusterListener</code> and <code>Cluster</code> classes, other implementations could easily be developed to address more challenging scenario.</para>
+
+    <xi:include href="fragments/manager-configuration.docbook"/>
+
+    <para>Finally let's see how everything duct tails together by looking at how a cluster with two nodes would work together.</para>
+</section>
