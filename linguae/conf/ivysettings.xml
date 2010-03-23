@@ -38,8 +38,8 @@
             </filesystem>
 
             <packager name="roundup-workingonit" buildRoot="${ivyroundup.build.dir}" resourceCache="${ivyroundup.cache.dir}">
-                <ivy pattern="http://workingonit.googlecode.com/svn/trunk/config/conf/roundup/[organisation]/[module]/[revision]/ivy.xml"/>
-                <artifact pattern="http://workingonit.googlecode.com/svn/trunk/config/conf/roundup/[organisation]/[module]/[revision]/packager.xml"/>
+                <ivy pattern="http://workingonit.googlecode.com/hg/config/conf/roundup/[organisation]/[module]/[revision]/ivy.xml"/>
+                <artifact pattern="http://workingonit.googlecode.com/hg/config/conf/roundup/[organisation]/[module]/[revision]/packager.xml"/>
             </packager>
 
             <!--
