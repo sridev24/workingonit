@@ -31,6 +31,7 @@
     <build>
         <!-- jar -->
         <move file="archive/${archive}/javahelp/lib/jhall.jar" tofile="artifacts/jars/jhall.jar"/>
+        <move file="archive/${archive}/javahelp/bin/jhindexer.jar" tofile="artifacts/jars/jhindexer.jar"/>
 
         <!-- source -->
         <move file="archive/${archive}/src.jar" tofile="artifacts/sources/source.zip"/>

@@ -41,10 +41,11 @@
 
     <configurations>
         <conf name="default"/>
+        <conf name="tools"/>
     </configurations>
 
     <dependencies>
-        <dependency org="javax.help" name="help" rev="2.0.05" conf="default"/>
+        <dependency org="javax.help" name="help" rev="2.0.05" changing="true" conf="tools"/>
     </dependencies>
 
 </ivy-module>

@@ -22,11 +22,14 @@
     </info>
 
     <configurations>
+        <conf name="runtime"/>
+        <conf name="tools"/>
         <conf name="default" description="Everything"/>
     </configurations>
 
     <publications>
-        <artifact name="jhall"/>
+        <artifact name="jhall" conf="default,runtime"/>
+        <artifact name="jhindexer" conf="default,tools"/>
         <artifact name="source" type="source" ext="zip"/>
     </publications>
 
