@@ -45,7 +45,7 @@
     </configurations>
 
     <dependencies>
-        <dependency org="javax.help" name="help" rev="2.0.05" changing="true" conf="tools"/>
+        <dependency org="org.apache.cassandra" name="cassandra" rev="0.5.1" changing="true" conf="default"/>
     </dependencies>
 
 </ivy-module>

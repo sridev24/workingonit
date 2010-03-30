@@ -70,7 +70,7 @@
           -
         <roundup:ivyfiles srcDir="src/roundup" org="" name="" rev=""/>
           -->
-        <roundup:ivyfiles srcDir="src/roundup" org="javax.help" name="help" rev="2.0.05"/>
+        <roundup:ivyfiles srcDir="src/roundup" org="org.apache.cassandra" name="cassandra" rev="0.5.1"/>
         
         <!--
           - or contributed back via a patch to the roundup project. In that 
