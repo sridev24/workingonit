@@ -1,0 +1,48 @@
+CREATE OR REPLACE PACKAGE BODY msginfo
+IS
+
+	FUNCTION msgrow (
+			code_in IN INTEGER, 
+			type_in IN VARCHAR2)
+		RETURN msg_info%ROWTYPE
+   	IS
+      	CURSOR msg_cur
+      	IS
+         	SELECT *
+           	FROM msg_info
+          	WHERE msgtype = type_in AND msgcode = code_in;
+
+      	msg_rec   msg_info%ROWTYPE;
+   	BEGIN
+      	OPEN msg_cur;
+      	FETCH msg_cur INTO msg_rec;
+      	CLOSE msg_cur;
+      	RETURN msg_rec;
+   	END;
+
+   FUNCTION text (
+		code_in IN INTEGER, 
+		type_in IN VARCHAR2, 
+		use_sqlerrm IN BOOLEAN := TRUE) 
+      RETURN VARCHAR2
+   IS
+      msg_rec   msg_info%ROWTYPE   := msgrow (code_in, type_in);
+   BEGIN
+      IF msg_rec.msgtext IS NULL AND use_sqlerrm
+      THEN
+         msg_rec.msgtext := SQLERRM (code_in);
+      END IF;
+
+      RETURN msg_rec.msgtext;
+   END;
+
+   FUNCTION NAME (code_in IN INTEGER, type_in IN VARCHAR2)
+      RETURN VARCHAR2
+   IS
+      msg_rec   msg_info%ROWTYPE   := msgrow (code_in, type_in);
+   BEGIN
+      RETURN msg_rec.msgname;
+   END;
+
+END;
+/

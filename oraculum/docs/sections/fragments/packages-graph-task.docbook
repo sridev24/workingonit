@@ -1,0 +1,5 @@
+<figure><title>tablegraph Ant task</title>
+<programlisting><![CDATA[<pkggraph url="jdbc:oracle:thin:@sausalito:1521:XE" 
+    username="scott" password="tiger"
+    package="core_package" owner="SCOTT" outFile="msg_info.dot"/>]]></programlisting>
+</figure>

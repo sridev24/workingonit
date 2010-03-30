@@ -1,0 +1,13 @@
+<example><title>modified web.xml configuration</title>
+<programlisting><![CDATA[<context-param>
+    <param-name>modulus.platform.name</param-name>
+    <param-value>platformA</param-value>
+</context-param>
+
+<listener>
+    <listener-class>
+        org.workingonit.modulus.web.PlatformContextLoaderListener
+    </listener-class>
+</listener>
+]]></programlisting>
+</example>

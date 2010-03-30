@@ -1,0 +1,4 @@
+<figure><title>msginfo Ant task</title>
+<programlisting><![CDATA[<msginfo url="jdbc:oracle:thin:@sausalito:1521:XE" username="scott" password="tiger"
+    template="errnums.pks.ftl" outFile="errnums.pks"/>]]></programlisting>
+</figure>

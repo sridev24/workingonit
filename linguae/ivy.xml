@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 280 $
+  - Last edit   : $Date: 2009-10-20 12:14:16 +0200 (Tue, 20 Oct 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<ivy-module version="2.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+    
+    <info organisation="org.workingonit"
+        module="linguae"
+        revision="alpha"
+        status="integration">
+    </info>
+
+    <configurations>
+        <conf name="distributed"/>
+        <conf name="endorsed"/>
+    </configurations>
+
+    <dependencies>
+        <dependency org="com.oracle" name="ojdbc" rev="10.2.0.4" conf="distributed->ojdbc14"/>
+        <dependency org="javax.servlet" name="servletapi" rev="2.5" conf="endorsed->default"/>
+        <dependency org="javax.servlet.jsp" name="jsp-api" rev="2.1" conf="endorsed->default"/>
+        <dependency org="net.sourceforge.freemarker" name="freemarker" rev="2.3.15" conf="distributed->default"/>
+        <dependency org="org.apache.log4j" name="log4j" rev="1.2.15" conf="distributed->default"/>
+        <dependency org="org.apache.commons" name="commons-io" rev="1.+" conf="distributed->default"/>
+        <dependency org="org.apache.commons" name="commons-lang" rev="2.+" conf="distributed->default"/>
+        <dependency org="org.springframework" name="spring" rev="2.5.6" conf="distributed->jdbc,webmvc; endorsed->test"/>
+        <dependency org="org.testng" name="testng" rev="5.9" conf="endorsed->default"/>
+        <dependency org="org.workingonit" name="addenda" rev="0.+" conf="distributed"/>
+    </dependencies>
+
+</ivy-module>

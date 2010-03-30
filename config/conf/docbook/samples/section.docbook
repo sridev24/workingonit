@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<!--
+  - TODO: Add appropriate license
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 353 $
+  - Last edit   : $Date: 2010-03-05 18:23:42 +0100 (Fri, 05 Mar 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>The title</title>
+
+    <para>Lorem ipsum</para>
+
+    <para>
+    <ulink url="http://www.example.org/"><citetitle>the target</citetitle></ulink>
+    <ulink url="http://docbook.org/"><citetitle>Docbook</citetitle></ulink>
+    <ulink url="http://ant.apache.org/"><citetitle>Apache Ant</citetitle></ulink>
+    <ulink url="http://freemarker.org/"><citetitle>FreeMarker</citetitle></ulink>
+    </para>
+    
+    <!-- missing figure -->
+    <figure><title>Missing figure</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="../images/missing.png" align="center" width="80%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+    <!--
+      - programlisting
+      -
+      - They are saved under the _fragments_ subfolder and imported with an XLink
+      -->
+    <xi:include href="fragments/fragment-name.docbook"/>
+
+    <figure><title>listing</title>
+        <programlisting><![CDATA[
+]]></programlisting>
+    </figure>
+
+</section>

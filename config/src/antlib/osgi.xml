@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it
+  - under the terms of the GNU Lesser General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or (at your
+  - option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  - for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public License
+  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 308 $
+  - Last edit   : $Date: 2009-12-16 20:10:54 +0100 (Wed, 16 Dec 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<!DOCTYPE project>
+
+<antlib>
+
+    <macrodef name="bundle">
+        <attribute name="name" default="${project.name}"/>
+        <attribute name="manifest" default="service.mf"/>
+        <attribute name="basedir" default="${target.dir}/classes"/>
+        <element name="additional" optional="true"/>
+        <sequential>
+            <jar destfile="${dist.dir}/@{name}-${project.version}.jar" basedir="@{basedir}" manifest="src/manifests/@{manifest}">
+                <fileset dir="src/java" includes="*.properties, resources/*, META-INF/*"/>
+                <manifest>
+                    <attribute name="Built-By" value="${user.name}"/>
+                    <attribute name="Built-Date" value="${TODAY}, ${TSTAMP}"/>
+
+                    <attribute name="Implementation-Title" value="${project.name}"/>
+                    <attribute name="Implementation-Version" value="${project.version}"/>
+                    <attribute name="Implementation-Vendor" value="Vladimir Ritz Bossicard"/>
+                    
+                    <attribute name="Bundle-Vendor" value="Vladimir Ritz Bossicard"/>
+                    <attribute name="Bundle-Version" value="${project.version}"/>
+                </manifest>
+                <additional/>
+            </jar>
+        </sequential>
+    </macrodef>
+
+</antlib>

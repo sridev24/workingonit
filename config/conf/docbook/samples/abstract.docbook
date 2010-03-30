@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<!--
+  - TODO: Add appropriate license
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 311 $
+  - Last edit   : $Date: 2010-01-04 20:06:45 +0100 (Mon, 04 Jan 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<abstract xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title/>
+
+    <para>The abstract</para>
+
+</abstract>

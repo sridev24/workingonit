@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration PUBLIC "-//WorkingOnIt/Configo Configuration DTD 1.0//EN" "configo.dtd" >
+
+<configuration>
+    <name>Sample Application</name>
+    <modules>
+        <module>
+            <name>Module A</name>
+            <description>Module's description</description>
+            <properties>
+                <property>
+                    <name>Name 1</name>
+                    <description>Property's description</description>
+                    <key>key1</key>
+                </property>
+            </properties>
+        </module>
+        <module>
+            <name>Module B</name>
+            <properties>
+                <property>
+                    <key>key2</key>
+                </property>
+            </properties>
+        </module>
+    </modules>
+</configuration>

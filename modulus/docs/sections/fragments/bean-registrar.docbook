@@ -1,0 +1,8 @@
+<example><title>bean registrar</title>
+<programlisting><![CDATA[<bean class="org.workingonit.modulus.PlatformLifecycleListener"/>
+
+<bean id="org.workingonit.modulus.AuscultableBeanRegistrar" 
+        class="org.workingonit.modulus.AuscultableBeanRegistrar"
+    p:mbeanServer-ref="mbeanServer"
+    p:prefix="com.acme.kitchensink.availability"/>]]></programlisting>
+</example>

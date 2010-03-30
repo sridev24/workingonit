@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of Configo.
+  -
+  - Configo is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 155 $
+  - Last edit   : $Date: 2009-05-18 22:53:11 +0200 (Mon, 18 May 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="depictus" verbose="1">
+
+    <test name="unit">
+        <classes>
+            <class name="org.workingonit.depictus.ArcGrapherTest"/>
+            <class name="org.workingonit.depictus.ArrowGrapherTest"/>
+            <class name="org.workingonit.depictus.GaugeGrapherExporterTest"/>
+            <class name="org.workingonit.depictus.GaugeGrapherTest"/>
+            <class name="org.workingonit.depictus.HueColorSamplerTest"/>
+        </classes>
+    </test>
+
+</suite>

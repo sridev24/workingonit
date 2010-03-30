@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 207 $
+  - Last edit   : $Date: 2009-06-17 23:53:48 +0200 (Wed, 17 Jun 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<abstract xmlns="http://docbook.org/ns/docbook"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+ 
+    <title/>
+
+    <para>The main problem with best practices is that you always discover them too late. In the Java world, we enjoy refactoring tools but I haven't found anything similar for PL/SQL scripts. Since it's not quite easy to change direction, you better start right.</para>
+
+    <para>This project regroups various interesting and hopefully best practices for developing with Oracle. I am particularly interested in seeing how these practices could be implemented in my personal work flow.</para>
+
+</abstract>

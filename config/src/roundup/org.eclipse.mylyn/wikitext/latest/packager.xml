@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2009 Vladimir Ritz Bossicard
+
+    Licensed under the Apache License, Version 2.0 (the "License"); you may
+    not use this file except in compliance with the License. You may obtain
+    a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+    License for the specific language governing permissions and limitations
+    under the License.
+-->
+
+<packager-module rev="$Id: packager.xml 451 2009-01-21 21:45:04Z archie.cobbs $">
+
+    <property name="name" value="${ivy.packager.module}"/>
+    <property name="revision" value="${ivy.packager.revision}"/>
+    <property name="archive" value="${name}-${revision}"/>
+
+    <build>
+
+        <zip destfile="artifacts/jars/wikitext.confluence.jar">
+            <zipgroupfileset dir="${java.io.tmpdir}/mylyn-wikitext-standalone" includes="org.eclipse.mylyn.wikitext.confluence.*.jar"/>
+        </zip>
+
+        <zip destfile="artifacts/jars/wikitext.jar">
+            <zipgroupfileset dir="${java.io.tmpdir}/mylyn-wikitext-standalone" includes="org.eclipse.mylyn.wikitext.core*.jar"/>
+        </zip>
+
+        <zip destfile="artifacts/jars/wikitext.mediawiki.jar">
+            <zipgroupfileset dir="${java.io.tmpdir}/mylyn-wikitext-standalone" includes="org.eclipse.mylyn.wikitext.mediawiki.*.jar"/>
+        </zip>
+
+        <zip destfile="artifacts/jars/wikitext.textile.jar">
+            <zipgroupfileset dir="${java.io.tmpdir}/mylyn-wikitext-standalone" includes="org.eclipse.mylyn.wikitext.textile.*.jar"/>
+        </zip>
+
+        <zip destfile="artifacts/jars/wikitext.tracwiki.jar">
+            <zipgroupfileset dir="${java.io.tmpdir}/mylyn-wikitext-standalone" includes="org.eclipse.mylyn.wikitext.tracwiki.*.jar"/>
+        </zip>
+
+        <zip destfile="artifacts/jars/wikitext.twiki.jar">
+            <zipgroupfileset dir="${java.io.tmpdir}/mylyn-wikitext-standalone" includes="org.eclipse.mylyn.wikitext.twiki.*.jar"/>
+        </zip> 
+ 
+        <!-- source -->
+        <zip destfile="artifacts/sources/source.zip">
+            <fileset dir="${java.io.tmpdir}/mylyn-wikitext-standalone/src/org.eclipse.mylyn.wikitext.confluence.core"/>
+            <fileset dir="${java.io.tmpdir}/mylyn-wikitext-standalone/src/org.eclipse.mylyn.wikitext.core"/>
+            <fileset dir="${java.io.tmpdir}/mylyn-wikitext-standalone/src/org.eclipse.mylyn.wikitext.mediawiki.core"/>
+            <fileset dir="${java.io.tmpdir}/mylyn-wikitext-standalone/src/org.eclipse.mylyn.wikitext.textile.core"/>
+            <fileset dir="${java.io.tmpdir}/mylyn-wikitext-standalone/src/org.eclipse.mylyn.wikitext.tracwiki.core"/>
+            <fileset dir="${java.io.tmpdir}/mylyn-wikitext-standalone/src/org.eclipse.mylyn.wikitext.twiki.core"/>
+        </zip>
+
+        <!-- javadoc -->
+        <zip destfile="artifacts/javadocs/javadoc.zip">
+            <fileset dir="${java.io.tmpdir}/mylyn-wikitext-standalone/apidoc"/>
+        </zip>
+
+     </build>
+
+</packager-module>

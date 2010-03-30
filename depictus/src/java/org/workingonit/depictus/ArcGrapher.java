@@ -1,0 +1,149 @@
+/*
+ * Copyright 2008-2009 Vladimir Ritz Bossicard
+ *
+ * This file is part of WorkingOnIt.
+ *
+ * WorkingOnIt is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option) any
+ * later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Version     : $Revision: 155 $
+ * Last edit   : $Date: 2009-05-18 22:53:11 +0200 (Mon, 18 May 2009) $
+ * Last editor : $Author: vbossica $
+ */
+package org.workingonit.depictus;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+
+/**
+ * Class responsible for drawing the color arc.
+ *
+ * FIXME explain the ratio (300 and 190)
+ *
+ * @author Vladimir Ritz Bossicard
+ */
+public class ArcGrapher {
+
+    private ColorInterpolator sampler = new HueColorSampler();
+
+    /**
+     * Defaulted to 22 (just like GOM).
+     */
+    private int startAngle = 22;
+
+    /**
+     * Defaulted to 300 (just like GOM).
+     */
+    private int ratio = 300;
+
+    /**
+     * Defaulted to 190 (just like GOM).
+     */
+    private int diameter = 190;
+
+    /**
+     * Defaulted to 11 (just like GOM).
+     */
+    private int steps = 11;
+
+    /**
+     * Defaulted to 30.
+     */
+    private int thickness = 30;
+
+    /**
+     * Defaulted to {@link Color.RED}.
+     */
+    private Color startColor = Color.RED;
+
+    /**
+     * Defaulted to {@link Color.GREEN}.
+     */
+    private Color endColor = Color.GREEN;
+
+    public void setColorSampler(final ColorInterpolator sampler) {
+        this.sampler = sampler;
+    }
+
+    public void setThickness(final int thickness) {
+        this.thickness = thickness;
+    }
+
+    public void setStartColor(final Color startColor) {
+        this.startColor = startColor;
+    }
+
+    public void setEndColor(final Color endColor) {
+        this.endColor = endColor;
+    }
+
+    public void setDiameter(final int diameter) {
+        this.diameter = diameter;
+    }
+
+    public int getDiameter() {
+        return this.diameter;
+    }
+
+    public int getRatio() {
+        return this.ratio;
+    }
+
+    public void setStartAngle(final int angle) {
+        this.startAngle = angle;
+    }
+
+    public int getStartAngle() {
+        return this.startAngle;
+    }
+
+    /**
+     * FIXME
+     * 
+     * @param graphics the Java2D graphics to draw into
+     */
+    public void graph(final Graphics2D graphics) {
+        graphics.setStroke(new BasicStroke(7.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+
+        graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+
+        Color[] colors = this.sampler.interpolate(this.startColor, this.endColor, this.steps);
+
+        float delta = ((float) (180 - 2*this.startAngle) / (float) colors.length);
+
+        int angle = this.startAngle;
+        for (int i = 0; i < colors.length-1; i++) {
+            int resultingAngle = this.startAngle + Math.round((i+1) * delta);
+            graphics.setPaint(colors[i]);
+            graphics.fillArc(0, 0, this.diameter, this.diameter, angle, resultingAngle - angle);
+            angle = resultingAngle;
+        }
+        graphics.setPaint(colors[colors.length - 1]);
+        graphics.fillArc(0, 0, this.diameter, this.diameter, angle, 180 - this.startAngle - angle);
+
+        /*
+         * remove the inner circle
+         */
+        graphics.translate(this.thickness, this.thickness);
+        graphics.setPaint(Color.WHITE);
+        graphics.fillArc(0, 0, this.diameter - (2 * this.thickness), this.diameter - (2 * this.thickness), 0, 180);
+
+        // don't forget to return to the previous location!
+        graphics.translate(-this.thickness, -this.thickness);
+    }
+
+}

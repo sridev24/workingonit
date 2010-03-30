@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="taberna">
+        <wb-resource deploy-path="/" source-path="/src/web"/>
+        <wb-resource deploy-path="/" source-path="/src/web/themes"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test/java"/>
+        <wb-resource deploy-path="/WEB-INF/lib" source-path="/lib/wtp"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/specs/java"/>
+        <property name="context-root" value="taberna"/>
+        <property name="java-output-path"/>
+    </wb-module>
+</project-modules>

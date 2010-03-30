@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="**/.svn/" kind="src" path="src/java"/>
+	<classpathentry excluding="**/*.groovy|**/.svn/" kind="src" path="src/groovy"/>
+	<classpathentry excluding="**/.svn/" kind="src" output="target/test/classes" path="test/java"/>
+	<classpathentry excluding="**/*.groovy|**/.svn/" kind="src" output="target/test/classes" path="test/groovy"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="GROOVY_SUPPORT"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/commons-httpclient/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/miglayout/miglayout-3.6.2.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/svnkit/svnkit-1.2.2.jar" sourcepath="lib/endorsed/sources/svnkit/source-1.2.2.zip"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/ant/ant-1.7.1.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/commons-logging/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/log4j/log4j-1.2.15.jar" sourcepath="lib/endorsed/sources/log4j/source-1.2.15.zip"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/freemarker/freemarker-2.3.15.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/commons-lang/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/servletapi/servletapi-2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/endorsed/jars/wikitext/wikitext-latest.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/endorsed/jars/wikitext/wikitext.mediawiki-latest.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/commons-collections/commons-collections-3.2.jar" sourcepath="lib/endorsed/sources/commons-collections/source-3.2.zip"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/hibernate/hibernate-core-3.3.2.GA.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/hibernate-annotations/hibernate-annotations-3.4.0.GA.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/hibernate-commons-annotations/hibernate-commons-annotations-3.1.0.GA.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.aop-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.beans-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.context-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.core-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.jdbc-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.orm-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.test-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.transaction-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.web-3.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/testng/testng-jdk15-5.9.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it
+  - under the terms of the GNU Lesser General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or (at your
+  - option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  - for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public License
+  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 312 $
+  - Last edit   : $Date: 2010-01-04 21:30:25 +0100 (Mon, 04 Jan 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<!--
+  - This ivy.xml file is used to validate the source configuration files once 
+  - the final files have been produced by applying the roundup xslt templates.
+  -->
+
+<ivy-module version="2.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+    <info organisation="org.workingonit"
+        module="config"
+        revision="alpha"
+        status="integration">
+    </info>
+
+    <configurations>
+        <conf name="distributed"/>
+        <conf name="endorsed"/>
+        <conf name="default"/>
+    </configurations>
+
+    <publications>
+        <artifact name="org.workingonit.config" type="jar" conf="distributed"/>
+    </publications>
+
+    <dependencies>
+        <!-- required for the docbook documentation -->
+        <dependency org="org.apache.xmlgraphics" name="fop" rev="0.95" conf="endorsed->default"/>
+        <dependency org="com.icl.saxon" name="saxon" rev="6.5.5" conf="endorsed->default"/>
+    </dependencies>
+
+</ivy-module>
