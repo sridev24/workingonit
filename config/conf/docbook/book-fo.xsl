@@ -6,7 +6,7 @@
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 exclude-result-prefixes="#default">
 
-    <xsl:import href="@DOCBOOK.XSL.HOME@"/>
+    <xsl:import href="@DOCBOOK.HOME@/fo/docbook.xsl"/>
 
 <!--###################################################
                       Header
