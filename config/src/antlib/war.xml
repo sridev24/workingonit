@@ -29,10 +29,11 @@
 <antlib>
 
     <macrodef name="init">
+        <attribute name="srcDir" default="${distributed.lib.dir}"/>
         <attribute name="destDir" default="war"/>
         <sequential>
             <copy todir="@{destDir}/WEB-INF/lib" flatten="true">
-                <fileset dir="${distributed.lib.dir}" includes="**/*.jar"/>
+                <fileset dir="@{srcDir}" includes="**/*.jar"/>
             </copy>
         </sequential>
     </macrodef>
