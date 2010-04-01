@@ -6,8 +6,8 @@
         xmlns:fo="http://www.w3.org/1999/XSL/Format"
         exclude-result-prefixes="#default">
 
-    <xsl:import href="@DOCBOOK.XSL.HOME@"/>
-    <xsl:import href="@DOCBOOK.CONF.URI@/article-titlepage-fo.xsl"/>
+    <xsl:import href="@DOCBOOK.HOME@/fo/docbook.xsl"/>
+    <xsl:import href="@DOCBOOK.WKG.HOME@/article-titlepage-fo.xsl"/>
 
     <!-- remove TOC for articles -->
     <xsl:param name="generate.toc" select="'nop'"/>

@@ -120,8 +120,8 @@
         <copy todir="${docbook.wkg.home}" overwrite="true">
             <fileset dir="conf/docbook" includes="*.xsl, *.xconf, images/**"/>
             <filterset>
-                <filter token="DOCBOOK.XSL.HOME" value="${docbook.xsl.home}"/>
-                <filter token="DOCBOOK.CONF.URI" value="${file.protocol}${docbook.wkg.home}"/>
+                <filter token="DOCBOOK.HOME" value="${docbook.home}"/>
+                <filter token="DOCBOOK.WKG.HOME" value="${file.protocol}${docbook.wkg.home}"/>
             </filterset>
         </copy>
     </target>
