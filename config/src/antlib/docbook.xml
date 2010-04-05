@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!--
-  - Copyright 2008-2009 Vladimir Ritz Bossicard
+  - Copyright 2008-2010 Vladimir Ritz Bossicard
   -
   - This file is part of WorkingOnIt.
   -
@@ -17,11 +17,6 @@
   -
   - You should have received a copy of the GNU Lesser General Public License
   - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  - Author      : Vladimir Ritz Bossicard
-  - Version     : $Revision: 380 $
-  - Last edit   : $Date: 2010-03-23 09:25:01 +0100 (Tue, 23 Mar 2010) $
-  - Last editor : $Author: vbossica $
   -->
 
 <!DOCTYPE project>
@@ -52,17 +47,27 @@
         <attribute name="basedir" default="docs"/>
         <attribute name="html-stylesheet.home" default="${docbook.wkg.home}"/>
         <attribute name="html-stylesheet" default="article-html.xsl"/>
-        <attribute name="file"/>
+        <attribute name="file" default="${project.name}"/>
         <sequential>
-            <xslt basedir="@{basedir}" includes="@{file}.docbook"
-                    destdir="${target.dir}/docs/html/@{file}"
-                    extension=".html" style="@{html-stylesheet.home}/@{html-stylesheet}">
-                <classpath>
-                    <path refid="docbook.classpath"/>
-                </classpath>
-            </xslt>
+            
+            <!-- 
+              - Using Saxon 6.5.5 because it supports XInclude.  The more Ant 
+              - way of doing things (see below, commented out) doesn't work 
+              - out-of-the-box with XInclude.
+              -->
+            <java classname="com.icl.saxon.StyleSheet"
+                    fork="yes"
+                    dir="."
+                    failonerror="true">
+                <classpath refid="docbook.classpath" />
+                <jvmarg line="-Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration"/>
+                <jvmarg line="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+                <jvmarg line="-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
+                <arg line="-o ${dist.dir}/docs/html/@{file}.html"/>
+                <arg line="@{basedir}/@{file}.docbook @{html-stylesheet.home}/@{html-stylesheet}"/>
+            </java>
 
-            <copy todir="${target.dir}/docs/html/@{file}" overwrite="true" failonerror="no">
+            <copy todir="${dist.dir}/docs/html" overwrite="true" failonerror="no">
                 <fileset dir="@{basedir}" includes="**/*.png, **/*.gif"/>
                 <fileset dir="@{html-stylesheet.home}" includes="*.css"/>
             </copy>

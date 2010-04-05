@@ -132,7 +132,7 @@
 
         <mkdir dir="${docbook.wkg.home}"/>
         <copy todir="${docbook.wkg.home}" overwrite="true">
-            <fileset dir="conf/docbook" includes="*.xsl, *.xconf, images/**"/>
+            <fileset dir="conf/docbook" includes="*.xsl, *.xconf, *.css, images/**"/>
             <filterset>
                 <filter token="DOCBOOK.HOME" value="${docbook.home}"/>
                 <filter token="DOCBOOK.WKG.HOME" value="${file.protocol}${docbook.wkg.home}"/>
