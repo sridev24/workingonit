@@ -89,7 +89,7 @@
         <roundup:sha1/>
     </target>
 
-    <target name="test.docbook">
+    <target name="test.pdf"  description="tests pdf output (Docbook)">
         <!--
         <xslt basedir="src/docbook" includes="*-titlepage-fo.xml"
             destdir="conf/docbook" force="true"
@@ -110,6 +110,20 @@
 
         <docbook:pdf.generate file="workingonit"/>
     </target>
+
+	<target name="test.html" description="tests html output (Docbook)">
+		<copy todir="${target.dir}/docbook" overwrite="true">
+			<fileset dir="conf/docbook" includes="*html.xsl, *.css"/>
+            <filterset>
+                <filter token="DOCBOOK.HOME" value="${docbook.home}"/>
+                <filter token="DOCBOOK.WKG.HOME" value="${file.protocol}${docbook.wkg.home}"/>
+            </filterset>
+		</copy>
+		<docbook:file.html.generate 
+			html-stylesheet.home="${target.dir}/docbook"
+			html-stylesheet="article-html.xsl"
+			file="workingonit"/>
+	</target>
 
     <target name="install" description="install the docbook templates locally">
         <condition property="file.protocol" value="file:///" else="file://">

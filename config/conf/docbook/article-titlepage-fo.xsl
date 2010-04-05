@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-  - Copyright 2008-2009 Vladimir Ritz Bossicard
+  - Copyright 2008-2010 Vladimir Ritz Bossicard
   -
   - This file is part of WorkingOnIt.
   -
@@ -17,11 +17,6 @@
   -
   - You should have received a copy of the GNU Lesser General Public License
   - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  - Author      : Vladimir Ritz Bossicard
-  - Version     : $Revision: 171 $
-  - Last edit   : $Date: 2009-05-27 22:30:40 +0200 (Wed, 27 May 2009) $
-  - Last editor : $Author: vbossica $
   -->
 
 <xsl:stylesheet 
