@@ -1,0 +1,13 @@
+
+
+div.literallayout, pre.screen{ 
+	background-color: grey;
+	font-family: courier;
+	padding: 1em;
+}
+
+pre.programlisting{ 
+	border: thin black solid;
+	background-color: #ECF1EF;
+	padding: 1em;
+}

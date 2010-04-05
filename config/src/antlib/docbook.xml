@@ -49,13 +49,14 @@
     </macrodef>
 
     <macrodef name="file.html.generate">
-        <attribute name="docbook.template.dir"/>
         <attribute name="basedir" default="docs"/>
+        <attribute name="html-stylesheet.home" default="${docbook.wkg.home}"/>
+        <attribute name="html-stylesheet" default="article-html.xsl"/>
         <attribute name="file"/>
         <sequential>
             <xslt basedir="@{basedir}" includes="@{file}.docbook"
                     destdir="${target.dir}/docs/html/@{file}"
-                    extension=".html" style="@{docbook.template.dir}/workingonit-html.xsl">
+                    extension=".html" style="@{html-stylesheet.home}/@{html-stylesheet}">
                 <classpath>
                     <path refid="docbook.classpath"/>
                 </classpath>
@@ -63,15 +64,14 @@
 
             <copy todir="${target.dir}/docs/html/@{file}" overwrite="true" failonerror="no">
                 <fileset dir="@{basedir}" includes="**/*.png, **/*.gif"/>
-                <fileset dir="@{docbook.template.dir}" includes="*.css"/>
-                <fileset dir="@{docbook.template.dir}/images" includes="**/*.png, **/*.gif"/>
+                <fileset dir="@{html-stylesheet.home}" includes="*.css"/>
             </copy>
         </sequential>
     </macrodef>
 
     <macrodef name="pdf.generate">
         <attribute name="basedir" default="docs"/>
-        <attribute name="fo-stylesheet" default="article-fo.xsl"/>
+        <attribute name="fo-stylesheet" default="${docbook.wkg.home}/article-fo.xsl"/>
         <attribute name="fop-config" default="${docbook.wkg.home}/fop.xconf"/>
         <attribute name="draft" default="false"/>
         <attribute name="file" default="${project.name}"/>
@@ -91,7 +91,7 @@
                 <jvmarg line="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
                 <jvmarg line="-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
                 <arg line="-o ${target.dir}/docs/fo/@{file}.fo"/>
-                <arg line="@{basedir}/@{file}.docbook ${docbook.wkg.home}/@{fo-stylesheet}"/>
+                <arg line="@{basedir}/@{file}.docbook @{fo-stylesheet}"/>
                 <arg line="draft.mode=@{draft}"/>
             </java>
 
