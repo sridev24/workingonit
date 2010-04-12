@@ -3,6 +3,6 @@
 	<classpathentry excluding="**/.svn/" kind="src" path="src/java"/>
 	<classpathentry excluding="**/.svn/" kind="src" path="test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/endorsed/jars/testng/testng-jdk15-5.8.jar" sourcepath="lib/endorsed/sources/testng/testng-5.8.zip"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/testng/testng-jdk15-5.9.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
