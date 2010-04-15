@@ -1,5 +1,8 @@
 #/bin/sh
 
+# This file is used to automatically copy some configuration files into the
+# correct configuration folder
+
 for file in $( find -maxdepth 1 -type d )
 do
 
