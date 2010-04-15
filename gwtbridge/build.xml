@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2010 Vladimir Ritz Bossicard.
+  - 
+  - Licensed under the Apache License, Version 2.0 (the "License");
+  - you may not use this file except in compliance with the License.
+  - You may obtain a copy of the License at
+  - 
+  -      http://www.apache.org/licenses/LICENSE-2.0
+  - 
+  - Unless required by applicable law or agreed to in writing, software
+  - distributed under the License is distributed on an "AS IS" BASIS,
+  - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  - See the License for the specific language governing permissions and
+  - limitations under the License.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 378 $
+  - Last edit   : $Date: 2010-03-16 23:24:37 +0100 (Tue, 16 Mar 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<!DOCTYPE project>
+
+<project name="wkg addenda" basedir="." default="publish"
+        xmlns:ivy="antlib:org.workingonit.ivy"
+        xmlns:project="antlib:org.workingonit.project"
+        xmlns:java="antlib:org.workingonit.java"
+        xmlns:release="antlib:org.workingonit.release">
+
+    <property file="build-local.properties"/>
+    <property file="build.properties"/>
+
+    <import file="conf/project-targets.xml"/>
+
+    <typedef resource="org/workingonit/antlib/project.xml" uri="antlib:org.workingonit.project"/>
+    <typedef resource="org/workingonit/antlib/ivy.xml" uri="antlib:org.workingonit.ivy"/>
+    <typedef resource="org/workingonit/antlib/java.xml" uri="antlib:org.workingonit.java"/>
+    <typedef resource="org/workingonit/antlib/release.xml" uri="antlib:org.workingonit.release"/>
+
+    <target name="init">
+        <ivy:download/>
+        <project:init/>
+    </target>
+
+    <target name="compile" depends="init">
+        <java:compile/>
+    </target>
+
+    <target name="package" depends="compile">
+        <java:jar/>
+    </target>
+
+    <target name="documentation" depends="init">
+        <java:javadoc/>
+    </target>
+
+    <target name="release" depends="package, documentation">
+        <release:sources/>
+        <release:package/>
+    </target>
+
+    <target name="publish" depends="release">
+        <project:publish/>
+    </target>
+
+</project>

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2010 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it
+  - under the terms of the GNU Lesser General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or (at your
+  - option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  - for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public License
+  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<article xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd" 
+    class="techreport">
+
+    <articleinfo>
+        <title>Article Title</title>
+        <subtitle>Subtitle</subtitle>
+        <copyright>
+            <year>2010</year>
+            <holder>Vladimir Ritz Bossicard</holder>
+        </copyright>
+        <author>
+            <personname>
+                <firstname>Vladimir</firstname>
+                <surname>Ritz Bossicard</surname>
+            </personname>
+            <email>name@surname.com</email>
+        </author>
+        <abstract>
+            <title></title>
+            <para>Lorem ipsum dolor sit amet orem ipsum dolor orem ipsum dolor sit amet orem ipsum dolor sit orem ipsum dolor sit amet orem ipsum dolor sit ametametsit amet orem ipsum dolor sit amet orem ipsum dolor sit ametorem ipsum dolor sit amet orem ipsum dolor sit ametorem ipsum dolor sit amet. orem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit.</para>
+        </abstract>
+    </articleinfo>
+
+    <section>
+        <title>Lorem ipsum dolor</title>
+        <para>Lorem ipsum dolor sit amet orem ipsum dolor orem ipsum dolor sit amet orem ipsum dolor sit orem ipsum dolor sit amet orem ipsum dolor sit ametametsit amet orem ipsum dolor sit amet orem ipsum dolor sit ametorem ipsum dolor sit amet orem ipsum dolor sit ametorem ipsum dolor sit amet. orem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit.</para>
+
+        <figure><title>program listing sample</title>
+        <programlisting>public class Foo {
+    
+    public void bar() {
+        // noop
+    }
+}</programlisting>
+</figure>
+
+    </section>
+
+</article>

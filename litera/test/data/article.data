@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<article xmlns="http://docbook.org/ns/docbook"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd" 
+    class="techreport">
+
+    <info>
+        <title>Test Data</title>
+        
+	    <abstract>
+		    <title/>
+	    	<para>This is the abstract</para>
+		</abstract>
+    </info>
+
+	<section>
+		<title>Section 1</title>
+		<para>blah blah</para>
+	</section>
+
+</article>

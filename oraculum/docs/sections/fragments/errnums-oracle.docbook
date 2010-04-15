@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+
+<table xmlns="http://docbook.org/ns/docbook"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd"
+    frame="all">
+
+    <title>PL/SQL errors</title>
+    <tgroup cols='3' align='left' colsep='1' rowsep='1'>
+        <colspec colname='code'/>
+        <colspec colname='name'/>
+        <colspec colname='description'/>
+        <thead>
+            <row>
+                <entry>Code</entry>
+                <entry>Name</entry>
+                <entry>Description</entry>
+            </row>
+        </thead>
+        <tbody>
+            <row>
+                <entry>-600</entry>
+                <entry>internal_oracle_error</entry>
+                <entry></entry>
+            </row>
+            <row>
+                <entry>-894</entry>
+                <entry>invalid_column_name</entry>
+                <entry></entry>
+            </row>
+            <row>
+                <entry>-903</entry>
+                <entry>invalid_table_name</entry>
+                <entry></entry>
+            </row>
+            <row>
+                <entry>-942</entry>
+                <entry>nonexistant_object</entry>
+                <entry></entry>
+            </row>
+            <row>
+                <entry>-955</entry>
+                <entry>object_already_exists</entry>
+                <entry></entry>
+            </row>
+            <row>
+                <entry>-972</entry>
+                <entry>incorrect_identifier</entry>
+                <entry></entry>
+            </row>
+            <row>
+                <entry>-1418</entry>
+                <entry>nonexistant_index</entry>
+                <entry></entry>
+            </row>
+            <row>
+                <entry>-1422</entry>
+                <entry>exact_fetch_error</entry>
+                <entry></entry>
+            </row>
+            <row>
+                <entry>-2275</entry>
+                <entry>constraing_already_exists</entry>
+                <entry></entry>
+            </row>
+            <row>
+                <entry>-2443</entry>
+                <entry>nonexistant_constraint</entry>
+                <entry></entry>
+            </row>
+            <row>
+                <entry>-4080</entry>
+                <entry>nonexistant_trigger</entry>
+                <entry></entry>
+            </row>
+            <row>
+                <entry>-24344</entry>
+                <entry>compilation_error</entry>
+                <entry></entry>
+            </row>
+        </tbody>
+    </tgroup>
+</table>

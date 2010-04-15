@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 301 $
+  - Last edit   : $Date: 2009-12-13 21:42:29 +0100 (Sun, 13 Dec 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Are you translated, yet?</title>
+
+    <para>When developing a web application in Java (and certainly in other technologies), it has been the practice to place the translated messages and labels inside the <code>WEB-INF</code> folder.  This practice greatly facilitates the deployment (everything is inside the <code>WAR</code> file) but has the main disadvantage of forcing a new release for every change made to the translation assets (new supported language, typo).  Furthermore the exhaustive list of messages to be translated is only known at the end of a development cycle, which usually leaves little or no time to the translators to finish their job before the product is being shipped.</para>
+
+    <para>The idea that has been explored was to leverage the Spring framework to offer the possibility to easily add and reload a language into the web application.</para>
+
+    <section>
+        <title>File System Provider</title>
+
+        <para>One obvious location for placing the properties file is of course directly on the file system and to auto-discover them with the <code>FilesystemDiscoveryMessageSource</code> class:</para>
+
+        <xi:include href="fragments/fs-discoveryms-configuration.docbook"/>
+
+        <para>At startup, each language is tested by looking for the <code>org.wkg.linguae.locale</code> label.  Since the list of available languages is automatically updated, it is trivial to let the user only select available (or delivered) languages:</para>
+
+        <figure><title>Sample web application</title>
+            <screenshot><mediaobject><imageobject>
+                <imagedata fileref="images/linguae-webapp.png" align="center" width="80%"/>
+            </imageobject></mediaobject></screenshot>
+        </figure>
+
+        <para>So what happens when some new language is added?  The application could of course be restarted but a more elegant solution would be to use JMX to manage the <code>FilesystemDiscoveryMessageSource</code>:</para>
+
+        <figure><title>Reloading with a JMX client</title>
+            <screenshot><mediaobject><imageobject>
+                <imagedata fileref="images/jmx-control.png" align="center" width="80%"/>
+            </imageobject></mediaobject></screenshot>
+        </figure>
+    </section>
+
+    <section>
+        <title>Database Provider</title>
+
+        <para>Some people have suggested to store <ulink url="http://forum.springsource.org/showthread.php?t=18194"><citetitle>translation data into a database</citetitle></ulink> to ease the maintenance.  Since it is quite unlikely that these values will be changed in a production environment and in order to take advantage of the caching mechanism of the Spring <code>ReloadableResourceBundleMessageSource</code>, the <code>DatabaseDiscoveryMessageSource</code> class will simply be a specialization of the <code>FilesystemDiscoveryMessageSource</code></para>
+
+        <xi:include href="fragments/db-discoveryms-configuration.docbook"/>
+
+        <para>And will first generate the properties files from the database before loading them as seen in the previous example:</para>
+
+        <xi:include href="fragments/db-discoveryms-discovery.docbook"/>
+    </section>
+
+</section>

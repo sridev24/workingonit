@@ -1,0 +1,12 @@
+<figure><title>JGroups Cluster configuration</title><programlisting><![CDATA[<bean id="cluster" class="org.workingonit.singulus.jgroups.JGroupsCluster">
+    <property name="channel">
+        <bean class="org.workingonit.singulus.jgroups.ChannelBeanFactory">
+            <property name="config" value="classpath:jgroups-config.xml"/>
+        </bean>
+    </property>
+    <property name="votingProcedure">
+        <bean class="org.workingonit.singulus.election.IpLexicalVotingProcedure"/>
+    </property>
+</bean>
+]]></programlisting>
+</figure>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009-2010 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 332 $
+  - Last edit   : $Date: 2010-01-22 16:56:32 +0100 (Fri, 22 Jan 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Exporting Wiki Pages</title>
+
+    <para>It is often difficult to find the right place for a piece of documentation: a static document is often more tedious to maintain when a Wiki page is easy to edit but difficult to organize inside a master document. In order to get the best of both worlds, the easiest solution is to aggregate several Wiki documents into a static one, that can easily be included into a release.</para>
+
+    <para>As starting point, we write a very basic article on a local <ulink url="http://www.mediawiki.org/"><citetitle>MediaWiki</citetitle></ulink> server:</para>
+
+    <figure><title>Sample MediaWiki page</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="images/mediawiki.png" align="center" width="80%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+    <para>The tricky part is of course to write the parser that will transform the MediaWiki page into a valid <ulink url="http://www.docbook.org/"><citetitle>Docbook</citetitle></ulink> document. Fortunately, there exist a couple of Open Source libraries that handle this generation gracefully.  Once everything has been glued together, we can export the page using a simple <ulink url="http://ant.apache.org/"><citetitle>Ant</citetitle></ulink> target:</para>
+
+    <xi:include href="fragments/mediawiki2docbook.docbook"/>
+
+    <para>It was decided to export the document as <code>section</code> so that several of these exported pages can freely be included into on single document.</para>
+
+    <figure><title>MediaWiki exported document</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="images/sample.png" align="center" width="80%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+    <para>MediaWiki may not offer a PDF exporter out-of-the box but it is trivial to write a specific server to fill in this gap. It is furthermore possible to use one's own XSL templates to easily brand the generated PDF documents:</para>
+
+    <figure><title>Litera MediaWiki server</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="images/webapp.png" align="center" width="80%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+</section>

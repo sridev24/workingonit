@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  - Copyright 2009-2010 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 360 $
+  - Last edit   : $Date: 2010-03-07 22:11:01 +0100 (Sun, 07 Mar 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+    <context:annotation-config/>
+    
+	<mvc:annotation-driven/>
+
+    <bean name="/docbook.htm" class="org.workingonit.litera.web.DocbookController"/>
+    <bean name="/litera.htm" class="org.workingonit.litera.web.HomeController"/>
+
+    <import resource="classpath:META-INF/spring/org.workingonit.litera.grabbers.MediaWikiHttpGrabber.xml"/>
+    <import resource="classpath:META-INF/spring/org.workingonit.litera.services.MediaWiki2PdfGenerator.xml"/>
+
+    <bean name="/document.htm" class="org.workingonit.litera.web.DocumentFormController"
+        p:sessionForm="true"
+        p:commandName="request"
+        p:commandClass="org.workingonit.litera.web.DocumentRequest"
+        p:formView="documentrequest"
+        p:generator-ref="org.workingonit.litera.mediawiki.MediaWiki2PdfGenerator"/>
+
+    <bean name="documentView" class="org.workingonit.litera.web.DocumentView"/>
+
+    <bean id="nameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver"
+        p:order="1"/>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+        p:order="2"  
+        p:prefix="WEB-INF/pages/"
+        p:suffix=".jsp"/>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+        p:ignoreResourceNotFound="true">
+        <property name="locations">
+            <list>
+                <value>/WEB-INF/litera.properties</value>
+                <value>classpath:litera-local.properties</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>

@@ -1,0 +1,8 @@
+syntax: glob
+
+*~
+*.bak
+**/lib
+**/target
+**/*-local.properties
+**/test-output

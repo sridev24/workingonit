@@ -1,0 +1,10 @@
+<figure><title>msginfo table</title>
+<programlisting><![CDATA[CREATE TABLE msg_info (
+    msgcode INTEGER,
+    msgtype VARCHAR2(30),
+    msgmodule VARCHAR2(30),
+    msgtext VARCHAR2(2000),
+    msgname VARCHAR2(30),
+    description VARCHAR2(2000)
+);]]></programlisting>
+</figure>

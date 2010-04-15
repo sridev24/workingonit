@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="**/.svn/" kind="src" path="src/java"/>
+	<classpathentry excluding="**/.svn/" kind="src" path="test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/endorsed/jars/testng/testng-jdk15-5.9.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

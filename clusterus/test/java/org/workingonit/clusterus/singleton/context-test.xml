@@ -1,0 +1,73 @@
+<?xml version="1.0"?> 
+
+<!--
+  - Copyright 2008-2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 340 $
+  - Last edit   : $Date: 2010-02-09 08:47:28 +0100 (Tue, 09 Feb 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+    <bean id="service1" class="com.acme.kitchensink.services.SampleSingletonService"/>
+
+    <bean id="service2" class="com.acme.kitchensink.services.SampleSingletonService"/>
+    
+    <bean class="org.workingonit.clusterus.SingletonManager"
+        p:cluster-ref="cluster">
+        <property name="services">
+            <list>
+                <ref local="service1"/>
+                <ref local="service2"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="cluster" class="org.workingonit.clusterus.jgroups.JGroupsCluster">
+        <property name="channel">
+            <bean class="org.workingonit.clusterus.jgroups.ChannelBeanFactory"
+                p:config="classpath:jgroups-config.xml"/>
+        </property>
+        <property name="votingProcedure">
+            <bean class="org.workingonit.clusterus.election.IpLexicalVotingProcedure"/>
+        </property>
+    </bean>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+        p:ignoreResourceNotFound="true">
+        <property name="locations">
+            <list>
+                <value>classpath:org/workingonit/singulus/context.properties</value>
+                <value>classpath:org/workingonit/singulus/context-local.properties</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>

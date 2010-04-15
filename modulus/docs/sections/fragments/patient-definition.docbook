@@ -1,0 +1,10 @@
+<example><title>Sample patient definition</title>
+<programlisting><![CDATA[<bean class="org.workingonit.modulus.Platform">
+    <constructor-arg value="kitchensink"/>
+    <property name="properties">
+       <props>
+           <prop key="version">5.0.12</prop>
+       </props>
+    </property> 
+</bean>]]></programlisting>
+</example>
