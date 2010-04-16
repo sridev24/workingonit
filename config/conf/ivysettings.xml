@@ -37,13 +37,13 @@
 
     <resolvers>
         <chain name="roundups" returnFirst="true">
-	        <!-- 
-	          - TODO on Linux, use file:// and on Windows file:/// .
-	          -->
-	        <packager name="roundup-local" buildRoot="${local.ivyroundup.build.dir}" resourceCache="${local.ivyroundup.cache.dir}">
-	            <ivy pattern="file://${basedir}/conf/roundup/[organisation]/[module]/[revision]/ivy.xml"/>
-	            <artifact pattern="file://${basedir}/conf/roundup/[organisation]/[module]/[revision]/packager.xml"/>
-	        </packager>
+            <!-- 
+              - TODO on Linux, use file:// and on Windows file:/// .
+              -->
+            <packager name="roundup-local" buildRoot="${local.ivyroundup.build.dir}" resourceCache="${local.ivyroundup.cache.dir}">
+                <ivy pattern="file://${basedir}/conf/roundup/[organisation]/[module]/[revision]/ivy.xml"/>
+                <artifact pattern="file://${basedir}/conf/roundup/[organisation]/[module]/[revision]/packager.xml"/>
+            </packager>
 
             <!-- 
             <packager name="roundup" buildRoot="${ivyroundup.build.dir}" resourceCache="${ivyroundup.cache.dir}">
@@ -51,7 +51,7 @@
                 <artifact pattern="http://ivyroundup.googlecode.com/svn/trunk/repo/modules/[organisation]/[module]/[revision]/packager.xml"/>
             </packager>
              -->
-	    </chain>
+        </chain>
     </resolvers>
 
 </ivysettings>

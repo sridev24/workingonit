@@ -64,7 +64,7 @@
 
     <target name="package" depends="compile">
         <java:jar/>
-    	<java:war/>
+        <java:war/>
     </target>
 
     <target name="test" depends="package">

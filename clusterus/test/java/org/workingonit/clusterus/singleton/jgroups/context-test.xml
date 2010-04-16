@@ -38,12 +38,12 @@
 
     <bean id="cluster" class="org.workingonit.clusterus.jgroups.JGroupsCluster">
         <property name="channel">
-			<bean class="org.workingonit.clusterus.jgroups.ChannelBeanFactory"
-			    p:config="classpath:jgroups-config.xml"/>
-		</property>
+            <bean class="org.workingonit.clusterus.jgroups.ChannelBeanFactory"
+                p:config="classpath:jgroups-config.xml"/>
+        </property>
         <property name="votingProcedure">
             <bean class="org.workingonit.clusterus.election.IpLexicalVotingProcedure"/>
-		</property>
+        </property>
     </bean>
 
     <bean class="org.workingonit.clusterus.SysoutClusterListener"

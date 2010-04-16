@@ -40,9 +40,9 @@
     </test>
 
     <test name="manual">
-    	<classes>
-    		<class name="org.workingonit.litera.mediawiki.HttpDocumentGrabberTest"/>
-    	</classes>
-	</test>
+        <classes>
+            <class name="org.workingonit.litera.mediawiki.HttpDocumentGrabberTest"/>
+        </classes>
+    </test>
   
 </suite>

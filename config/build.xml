@@ -46,11 +46,11 @@
     </target>
 
     <target name="package" depends="init">
-    	<jar destfile="${dist.dir}/org.workingonit.${project.name}-${project.version}.jar">
-    	    <zipfileset dir="src/antlib" includes="*.xml" prefix="org/workingonit/antlib"/>
-    	</jar>
-    	<copy file="${dist.dir}/org.workingonit.${project.name}-${project.version}.jar" 
-    	    tofile="${dist.dir}/org.workingonit.${project.name}.jar"/>
+        <jar destfile="${dist.dir}/org.workingonit.${project.name}-${project.version}.jar">
+            <zipfileset dir="src/antlib" includes="*.xml" prefix="org/workingonit/antlib"/>
+        </jar>
+        <copy file="${dist.dir}/org.workingonit.${project.name}-${project.version}.jar" 
+            tofile="${dist.dir}/org.workingonit.${project.name}.jar"/>
     </target>
 
     <target name="publish" depends="package">
@@ -111,19 +111,19 @@
         <docbook:pdf.generate file="workingonit"/>
     </target>
 
-	<target name="test.html" description="tests html output (Docbook)">
-		<copy todir="${target.dir}/docbook" overwrite="true">
-			<fileset dir="conf/docbook" includes="*html.xsl, *.css"/>
+    <target name="test.html" description="tests html output (Docbook)">
+        <copy todir="${target.dir}/docbook" overwrite="true">
+            <fileset dir="conf/docbook" includes="*html.xsl, *.css"/>
             <filterset>
                 <filter token="DOCBOOK.HOME" value="${docbook.home}"/>
                 <filter token="DOCBOOK.WKG.HOME" value="${file.protocol}${docbook.wkg.home}"/>
             </filterset>
-		</copy>
-		<docbook:file.html.generate 
-			html-stylesheet.home="${target.dir}/docbook"
-			html-stylesheet="article-html.xsl"
-			file="workingonit"/>
-	</target>
+        </copy>
+        <docbook:file.html.generate 
+            html-stylesheet.home="${target.dir}/docbook"
+            html-stylesheet="article-html.xsl"
+            file="workingonit"/>
+    </target>
 
     <target name="install" description="install the docbook templates locally">
         <condition property="file.protocol" value="file:///" else="file://">
