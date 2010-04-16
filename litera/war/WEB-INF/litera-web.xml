@@ -65,14 +65,7 @@
         p:prefix="WEB-INF/pages/"
         p:suffix=".jsp"/>
 
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-        p:ignoreResourceNotFound="true">
-        <property name="locations">
-            <list>
-                <value>/WEB-INF/litera.properties</value>
-                <value>classpath:litera-local.properties</value>
-            </list>
-        </property>
-    </bean>
+    <context:property-placeholder ignore-resource-not-found="true" 
+        location="/WEB-INF/litera.properties, classpath:litera-local.properties"/>
 
 </beans>
