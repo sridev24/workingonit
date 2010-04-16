@@ -37,9 +37,9 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
     <bean id="foTransformer" class="org.workingonit.litera.xml.transformers.XsltTransformer"
-    	p:stylesheet="target/docs/conf/fo-stylesheet.xsl"/>
+        p:stylesheet="target/docs/conf/fo-stylesheet.xsl"/>
 
     <bean id="pdfTransformer" class="org.workingonit.litera.xml.transformers.FopTransformer"
-    	p:config="target/docs/conf/fop-config.xconf"/>
+        p:config="target/docs/conf/fop-config.xconf"/>
 
 </beans>

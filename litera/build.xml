@@ -62,7 +62,7 @@
     <target name="compile" depends="init">
         <java:compile/>
         <java:compile srcDir="webapp/java"/>
-    	<java:test.compile/>
+        <java:test.compile/>
     </target>
 
     <target name="test" depends="compile">

@@ -20,39 +20,39 @@
         <security:intercept-url pattern="/login.htm*" filters="none"/>  
         <security:intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN"  />
 
-    	<security:form-login login-page="/login.htm" authentication-failure-url="/login.htm?login_error=1" default-target-url="/home.htm"/>
+        <security:form-login login-page="/login.htm" authentication-failure-url="/login.htm?login_error=1" default-target-url="/home.htm"/>
 
-    	<security:logout logout-success-url="/login.htm"/>
+        <security:logout logout-success-url="/login.htm"/>
     </security:http>
 
-	<bean id="authenticationManager" class="org.springframework.security.providers.ProviderManager">
-		<property name="providers">
-			<list>
-				<ref bean="authenticationProvider"/>
-			</list>
-		</property>
-	</bean>
-
-    <bean id="headlessAuthenticationProvider" class="org.workingonit.clusterus.security.HeadlessAuthenticationProvider">
-    	<property name="authenticationProvider" ref="authenticationProvider"/>
-	</bean>
-
-    <bean id="authenticationProvider" class="org.springframework.security.providers.dao.DaoAuthenticationProvider">
-		<security:custom-authentication-provider/>
-		<property name="userDetailsService" ref="userDetailsService"/>
+    <bean id="authenticationManager" class="org.springframework.security.providers.ProviderManager">
+        <property name="providers">
+            <list>
+                <ref bean="authenticationProvider"/>
+            </list>
+        </property>
     </bean>
 
-	<bean id="userDetailsService" class="org.workingonit.clusterus.security.EnhancerUserDetailsService">
-	    <property name="pathThrough">
-			<bean class="org.springframework.security.userdetails.memory.InMemoryDaoImpl">
-				<property name="userMap">
-					<value>
-						scott=tiger,ROLE_USER,ROLE_ADMIN
-						john=doe,ROLE_USER
-					</value>
-				</property>
-			</bean>
-	    </property>
-	</bean>
+    <bean id="headlessAuthenticationProvider" class="org.workingonit.clusterus.security.HeadlessAuthenticationProvider">
+        <property name="authenticationProvider" ref="authenticationProvider"/>
+    </bean>
+
+    <bean id="authenticationProvider" class="org.springframework.security.providers.dao.DaoAuthenticationProvider">
+        <security:custom-authentication-provider/>
+        <property name="userDetailsService" ref="userDetailsService"/>
+    </bean>
+
+    <bean id="userDetailsService" class="org.workingonit.clusterus.security.EnhancerUserDetailsService">
+        <property name="pathThrough">
+            <bean class="org.springframework.security.userdetails.memory.InMemoryDaoImpl">
+                <property name="userMap">
+                    <value>
+                        scott=tiger,ROLE_USER,ROLE_ADMIN
+                        john=doe,ROLE_USER
+                    </value>
+                </property>
+            </bean>
+        </property>
+    </bean>
     
 </beans>

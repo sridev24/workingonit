@@ -47,7 +47,7 @@
     <typedef resource="org/workingonit/antlib/docbook.xml" uri="antlib:org.workingonit.docbook"/>
     <typedef resource="org/workingonit/antlib/release.xml" uri="antlib:org.workingonit.release"/>
     <typedef resource="org/workingonit/antlib/tomcat.xml" uri="antlib:org.workingonit.tomcat"/>
-	
+    
     <target name="init">
         <ivy:download/>
         <project:init ivyfile="conf/docbook-ivy.xml"/>
@@ -62,7 +62,7 @@
     <target name="test" depends="compile">
         <testng:suite.execute/>
     </target>
-	
+    
     <target name="package" depends="compile">
         <java:jar/>
     </target>

@@ -40,7 +40,7 @@
 
     <context:annotation-config/>
     
-	<mvc:annotation-driven/>
+    <mvc:annotation-driven/>
 
     <bean name="/docbook.htm" class="org.workingonit.litera.web.DocbookController"/>
     <bean name="/litera.htm" class="org.workingonit.litera.web.HomeController"/>

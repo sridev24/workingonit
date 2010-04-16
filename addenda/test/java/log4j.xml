@@ -34,14 +34,14 @@
         </layout>
     </appender>
 
-	<appender name="FILE" class="org.workingonit.addenda.log4j.ConfigurableRollingFileAppender">
-		<param name="File" value="testing.log"/>
-		<param name="MaxFileSize" value="5KB"/>
-		<param name="MaxBackupIndex" value="10"/>
-		<layout class="org.apache.log4j.PatternLayout">
+    <appender name="FILE" class="org.workingonit.addenda.log4j.ConfigurableRollingFileAppender">
+        <param name="File" value="testing.log"/>
+        <param name="MaxFileSize" value="5KB"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="[%t] %c %x - %m%n"/>
         </layout>
-	</appender>
+    </appender>
 
     <logger name="org.workingonit">
         <level value="debug"/>

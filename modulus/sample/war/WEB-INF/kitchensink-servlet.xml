@@ -41,7 +41,7 @@
     <bean class="com.acme.kitchensink.web.ExaminationReportController"/>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-    	p:prefix="WEB-INF/pages/"
+        p:prefix="WEB-INF/pages/"
         p:suffix=".jsp"/>
 
 </beans>

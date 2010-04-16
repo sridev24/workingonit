@@ -45,7 +45,7 @@
     <typedef resource="org/workingonit/antlib/java.xml" uri="antlib:org.workingonit.java"/>
     <typedef resource="org/workingonit/antlib/docbook.xml" uri="antlib:org.workingonit.docbook"/>
     <typedef resource="org/workingonit/antlib/release.xml" uri="antlib:org.workingonit.release"/>
-	
+    
     <target name="init">
         <ivy:download/>
         <project:init ivyfile="conf/docbook-ivy.xml"/>
@@ -59,10 +59,10 @@
 
     <target name="package" depends="compile">
         <java:jar>
-        	<additional>
-        		<zipgroupfileset dir="lib/distributed/jars" includes="**/*.jar"/>
-        	</additional>
-    	</java:jar>
+            <additional>
+                <zipgroupfileset dir="lib/distributed/jars" includes="**/*.jar"/>
+            </additional>
+        </java:jar>
     </target>
 
     <target name="test" depends="package">
@@ -113,7 +113,7 @@
                 <pathelement location="${dist.dir}/${project.name}-${project.version}.jar"/>
             </classpath>
         </msginfo>
-    	
+        
         <tableinfo url="jdbc:oracle:thin:@sausalito:1521:XE"
                 username="scott" password="tiger"
                 table="msg_info" outFile="${target.dir}/test/msg_info.docbook">
