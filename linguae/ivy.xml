@@ -47,7 +47,7 @@
         <dependency org="org.apache.log4j" name="log4j" rev="1.2.15" conf="distributed->default"/>
         <dependency org="org.apache.commons" name="commons-io" rev="1.+" conf="distributed->default"/>
         <dependency org="org.apache.commons" name="commons-lang" rev="2.+" conf="distributed->default"/>
-        <dependency org="org.springframework" name="spring" rev="2.5.6" conf="distributed->jdbc,webmvc; endorsed->test"/>
+        <dependency org="org.springframework" name="spring" rev="3.0.0" conf="distributed->jdbc,webmvc; endorsed->test"/>
         <dependency org="org.testng" name="testng" rev="5.9" conf="endorsed->default"/>
         <dependency org="org.workingonit" name="addenda" rev="0.+" conf="distributed"/>
     </dependencies>
