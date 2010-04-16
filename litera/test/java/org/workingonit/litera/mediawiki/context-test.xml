@@ -41,13 +41,7 @@
     
     <import resource="classpath:META-INF/spring/org.workingonit.litera.services.MediaWiki2PdfGenerator.xml"/>
     
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-        p:ignoreResourceNotFound="true">
-        <property name="locations">
-            <list>
-                <value>testng.properties</value>
-            </list>
-        </property>
-    </bean>
+    <context:property-placeholder ignore-resource-not-found="true" 
+        location="testng.properties"/>
     
 </beans>
