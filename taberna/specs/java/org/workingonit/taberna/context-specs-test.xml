@@ -56,13 +56,7 @@
         p:url="${url}"
         p:restTemplate-ref="restTemplate"/>
 
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-        p:systemPropertiesModeName="SYSTEM_PROPERTIES_MODE_OVERRIDE">
-        <property name="locations">
-            <list>
-                <value>classpath:taberna-test.properties</value>
-            </list>
-        </property>
-    </bean>
+    <context:property-placeholder ignore-resource-not-found="true" 
+        location="classpath:taberna-test.properties"/>
 
 </beans>

@@ -31,10 +31,10 @@
     xmlns:p="http://www.springframework.org/schema/p"
     xmlns:util="http://www.springframework.org/schema/util"
     xsi:schemaLocation="
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
-        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
     <bean name="linguaeController" class="org.workingonit.linguae.web.LinguaeController"/>
 
@@ -70,17 +70,8 @@
     <bean id="messageSource" class="org.workingonit.linguae.FilesystemDiscoveryMessageSource"
         p:basename="file:${linguae.messages.srcdir}/labels"/>
 
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-        p:ignoreResourceNotFound="true">
-        <property name="locations">
-            <list>
-                <value>/resources/linguae-default.properties</value>
-                <value>/WEB-INF/linguae.properties</value>
-                <value>/WEB-INF/linguae-local.properties</value>
-                <value>classpath:linguae-local.properties</value>
-            </list>
-        </property>
-    </bean>
+    <context:property-placeholder ignore-resource-not-found="true" 
+        location="/resources/linguae-default.properties, /WEB-INF/linguae.properties, /WEB-INF/linguae-local.properties, classpath:linguae-local.properties"/>
     
     <bean id="exporter" class="org.springframework.jmx.export.MBeanExporter"
             lazy-init="false"
