@@ -46,6 +46,7 @@
                     optimize="@{optimization}"
                     encoding="iso-8859-1"
                     failonerror="yes"
+                    includeAntRuntime="false"
                     fork="yes"
                     memoryMaximumSize="128m">
                 <src path="@{srcDir}"/>
