@@ -21,10 +21,19 @@
  */
 package org.workingonit.depictus;
 
+import static java.awt.BasicStroke.CAP_ROUND;
+import static java.awt.BasicStroke.JOIN_ROUND;
+import static java.awt.Color.GREEN;
+import static java.awt.Color.RED;
+import static java.awt.Color.WHITE;
+import static java.awt.RenderingHints.KEY_ANTIALIASING;
+import static java.awt.RenderingHints.KEY_TEXT_ANTIALIASING;
+import static java.awt.RenderingHints.VALUE_ANTIALIAS_ON;
+import static java.awt.RenderingHints.VALUE_TEXT_ANTIALIAS_ON;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 
 /**
  * Class responsible for drawing the color arc.
@@ -63,14 +72,14 @@ public class ArcGrapher {
     private int thickness = 30;
 
     /**
-     * Defaulted to {@link Color.RED}.
+     * Defaulted to {@link RED}.
      */
-    private Color startColor = Color.RED;
+    private Color startColor = RED;
 
     /**
-     * Defaulted to {@link Color.GREEN}.
+     * Defaulted to {@link GREEN}.
      */
-    private Color endColor = Color.GREEN;
+    private Color endColor = GREEN;
 
     public void setColorSampler(final ColorInterpolator sampler) {
         this.sampler = sampler;
@@ -114,15 +123,16 @@ public class ArcGrapher {
      * @param graphics the Java2D graphics to draw into
      */
     public void graph(final Graphics2D graphics) {
-        graphics.setStroke(new BasicStroke(7.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        graphics.setStroke(new BasicStroke(7.0f, CAP_ROUND, JOIN_ROUND));
 
-        graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
+        graphics.setRenderingHint(KEY_TEXT_ANTIALIASING, VALUE_TEXT_ANTIALIAS_ON);
+        graphics.setRenderingHint(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
 
+        /*
+         * Once we have found out all the colors that must fill the arc, we
+         * simply draw a full arc with the given color.
+         */
         Color[] colors = this.sampler.interpolate(this.startColor, this.endColor, this.steps);
-
         float delta = ((float) (180 - 2*this.startAngle) / (float) colors.length);
 
         int angle = this.startAngle;
@@ -135,11 +145,9 @@ public class ArcGrapher {
         graphics.setPaint(colors[colors.length - 1]);
         graphics.fillArc(0, 0, this.diameter, this.diameter, angle, 180 - this.startAngle - angle);
 
-        /*
-         * remove the inner circle
-         */
+        // paint the inner circle in white to let the arc appear
         graphics.translate(this.thickness, this.thickness);
-        graphics.setPaint(Color.WHITE);
+        graphics.setPaint(WHITE);
         graphics.fillArc(0, 0, this.diameter - (2 * this.thickness), this.diameter - (2 * this.thickness), 0, 180);
 
         // don't forget to return to the previous location!

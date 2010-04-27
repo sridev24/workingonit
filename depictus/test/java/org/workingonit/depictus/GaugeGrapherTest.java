@@ -39,8 +39,7 @@ public class GaugeGrapherTest {
 
                 int radius = 190;
 
-                GaugeGrapher grapher = new GaugeGrapher();
-                grapher.graph(graphics, radius, radius, percentile, "Hello");
+                new GaugeGrapher().graph(graphics, radius, radius, percentile, "Hello");
             }
         }.process("target/test/" + filename);
 

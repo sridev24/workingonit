@@ -108,11 +108,7 @@ public class ArrowGrapher {
             Rectangle2D rect = fm.getStringBounds(label, graphics);
 
             int delta = (int) (- (angle / 180) * rect.getWidth());
-
-            // FIXME explain it!
-            graphics.scale(1/ratio, 1/ratio);
             graphics.drawString(label, delta, 0);
-            graphics.scale(ratio, ratio);
 
             graphics.rotate(-Math.toRadians(angle));
 

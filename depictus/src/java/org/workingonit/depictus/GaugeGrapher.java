@@ -21,7 +21,9 @@
  */
 package org.workingonit.depictus;
 
-import java.awt.Color;
+import static java.awt.Color.BLACK;
+import static java.awt.Color.WHITE;
+
 import java.awt.Graphics2D;
 
 /**
@@ -58,9 +60,9 @@ public class GaugeGrapher {
      *            optional label to display near the arrowhead.
      */
     public void graph(final Graphics2D graphics, final int width, final int height, final float percentile, final String label) {
-        graphics.setColor(Color.WHITE);
+        graphics.setColor(WHITE);
         graphics.fillRect(0, 0, width, height);
-        graphics.setPaint(Color.BLACK);
+        graphics.setPaint(BLACK);
 
         double ratio = (float) Math.min(width, height) / this.arc.getRatio(); // FIXME explain this
         graphics.scale(ratio, ratio);
@@ -75,7 +77,7 @@ public class GaugeGrapher {
         this.arc.graph(graphics);
 
         graphics.translate(this.arc.getDiameter() / 2, this.arc.getDiameter() / 2);
-        graphics.setColor(Color.BLACK);
+        graphics.setColor(BLACK);
 
         double angle = (180 - this.arc.getStartAngle()) - percentile * (180 - (2 * this.arc.getStartAngle()));
 
