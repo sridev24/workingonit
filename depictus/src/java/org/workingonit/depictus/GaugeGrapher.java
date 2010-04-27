@@ -64,14 +64,21 @@ public class GaugeGrapher {
         graphics.fillRect(0, 0, width, height);
         graphics.setPaint(BLACK);
 
-        double ratio = (float) Math.min(width, height) / this.arc.getRatio(); // FIXME explain this
-        graphics.scale(ratio, ratio);
+        /*
+         * before starting to draw the single components, it is necessary to
+         * obtain the ratio between the desired size and the optimum one,
+         * otherwise everything will be a little bit off.
+         */
+        double ratio = (float) Math.min(width, height) / this.arc.getOptimumSize();
+
+        int newwidth = (this.arc.getOptimumSize() - this.arc.getDiameter()) / 2;
+        int newheight = this.arc.getOptimumSize() - (this.arc.getDiameter()/2) - 6;
 
         System.out.println("scaling of ratio = " + ratio);
-        int newwidth = (this.arc.getRatio() - this.arc.getDiameter()) / 2;
-        int newheight = this.arc.getRatio() - (this.arc.getDiameter()/2) - 6;
         System.out.println("   new width = " + newwidth);
         System.out.println("   new height = " + newheight);
+
+        graphics.scale(ratio, ratio);
         graphics.translate(newwidth, newheight);
 
         this.arc.graph(graphics);
@@ -83,6 +90,7 @@ public class GaugeGrapher {
 
         this.arrow.graph(graphics, angle, (int) (this.arc.getDiameter()/2 * 1.10), label, ratio);
 
+        // don't forget to return to the previous location!
         graphics.translate(-this.arc.getDiameter() / 2, -height / 2);
     }
 
