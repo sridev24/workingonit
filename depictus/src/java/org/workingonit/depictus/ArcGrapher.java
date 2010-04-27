@@ -36,10 +36,12 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 /**
- * Class responsible for drawing the color arc.
- *
- * FIXME explain the ratio (300 and 190)
- *
+ * Class responsible for drawing the color arc. The values {@link #startAngle},
+ * {@link #optimumSize}, {@link #diameter} and {@link #thickness} have been
+ * empirically found by comparing various values with the GOM result. Their
+ * respective default values correspond to the GOM ones, so there's no need to
+ * tweak these.
+ * 
  * @author Vladimir Ritz Bossicard
  */
 public class ArcGrapher {
@@ -54,7 +56,7 @@ public class ArcGrapher {
     /**
      * Defaulted to 300 (just like GOM).
      */
-    private int ratio = 300;
+    private int optimumSize = 300;
 
     /**
      * Defaulted to 190 (just like GOM).
@@ -105,8 +107,17 @@ public class ArcGrapher {
         return this.diameter;
     }
 
-    public int getRatio() {
-        return this.ratio;
+    /**
+     * Returns the optimum size (height, width) for which the default values
+     * have been calculated. The entire graph has been calibrated for a specific
+     * size, so that the arrows and text look nicer so when you want to scale
+     * the entire graphic (everything except the text, of course), you need to
+     * know how every scales. By getting the theoretical maximum size of a
+     * graphic, you can later scale everything accordingly. The value is
+     * defaulted to 300 (just like GOM).
+     */
+    public int getOptimumSize() {
+        return this.optimumSize;
     }
 
     public void setStartAngle(final int angle) {
@@ -118,7 +129,7 @@ public class ArcGrapher {
     }
 
     /**
-     * FIXME
+     * Draws the colored graph into the given graphics.
      * 
      * @param graphics the Java2D graphics to draw into
      */

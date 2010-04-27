@@ -51,7 +51,11 @@ public class GaugeGrapherExporterTest {
         generate(200, 200);
         generate(300, 300);
 
-        generate(200, 200, 0.75f);
+        generate(150, 150, 0.75f);
     }
 
+    public void problematic_scaling() throws Exception {
+        generate(200, 100);
+    }
+    
 }
