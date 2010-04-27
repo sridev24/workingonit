@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 308 $
+  - Last edit   : $Date: 2009-12-16 20:10:54 +0100 (Wed, 16 Dec 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>HTTP Session Validation</title>
+
+    <para>When the term <emphasis>cluster</emphasis> is heard, the first this that pops up is usally <emphasis>HTTP session serialization</emphasis>. In order to fullfill the high availability of a cluster, the elements of the HTTP session must be copied to the other nodes of the cluster, so that users are automatically "migrated" to a new server when one goes down. In order to keep things run smoothly, one should make sure that the objects in the HTTP session:</para>
+    
+    <itemizedlist>
+        <listitem>
+            <para>are <emphasis>serializable</emphasis>: in Java, the classes should simply implement the <code>Serializable</code> interface (although there are other tricks when they don't, but let's not go there).</para>
+        </listitem>
+        <listitem>
+            <para>are <emphasis>not too big</emphasis>: the network will definitively not survive if it has to replicate megabytes amongst the cluster's members.</para>
+        </listitem>
+    </itemizedlist>
+    
+    <para>The particularity of these requirement is that they must be verified at <emphasis>runtime</emphasis>. A simple servlet filter would do it. Please meet <code>HttpSessionIntrospectorFilter</code>.</para>
+    
+    <para>Once per request, all the elements of the HTTP session will be individually validated for serializability.  Every non serializable object found in the HTTP session will be copiously mentioned in the application log:</para>
+
+<figure><title>Non serialization session</title>
+<programlisting><![CDATA[WARNING: session object not serializable: SPRING_SECURITY_CONTEXT
+java.io.NotSerializableException: 
+    com.acme.kitchensink.web.session.DefaultSessionContextInitializer$NonSerializable
+at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1156)
+at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:326)]]></programlisting>
+</figure>
+
+    <para>The total size of these objects will also be calculated and logged, as a frenge benefit:</para>
+
+<figure><title>Session size information</title>
+<programlisting><![CDATA[INFO: Estimated session size : 1570 [A10BE5E41B17581689668509D26A5D3F]
+[login]
+INFO: Estimated session size : 2866 [77FCD90AB01A6340BDADA10C18292313]
+INFO: Estimated session size : 3427 [77FCD90AB01A6340BDADA10C18292313]
+INFO: Estimated session size : 3685 [77FCD90AB01A6340BDADA10C18292313]
+[logout]
+INFO: Estimated session size : 1659 [0CE893E7FE4437363C6C6DEBD1544AC3]]]></programlisting>
+</figure>
+
+    <para>By parsing the log files, it is quite easy to check that the size stays between tolerable borders. Of course, the extra mile would be to graph the size in real time but that exercise if left out for later.</para>
+
+</section>

@@ -1,0 +1,16 @@
+<figure><title>SessionContext initialization</title>
+<programlisting><![CDATA[import org.springframework.security.userdetails.UserDetails;
+
+public class SessionContext implements UserDetails {
+
+    private transient Map<String, Object> value = new HashMap<String, Object>();
+
+    public boolean isInitialized() {
+        if (this.value == null) {
+            this.value = new HashMap<String, Object>();
+        }
+        return !this.value.isEmpty();
+    }
+    
+}]]></programlisting>
+</figure>

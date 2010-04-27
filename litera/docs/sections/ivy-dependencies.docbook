@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009-2010 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 337 $
+  - Last edit   : $Date: 2010-01-26 23:41:24 +0100 (Tue, 26 Jan 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Dependencies Documentation</title>
+
+    <para>If <ulink url="http://ant.apache.org/ivy/"><citetitle>Apache Ivy</citetitle></ulink> is used to manage the third party libraries included into an application it is already possible to generate a nicely formatted HTML report listing all these dependencies.  however, it is sometimes necessary to include these reports into an official documentation (e. g. a release note or a developer guide) and since I have settle for Docbook as my documentation format, here's a simple Ant target to parse, merge and output into a Docbook fragment the list of all dependencies, extracted from a set of Ivy reports:</para>
+
+    <xi:include href="fragments/ivyreport2docbook.docbook"/>
+    
+    <para>After that, it is trivial to automatically include this XML fragment into the final document:</para>
+    
+    <figure><title>Resulting documentation sample</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="images/sample-documentation.png" align="center" width="80%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+</section>

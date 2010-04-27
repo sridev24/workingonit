@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+  - Copyright (C) 2008-2010 Vladimir Ritz Bossicard
+  - 
+  - This program is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or
+  - (at your option) any later version.
+  - 
+  - This program is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU General Public License for more details.
+  -
+  - You should have received a copy of the GNU General Public License
+  - along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Version      : $Revision: 319 $
+  - Last edit    : $Date: 2010-01-18 22:01:37 +0100 (Mon, 18 Jan 2010) $
+  - Last editor  : $Author: vbossica $
+  -->
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false" threshold="debug">
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%t] %c %x - %m%n"/>
+        </layout>
+    </appender>
+
+    <logger name="org.workingonit.modulus">
+        <level value="info"/>
+    </logger>
+
+    <logger name="org.springframework">
+        <level value="info"/>
+    </logger>
+
+    <root>
+        <level value="debug"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</log4j:configuration>

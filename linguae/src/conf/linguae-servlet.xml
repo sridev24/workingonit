@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 325 $
+  - Last edit   : $Date: 2010-01-19 10:24:35 +0100 (Tue, 19 Jan 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+    <bean name="linguaeController" class="org.workingonit.linguae.web.LinguaeController"/>
+
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/linguae.htm">linguaeController</prop>
+            </props>
+        </property>
+        <property name="interceptors">
+            <list>
+                <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+                    <property name="paramName" value="lang"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+        p:prefix="WEB-INF/pages/"
+        p:suffix=".jsp"/>
+
+    <bean id="themeSource" class="org.springframework.ui.context.support.ResourceBundleThemeSource"/>
+
+    <bean id="themeResolver" class="org.springframework.web.servlet.theme.FixedThemeResolver"/>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+
+    <!--
+      - Apparently the messageSource *must* be defined in the dispatcher 
+      - servlet configuration file 
+      -->
+    <bean id="messageSource" class="org.workingonit.linguae.FilesystemDiscoveryMessageSource"
+        p:basename="file:${linguae.messages.srcdir}/labels"/>
+
+    <context:property-placeholder ignore-resource-not-found="true" 
+        location="/resources/linguae-default.properties, /WEB-INF/linguae.properties, /WEB-INF/linguae-local.properties, classpath:linguae-local.properties"/>
+    
+    <bean id="exporter" class="org.springframework.jmx.export.MBeanExporter"
+            lazy-init="false"
+        p:autodetect="true">
+        <property name="namingStrategy">
+            <bean class="org.springframework.jmx.export.naming.MetadataNamingStrategy">
+                <property name="attributeSource">
+                    <bean class="org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource"/>
+                </property>
+            </bean>
+        </property>
+        <property name="assembler">
+            <bean class="org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler">
+                <property name="attributeSource">
+                    <bean class="org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource"/>
+                </property>
+            </bean>
+        </property>
+        <property name="server">
+            <bean class="org.springframework.jmx.support.MBeanServerFactoryBean">
+                <property name="locateExistingServerIfPossible" value="true"/>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

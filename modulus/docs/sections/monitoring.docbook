@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2010 Vladimir Ritz Bossicard
+  -
+  - This file is part of Cautissime.
+  -
+  - Cautissime is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 324 $
+  - Last edit   : $Date: 2010-01-19 10:02:45 +0100 (Tue, 19 Jan 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Monitoring the application</title>
+
+    <para>Now that the application has been installed and has passed the first checks, it starts his life in production. And the question that then needs to be continuously answered in is if the application still runs. Since most monitoring servers support JMX, it is very easy to reuse the diagnostics created previously and expose them via JMX. And that's exactly what <emphasis>Modulus</emphasis> does, you don't have to do anything more.</para>
+    
+    <figure><title>JMX exported services</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="images/jmxconsole.png" align="center" width="95%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+    <para>What left to do is to use the <emphasis>Modulus</emphasis> JMX client and generate the configuration file for the Hyperic monitoring server.</para>
+    
+    <figure><title>Application monitored by Hyperic</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="images/hyperic.png" align="center" width="100%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+</section>

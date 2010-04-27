@@ -1,0 +1,5 @@
+<figure><title>Tableinfo Ant task</title>
+<programlisting><![CDATA[<tableinfo url="jdbc:oracle:thin:@sausalito:1521:XE"
+    username="scott" password="tiger"
+    table="msg_info" outFile="${target.dir}/test/msg_info.docbook"/>]]></programlisting>
+</figure>

@@ -1,0 +1,9 @@
+<figure><title>Server #1 starting up</title><programlisting><![CDATA[---------------------------------------------------------
+GMS: address is 192.168.0.101:1390 (cluster=SINGULUS)
+---------------------------------------------------------
+org.workingonit.singulus.SingletonManager  - new incumbent elected = 192.168.0.101:1390
+org.workingonit.singulus.SingletonManager  - starting services
+com.acme.kitchensink.services.SampleSingletonService  - Starting service service1
+com.acme.kitchensink.services.SampleSingletonService  - Starting service service2
+]]></programlisting>
+</figure>

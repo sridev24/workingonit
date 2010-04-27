@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009-2010 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 337 $
+  - Last edit   : $Date: 2010-01-26 23:41:24 +0100 (Tue, 26 Jan 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<abstract xmlns="http://docbook.org/ns/docbook"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title/>
+
+    <para>Instead of waiting until the end of a project to take care of the documentation I thrive to make this effort a prime artifact of any project.  The approach taken to make this happen is to generate as much as possible from the code base and bind everything together into a Docbook document.</para>
+
+    <para>Let's face it: documentation is always the bastard child of the development process. It is always difficult to keep the documentation in sync with the code and not only because the code is faster written and modified than documented.  More often than not, the documentation is not kept with the code and doesn't follow the code life cycle.</para>
+
+    <para>I have decided to write all the documentation for my projects using <ulink url="http://www.docbook.org/"><citetitle>Docbook</citetitle></ulink> for several very simple reasons (1) the files are checked in into Subversion and can be merged if a branch is ever created and (2) files can easily be generated and included into a document.</para>
+
+    <para>The <emphasis>Litera</emphasis> project features tools to generate those Docbook documents and fragments from various sources to facilitate the generation of up-to-date documents.</para>
+
+</abstract>

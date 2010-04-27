@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 299 $
+  - Last edit   : $Date: 2009-12-13 21:22:42 +0100 (Sun, 13 Dec 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<article xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd" 
+    class="techreport">
+
+    <info>
+        <title>ACME Database Documentation</title>
+        <subtitle>Developers Guide</subtitle>
+    </info>
+
+    <section>
+        <title>Oracle Exceptions</title>
+
+        <para>For more convenience, some of the Oracle unnamed exceptions have been named.  The list is exhaustive and will be updated regularly:</para>
+
+        <xi:include href="sections/fragments/errnums-oracle.docbook"/>
+    </section>
+
+    <section>
+        <title>Module 1 Exceptions</title>
+
+        <para>Here are the errors that may be thrown by the ACME PL/SQL packages:</para>
+
+        <xi:include href="sections/fragments/errnums-module1.docbook"/>
+    </section>
+
+    <section>
+        <title>Module 2 Exceptions</title>
+
+        <para>Here are the errors that may be thrown by the ACME PL/SQL packages:</para>
+
+        <xi:include href="sections/fragments/errnums-module2.docbook"/>
+    </section>
+
+</article>

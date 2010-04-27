@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 333 $
+  - Last edit   : $Date: 2010-01-22 21:19:48 +0100 (Fri, 22 Jan 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Data Dictionary</title>
+
+    <para>Having a database is good but it is unfortunately often not straightforward to understand all the intricacies of a rapidly evolving design. Oracle offers the possibility to add comments to tables and columns but leaves the developer with SQL*Plus to search for the appropriate information. One way to solve this problem is to write a <emphasis>Data Dictionary</emphasis> document that presents not only the tables but also explains in details their relations.  In this project, we will extract the comments from the database itself and generate <ulink url="http://docbook.org/"><citetitle>Docbook</citetitle></ulink> XML fragments so that they can be incorporated into the document.</para>
+
+    <para>Defining comments for the tables and columns is as simple as invoking the Oracle <code>comment on</code> procedure. Please note that the comments are formatted with the <ulink url="http://mediawiki.org/"><citetitle>MediaWiki</citetitle></ulink> language.</para>
+
+    <xi:include href="fragments/msg_info-comments.docbook"/>
+
+    <para>Once the comments have been entered, the only thing left to do is to use the <code>tableinfo</code> Ant target to generate the documentation for a given table:</para>
+
+    <xi:include href="fragments/tabledata-task.docbook"/>
+
+    <para>Using the MediaWiki language for the comments allow us to format them nicely when they are rendered into the final document. This is very handy to present lists, multiple paragraphs or emphasis a term. As is it the case with Docbook, it is very easy to mix and match several sources to produce the final <emphasis>Data Dictionary</emphasis> document:</para>
+
+    <figure><title>Generated data dictionary document</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="images/data-dictionary-sample.png" align="center" width="80%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+    <para>Automatically listing the fields of a table is a good way to describe a table's content, but using a graph to depict the various relationship between the tables is sometimes more useful. An Ant task reads the metadata from the database and produces a <code>dot</code> file that can then be rendered by Graphviz:</para>
+
+    <xi:include href="fragments/msginfo-graph-task.docbook"/>
+
+    <para>The first example shows how a single table being graphed.  Note that the first level relationships with other tables are automatically depicted:</para>
+
+    <figure><title>Single table schema</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="images/single-linked.png" align="center" width="50%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+    <para>Of course it is possible to graph several tables simultaneously. This time any relationship existing between them is graphed with their respective fields.</para>
+
+    <figure><title>Multiple tables schema</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="images/multiple-linked.png" align="center" width="50%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+    <para>Of course an Oracle backed application doesn't only use tables but also PL/SQL modules and it can be useful to see the relationship between those PL/SQL modules.</para>
+
+    <xi:include href="fragments/packages-graph-task.docbook"/>
+
+    <para>will display the package's dependencies as follow:</para>
+
+    <figure><title>Package's dependencies</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="images/packages.png" align="center" width="50%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+</section>

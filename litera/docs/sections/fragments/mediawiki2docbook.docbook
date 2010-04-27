@@ -1,0 +1,6 @@
+<figure><title>mediawiki2docbook Ant target</title>
+<programlisting><![CDATA[<taskdef resource="wkg-litera.properties"/>
+
+<mediawiki2docbook url="http://sausalito/mediawiki/index.php/Simple_article"
+    outFile="docs/sections/simple-article.docbook"/>]]></programlisting>
+</figure>
