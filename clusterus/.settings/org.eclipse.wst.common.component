@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-modules id="moduleCoreId" project-version="1.5.0">
     <wb-module deploy-name="wkg clusterus">
-        <wb-resource deploy-path="/" source-path="/sample/web"/>
-        <wb-resource deploy-path="/WEB-INF" source-path="/webapp/conf"/>
+        <wb-resource deploy-path="/" source-path="/sample/war"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/sample/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/test/java"/>
-        <wb-resource deploy-path="/WEB-INF/lib" source-path="/lib/wtp"/>
         <property name="context-root" value="clusterus"/>
         <property name="java-output-path"/>
     </wb-module>
