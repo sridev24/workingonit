@@ -34,6 +34,8 @@ import java.awt.Graphics2D;
  */
 public class GaugeGrapher {
 
+    private final static int BOTTOM_BORDER = 6;
+    
     private ArcGrapher arc = new ArcGrapher();
     private ArrowGrapher arrow = new ArrowGrapher();
 
@@ -66,20 +68,34 @@ public class GaugeGrapher {
 
         /*
          * before starting to draw the single components, it is necessary to
-         * obtain the ratio between the desired size and the optimum one,
-         * otherwise everything will be a little bit off.
+         * obtain the ratio between the desired size and the optimal one (that
+         * has been quite arbitrarily defined (by comparing the results with the
+         * GOM one), otherwise everything will be a little bit off.
+         * 
+         * Using this ratio, the position of the arc is calculated (upper left
+         * corner). I found it trivial to do the translation *before* the
+         * graphic has been scaled.
          */
-        double ratio = (float) Math.min(width, height) / this.arc.getOptimumSize();
+        double ratio = 1.0d;
+        if ((float) height/width <= 0.75) { // the 0.75 is arbitrary!
+            ratio = (float) width / this.arc.getOptimumSize();
+        } else {
+            ratio = (float) Math.min(width, height) / this.arc.getOptimumSize();
+        }
+        int posx = (int) ((width - this.arc.getDiameter() * ratio ) / 2);
+        int posy = height - ((int) (this.arc.getDiameter()/2 * ratio));
 
-        int newwidth = (this.arc.getOptimumSize() - this.arc.getDiameter()) / 2;
-        int newheight = this.arc.getOptimumSize() - (this.arc.getDiameter()/2) - 6;
+        graphics.translate(posx, posy - BOTTOM_BORDER); // for letting some border
 
-        System.out.println("scaling of ratio = " + ratio);
-        System.out.println("   new width = " + newwidth);
-        System.out.println("   new height = " + newheight);
-
+        /*
+         * the entire graphic will now be scaled accordingly so that we don't
+         * have to play with the ratio anymore, which simplifies the calculation
+         * a bit...
+         * 
+         * the ratio MUST be the same horizontally and vertically otherwise the
+         * image will be distorted.
+         */
         graphics.scale(ratio, ratio);
-        graphics.translate(newwidth, newheight);
 
         this.arc.graph(graphics);
 

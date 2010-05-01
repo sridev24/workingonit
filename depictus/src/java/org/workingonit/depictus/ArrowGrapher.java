@@ -96,7 +96,6 @@ public class ArrowGrapher {
         Polygon head = createArrowHead(this.headSize);
         graphics.fillPolygon(head);
 
-
         if (label != null) {
             int space = this.headSize + 4;
             graphics.translate(space, this.headSize / 2);
