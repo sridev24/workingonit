@@ -59,7 +59,8 @@ public class ArcGrapher {
     private int optimumSize = 300;
 
     /**
-     * Defaulted to 190 (just like GOM).
+     * Diameter of the arc, from the arrow's foot. Defaulted to 190 (just like
+     * GOM).
      */
     private int diameter = 190;
 
@@ -157,7 +158,7 @@ public class ArcGrapher {
         graphics.fillArc(0, 0, this.diameter, this.diameter, angle, 180 - this.startAngle - angle);
 
         // paint the inner circle in white to let the arc appear
-        graphics.translate(this.thickness, this.thickness);
+        graphics.translate(this.thickness, this.thickness + 1);
         graphics.setPaint(WHITE);
         graphics.fillArc(0, 0, this.diameter - (2 * this.thickness), this.diameter - (2 * this.thickness), 0, 180);
 

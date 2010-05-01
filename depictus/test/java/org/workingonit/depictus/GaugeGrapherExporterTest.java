@@ -55,7 +55,13 @@ public class GaugeGrapherExporterTest {
     }
 
     public void problematic_scaling() throws Exception {
-        generate(200, 100);
+        // here I have a problem when the height and width are not the same.
+        // Ideally, and since there is enough place, the graph should take 200
+        // as it's maximum size but it takes 100 as the minimum. Ideally the
+        // algorithm should be smart enough to figure out that even if the
+        // height is 100, there is still enough place to draw the full graph.
+        generate(200, 150);
+        generate(300, 200);
     }
     
 }
