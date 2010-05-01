@@ -58,7 +58,10 @@ public class GaugeGrapherExporterTest {
         // algorithm should be smart enough to figure out that even if the
         // height is 100, there is still enough place to draw the full graph.
         generate(200, 150);
+        generate(150, 200);
+
         generate(300, 200);
+        generate(200, 300);
     }
     
 }
