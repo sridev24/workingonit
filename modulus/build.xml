@@ -52,7 +52,7 @@
         <ivy:download/>
         <project:init ivyfile="conf/docbook-ivy.xml"/>
         <project:init/>
-        <war:init/>
+        <war:init destDir="sample/war"/>
     </target>
 
     <target name="compile" depends="init">
@@ -72,7 +72,7 @@
             </additional>
         </java:jar>
 
-        <java:war basedir="sample" destfile="${dist.dir}/kitchensink.war"/>
+        <java:war basedir="sample/war" destfile="${dist.dir}/kitchensink.war"/>
     </target>
 
     <target name="documentation" depends="init">
