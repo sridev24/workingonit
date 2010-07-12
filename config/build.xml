@@ -55,6 +55,7 @@
 
     <target name="publish" depends="package">
         <project:publish/>
+    	<copy file="${dist.dir}/org.workingonit.${project.name}.jar" todir="${ant.home}/lib"/>
     </target>
 
     <target name="retrieve" description="retrives the ivy dependencies">

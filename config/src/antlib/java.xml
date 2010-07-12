@@ -135,19 +135,13 @@
 
     <macrodef name="war">
         <attribute name="destfile" default="${dist.dir}/${project.name}-${project.version}.war"/>
-        <attribute name="basedir" default="src"/>
+        <attribute name="basedir" default="war"/>
         <element name="additional" optional="true"/>
         <sequential>
             <war destfile="@{destfile}"
-                    webxml="@{basedir}/conf/web.xml"
+                    webxml="@{basedir}/WEB-INF/web.xml"
                     update="false">
-                <zipfileset dir="@{basedir}/conf" includes="*.xml, *.properties, context/*" prefix="WEB-INF"/>
-    
-                <zipfileset dir="@{basedir}/web/pages" includes="*.jsp" prefix="WEB-INF/pages"/>
-                <zipfileset dir="@{basedir}/web" includes="themes/**, index.jsp" prefix=""/>
-    
                 <lib dir="${dist.dir}" includes="org.workingonit.${project.name}-${project.version}.jar"/>
-                <lib dir="lib/wtp"/>
                 <additional/>
             </war>
         </sequential>
