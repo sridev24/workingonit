@@ -1,0 +1,4 @@
+<figure><title>msginfo Ant task for Docbook</title>
+<programlisting><![CDATA[<msginfo url="jdbc:oracle:thin:@sausalito:1521:XE" username="scott" password="tiger"
+    template="errnums.dbk.ftl" outFile="errnums.docbook"/>]]></programlisting>
+</figure>

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 308 $
+  - Last edit   : $Date: 2009-12-16 20:10:54 +0100 (Wed, 16 Dec 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Session Creation</title>
+    
+    <para>Usually you develop a web application, but normally it's more a server application with a web front end. This means that the application can be invoked without the web (via web services or JMS messages). Having a spring application, it is normal to look at the spring portfolio for the security aspect. The following example is based on the spring-security framework but the design is general enough that it can be modified to fit other frameworks as well.</para>
+    
+    <para><code>SessionContext</code> contains the minimal set of information to execute business functions.  The authentication and the subsequent creation of the <code>SessionContext</code> is done by the <code>EnhancerUserDetailsService</code>.</para>
+    
+    <xi:include href="fragments/sessioncontext.docbook"/>
+    
+    <para>The Spring-security framework has been primarily developed for a web environment but it is not too difficult to create a custom class to provide a headless authentication service. That's what the <code>HeadlessAuthenticationProvider</code> is all about. After that, gluing everything together is just a matter of defining a couple of spring beans. </para>
+    
+    <xi:include href="fragments/sessioncontext-initialization.docbook"/>
+
+    <xi:include href="fragments/security-config.docbook"/>
+    
+</section>

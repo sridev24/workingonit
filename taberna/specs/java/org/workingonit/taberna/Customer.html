@@ -1,0 +1,21 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+	<title>Taberna Validation Tests</title>
+</head>
+<body>
+
+	<h2>Reservations tests</h2>
+	
+	<div class="example">
+	    <p concordion:execute="createRoom(#number, #roomname)">Let's imagine that the <i>Taberna</i> hotel has opened a new luxury suite (number <span concordion:set="#number">777</span>) named <span concordion:set="#roomname">Mon Bijou</span>. And both Harry and Sally want to reserve the room for the week <span concordion:set="#week">51</span>.</p>
+	
+	    <p concordion:execute="#result = book(#name, #number, #week)"><span concordion:set="#name">Harry</span> is the first to reserve the suite <span concordion:set="#number">777</span> for the week <span concordion:set="#week">51</span>; <span concordion:assertEquals="#result">Harry</span> gets the reservation.</p>
+	    
+	    <p concordion:execute="#result = book(#name, #number, #week)">If <span concordion:set="#name">Sally</span> later reserves the suite <span concordion:set="#number">777</span> for the week <span concordion:set="#week">51</span> then <span concordion:assertEquals="#result">Harry</span> still has still the reservation.</p>
+	    
+	    <p concordion:execute="#result = rebook(#name, #number, #week)">However, Harry has to cancel his reservation. Now if <span concordion:set="#name">Sally</span> books the suite <span concordion:set="#number">777</span> for the week <span concordion:set="#week">51</span> then <span concordion:assertEquals="#result">Sally</span> will get the reservation.</p>
+	</div>
+
+</body>
+
+</html>

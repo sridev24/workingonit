@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it
+  - under the terms of the GNU Lesser General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or (at your
+  - option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  - for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public License
+  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 80 $
+  - Last edit   : $Date: 2009-03-24 21:38:28 +0100 (Tue, 24 Mar 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<ivy-module version="2.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+    <info organisation="org.workingonit"
+        module="commutus"
+        revision="alpha"
+        status="integration">
+    </info>
+
+    <configurations>
+        <conf name="distributed"/>
+        <conf name="endorsed"/>
+    </configurations>
+
+    <dependencies>
+        <dependency org="org.codehaus.groovy" name="groovy" rev="1.5.7" conf="distributed->embeddable"/>
+        <dependency org="net.miginfocom" name="miglayout" rev="3.6.2" conf="distributed->default"/>
+    </dependencies>
+
+</ivy-module>

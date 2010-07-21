@@ -1,0 +1,8 @@
+<example><title>Giving a sample diagnostic</title>
+<programlisting><![CDATA[public Diagnostic auscultate() {
+    new DiagnosticBuilder("Service #3")
+        .add(new WritableFileAuscultation("output", this.dir))
+        .add(new ReacheableUrlAuscultation("Report web service", this.url))
+        .build();
+}]]></programlisting>
+</example>

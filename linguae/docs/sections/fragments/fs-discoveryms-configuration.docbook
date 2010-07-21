@@ -1,0 +1,7 @@
+<figure><title>FilesystemDiscoveryMessageSource configuration</title>
+<programlisting><![CDATA[<bean name="messageSource"
+        class="org.workingonit.linguae.FilesystemDiscoveryMessageSource">
+    <property name="checkMessage" value="org.wkg.linguae.locale"/>
+    <property name="basename" value="file:/opt/acme-lingua/i18n/labels"/>
+</bean>]]></programlisting>
+</figure>

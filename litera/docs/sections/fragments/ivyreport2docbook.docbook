@@ -1,0 +1,8 @@
+<figure><title>ivyreport2docbook Ant target</title>
+<programlisting><![CDATA[<taskdef resource="wkg-litera.properties"/>
+
+<ivyreport2docbook outFile="docs/fragments/dependencies-report.docbook"
+        title="Third party libraries">
+    <fileset dir="target/ivy" includes="*-report.xml"/>
+</ivyreport2docbook>]]></programlisting>
+</figure>

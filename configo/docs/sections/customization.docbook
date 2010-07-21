@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 326 $
+  - Last edit   : $Date: 2010-01-19 10:37:35 +0100 (Tue, 19 Jan 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+<title>Customization</title>
+
+    <para>So now let's walk through what you'll have to do to include <emphasis>Configo</emphasis> into your application's release.  You'll see, it's very easy.</para>
+
+<section>
+    <title>Step 1: Configuration File Definition</title>
+    <para>The first step is to define an XML configuration file that describes not only the application but also all modules and their respective properties.</para>
+        
+    <note><para>The file <emphasis>must</emphasis> be named <code>configo-config.xml</code> because it is automatically looked for by that name at startup</para></note>
+
+    <para>This if for example the configuration for the KitchenSink application:</para>
+
+    <figure><title>KitchenSink configuration file</title>
+        <programlisting><![CDATA[<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration PUBLIC 
+  "-//WorkingOnIt/Configo Configuration DTD 1.0//EN" "configo.dtd" >
+
+<configuration>
+  <name>ACME KitchenSink Configuration</name>
+  <description>ACME KitchenSink is a state of the art software 
+produced by AcmeSoft Inc. that is able to do everything.
+  </description>
+  <modules>
+
+    <module>
+      <name>Interfaces</name>
+      <description>Values needed for retrieving and storing data</description>
+      <properties>
+
+        <property>
+          <name>web service url</name>
+          <description>
+            URL of the web service (e.g. http://server:host/acmesoft)
+          </description>
+          <key>com.acme.kitchensink.wsurl</key>
+        </property>
+
+        <property>
+          <name>output directory</name>
+          <description>
+            absolute path of the directry where files are saved
+          </description>
+          <key>com.acme.kitchensink.outputdir</key>
+        </property>
+      </properties>
+    </module>
+  </modules>
+</configuration>]]</programlisting>
+    </figure>
+</section>
+
+<section>
+    <title>Step 2: Configuration File Inclusion</title>
+        
+    <para>Once the configuration file has been defined, it must be included into the <emphasis>Configo</emphasis> JAR archive.</para>
+        
+    <note><para>The file configuration file <emphasis>must</emphasis> be located in the <code>resources</code> folder.</para></note>
+
+    <para>If you use Apache Ant, the following script would do it for you:</para>
+
+    <figure><title>Customization Ant target</title>
+          <programlisting><![CDATA[<zip destfile="acme-configuration.jar" duplicate="preserve">
+    <zipfileset file="custom/configo-config.xml" prefix="resources"/>
+    <zipgroupfileset file="configo-[version].jar"/>
+</zip>]]</programlisting>
+        </figure>
+        
+    <para>That's all, there is no other step in this process: you can now ship <emphasis>Configo</emphasis> with your next release.</para>
+        
+    <para>Your customers will thank you.</para>
+
+</section>
+
+</section>

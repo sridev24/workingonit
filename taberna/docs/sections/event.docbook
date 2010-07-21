@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2010 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 351 $
+  - Last edit   : $Date: 2010-03-01 21:31:28 +0100 (Mon, 01 Mar 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Business Events</title>
+
+    <para>This is all nice and shiny with a trivial application but things starts to get a little bit messier when manual processes or third party applications are involved. The solution is to somehow streamline the processing so that interruptions in the process can be removed during testing.</para>
+    
+    <para>One elegant solution is to leverage Spring's event model to dispatch business event at the join points between automatic and manual processes. In our example, imagine that mails must be sent after the reservation is booked:</para>
+    
+    <programlisting><![CDATA[public class BookingEngine implements ApplicationEventPublisherAware {
+
+    private ApplicationEventPublisher publisher;
+    
+    @Override
+    public void setApplicationEventPublisher(ApplicationEventPublisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public void book(Integer number, Reservation reservation) {
+        // ...
+        this.publisher.publishEvent(new ReservationBookedEvent(number, reservation));
+    }
+
+}]]></programlisting>
+
+    <para>The real listener will of course send the email (maybe during the night), but for our testing purposes we will simply mock the behavior:</para>
+
+    <programlisting><![CDATA[public class MockReservationPublisherListener 
+        implements ApplicationListener<ReservationBookedEvent> {
+
+    public void onApplicationEvent(ReservationBookedEvent event) {
+        Reservation reservation = reservations.get(event.getNumber(), event.getWeek());
+        reservation.setStatus(PUBLISHED);
+    }
+
+}]]></programlisting>
+
+    <para>The main advantage of this approach is that the processing is decoupled and the architecture is suddenly more concerned about the <emphasis>what</emphasis> (the reservation has been booked) than the <emphasis>how</emphasis> (an email has been sent).</para>
+
+</section>

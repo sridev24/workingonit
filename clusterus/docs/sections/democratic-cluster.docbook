@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 301 $
+  - Last edit   : $Date: 2009-12-13 21:42:29 +0100 (Sun, 13 Dec 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>The Democratic Cluster</title>
+
+    <para>The <emphasis>democratic</emphasis> cluster is a cluster that is able to automatically elect one of its members to be the übernode.  As soon as this übernode has disappeared from the cluster, another election takes place and another node has the privilege to take over the duty. The next figure depict the classes involved into the cluster modelling:</para>
+
+    <figure><title>Democratic cluster model</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="images/cluster.png" align="center" width="80%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+    <para>As you can see, the model is rather simple and can be explained in one sentence: when a <code>Node</code> joins a <code>Cluster</code> an election takes place on each member of the cluster and a particular voting procedure is followed to determine the incumbent; once the decision is fallen, the <code>ClusterListener</code>s are notified with the reception of the <emphasis>new election</emphasis> <code>ClusterEvent</code>.</para>
+
+    <para>For this prototype, the <ulink url="http://www.jgroups.org/"><citetitle>JGroups library</citetitle></ulink> -an Open Source toolkit for reliable multicast communication- has been used to implement basic <code>Cluster</code>.  Since the <code>Cluster</code> design is technology agnostic, other protocols or transports (like JMS) could also be used.  The Spring configuration for using this implementation is shown in the next code fragment:</para>
+    
+    <xi:include href="fragments/cluster-configuration.docbook"/>
+
+    <para>Once the incumbent <code>Node</code> has been designated, the only thing left to do is to manage the business singletons.  This is the responsibility of the <emphasis>singleton dictator</emphasis>.</para>
+
+</section>

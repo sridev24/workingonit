@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2010 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it
+  - under the terms of the GNU Lesser General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or (at your
+  - option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  - for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public License
+  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE project>
+
+<antlib>
+
+    <macrodef name="dir.html.generate">
+        <attribute name="docbook.template.dir"/>
+        <attribute name="basedir" default="docs"/>
+        <attribute name="folder"/>
+        <sequential>
+            <xslt basedir="@{basedir}/@{folder}" includes="*.docbook"
+                    destdir="${target.dir}/test/docs/html/@{folder}"
+                    extension=".html" style="${docbook.home}/html/docbook.xsl">
+                <classpath>
+                    <path refid="docbook.classpath"/>
+                </classpath>
+            </xslt>
+
+            <copy todir="${target.dir}/test/docs/html/@{folder}" overwrite="true">
+                <fileset dir="@{basedir}/@{folder}" includes="**/*.png, **/*.gif"/>
+                <fileset dir="@{docbook.template.dir}/images" includes="**/*.png, **/*.gif"/>
+            </copy>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="file.html.generate">
+        <attribute name="basedir" default="docs"/>
+        <attribute name="html-stylesheet.home" default="${docbook.wkg.home}"/>
+        <attribute name="html-stylesheet" default="article-html.xsl"/>
+        <attribute name="file" default="${project.name}"/>
+        <sequential>
+            
+            <!-- 
+              - Using Saxon 6.5.5 because it supports XInclude.  The more Ant 
+              - way of doing things (see below, commented out) doesn't work 
+              - out-of-the-box with XInclude.
+              -->
+            <java classname="com.icl.saxon.StyleSheet"
+                    fork="yes"
+                    dir="."
+                    failonerror="true">
+                <classpath refid="docbook.classpath" />
+                <jvmarg line="-Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration"/>
+                <jvmarg line="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+                <jvmarg line="-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
+                <arg line="-o ${dist.dir}/docs/html/@{file}.html"/>
+                <arg line="@{basedir}/@{file}.docbook @{html-stylesheet.home}/@{html-stylesheet}"/>
+            </java>
+
+            <copy todir="${dist.dir}/docs/html" overwrite="true" failonerror="no">
+                <fileset dir="@{basedir}" includes="**/*.png, **/*.gif"/>
+                <fileset dir="@{html-stylesheet.home}" includes="*.css"/>
+            </copy>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="pdf.generate">
+        <attribute name="basedir" default="docs"/>
+        <attribute name="fo-stylesheet" default="${docbook.wkg.home}/docbook-custom-xsl/fo/article-fo.xsl"/>
+        <attribute name="fop-config" default="${docbook.wkg.home}/docbook-custom-xsl/fo/fop.xconf"/>
+        <attribute name="draft" default="false"/>
+        <attribute name="file" default="${project.name}"/>
+        <sequential>
+            <copy todir="@{basedir}/images">
+            	<fileset dir="${docbook.wkg.home}/docbook-custom-xsl/images"/>
+            </copy>
+            
+            <!-- 
+              - Using Saxon 6.5.5 because it supports XInclude.  The more Ant 
+              - way of doing things (see below, commented out) doesn't work 
+              - out-of-the-box with XInclude.
+              -->
+            <java classname="com.icl.saxon.StyleSheet"
+                    fork="yes"
+                    dir="."
+                    failonerror="true">
+                <classpath refid="docbook.classpath" />
+                <jvmarg line="-Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration"/>
+                <jvmarg line="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+                <jvmarg line="-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
+                <arg line="-o ${target.dir}/docs/fo/@{file}.fo"/>
+                <arg line="@{basedir}/@{file}.docbook @{fo-stylesheet}"/>
+                <arg line="draft.mode=@{draft}"/>
+            </java>
+
+            <!-- xsl:param name="draft.watermark.image" value="">
+            
+            <xslt basedir="@{basedir}" includes="@{file}.docbook"
+                    destdir="${target.dir}/docs/fo"
+                    extension=".fo" style="${target.dir}/docs/conf/fo-stylesheet.xsl">
+                <param name="draft.mode" expression="@{draft}"/>
+                <classpath>
+                    <path refid="docbook.classpath"/>
+                </classpath>
+            </xslt -->
+            
+            <mkdir dir="${dist.dir}/docs"/>
+
+            <taskdef name="fop" classname="org.apache.fop.tools.anttasks.Fop">
+                <classpath>
+                    <path refid="docbook.classpath"/>
+                </classpath>
+            </taskdef>
+            
+            <fop userconfig="@{fop-config}" basedir="@{basedir}" 
+                format="application/pdf"
+                fofile="${target.dir}/docs/fo/@{file}.fo"
+                outfile="${dist.dir}/docs/@{file}.pdf"/>
+        </sequential>
+    </macrodef>
+
+</antlib>

@@ -1,0 +1,8 @@
+<figure><title>Database autodiscovery</title>
+<programlisting><![CDATA[DatabaseDiscoveryMessageSource - loading messages for locale 'fr' into 
+    /opt/acme-lingua/i18n/labels_fr.properties
+AbstractDiscoveryMessageSource - locale 'fr' was found
+DatabaseDiscoveryMessageSource - loading messages for locale 'en' into 
+    /opt/acme-lingua/i18n/labels_en.properties
+AbstractDiscoveryMessageSource - locale 'en' was found]]></programlisting>
+</figure>

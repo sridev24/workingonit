@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2010 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 344 $
+  - Last edit   : $Date: 2010-02-16 21:58:48 +0100 (Tue, 16 Feb 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Testing, the RESTful way</title>
+
+    <para>Of course it would be complete nonsense to write unit tests or integration tests with REST but business tests could be well suited for this purpose. The idea is quite simple: using a framework like Fitness or Concordion, business tests access the application via its REST interface and verify that the deployed application behaves correctly. Of course, the application may have to be started in a <emphasis>testing</emphasis> mode (meaning that external systems are mocked) but this is not too difficult to do<footnote><para>another pet project, <emphasis>Modulus</emphasis> is experimenting with this very idea</para></footnote>.</para>
+
+    <para>As an example, the following screen shot shows a Concordion test accessing Taberna via REST. I won't go into the details but the code is trivial.</para>
+
+    <figure><title>Concordion tests</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="images/concordion.png" align="center" width="80%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+    <para>To facilitate the tests, a custom REST client has also been developed. The fact that we are in control of both the server and the client implementations has the big advantage of keeping the test definitions quite stable.  This can make a huge difference when comes the time to do some big refactoring...</para>
+
+    <para>Another advantage is that the tests can be shipped alongside the application and used to verify that an application has been correctly installed:</para>
+
+    <programlisting><![CDATA[java -Durl=http://sausalito:8080/taberna -Doutdir=output 
+    org.testng.TestNG -testclass org.workingonit.taberna.CustomerTest]]></programlisting>
+
+</section>

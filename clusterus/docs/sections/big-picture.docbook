@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 301 $
+  - Last edit   : $Date: 2009-12-13 21:42:29 +0100 (Sun, 13 Dec 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Business Singleton</title>
+
+    <para>One of the advantages of deploying an application into a cluster is of course to benefit from its fail over capabilities: as soon as an application goes down (voluntarily or not), another one steps up to the plate to continue the work.  The only restriction is that all the applications must be active at any given time.  I voluntarily simplify a situation that can be complicated at will with a cloud infrastructure.</para>
+
+    <para>Anyway, it is sometimes desired to only have one single application (I call this beast a <emphasis>business singleton</emphasis> but you're free to coin another term) running in the cluster at any given time but without renouncing to the fail over capabilities if the server hosting that singleton suddenly have some technical difficulties.</para>
+
+    <para>The starting idea of this project is to provide a framework that enables an application to be installed on each node but ensure that only one instance is active at any given time and that another instance will automatically be activated should the previous one fail.</para>
+
+    <para>The two aspect of the solution revolve around the notions of a democratic cluster and a singleton dictator.</para>
+
+</section>

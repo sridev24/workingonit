@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it
+  - under the terms of the GNU Lesser General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or (at your
+  - option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  - for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public License
+  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 342 $
+  - Last edit   : $Date: 2010-02-10 19:54:09 +0100 (Wed, 10 Feb 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<!DOCTYPE project>
+
+<antlib>
+
+    <macrodef name="download">
+        <sequential>
+            <property name="ivy.version" value="2.1.0"/>
+
+            <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+            <available file="${endorsed.lib.dir}/ivy-${ivy.version}.jar" property="ivy.downloaded"/>
+            <if>
+                <equals arg1="true" arg2="${ivy.downloaded}"/>
+                <then>
+                    <echo message="ivy already installed"/>
+                </then>
+                <else>
+                    <echo message="downloading ivy from the Maven repository"/>
+                    <mkdir dir="${endorsed.lib.dir}"/>
+                    <get src="http://repo2.maven.org/maven2/org/apache/ivy/ivy/${ivy.version}/ivy-${ivy.version}.jar"
+                        dest="${endorsed.lib.dir}/ivy-${ivy.version}.jar" usetimestamp="true"/>
+                </else>
+            </if>
+        </sequential>
+    </macrodef>
+
+</antlib>

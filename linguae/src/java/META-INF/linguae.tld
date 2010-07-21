@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 240 $
+  - Last edit   : $Date: 2009-07-11 13:43:28 +0200 (Sat, 11 Jul 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+
+	<tlib-version>2.5</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>form</short-name>
+	<uri>http://workingonit.googlecode.com/tags/linguae</uri>
+	<description>Workingonit Linguae Tag Library</description>
+
+	<tag>
+		<name>flags</name>
+		<tag-class>org.workingonit.linguae.web.tags.LocaleFlagsTag</tag-class>
+		<body-content>JSP</body-content>
+		<description>Renders the flags.</description>
+	</tag>
+
+</taglib>

@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2010 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt Depictus.
+  -
+  - WorkingOnIt Depictus is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU Lesser General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or (at your
+  - option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  - for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public License
+  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE project>
+
+<project name="wkg depictus" basedir="." default="release"
+        xmlns:ivy="antlib:org.workingonit.ivy"
+        xmlns:project="antlib:org.workingonit.project"
+        xmlns:java="antlib:org.workingonit.java"
+        xmlns:testng="antlib:org.workingonit.testng"
+        xmlns:release="antlib:org.workingonit.release">
+
+    <property file="build-local.properties"/>
+    <property file="build.properties"/>
+
+    <import file="conf/project-targets.xml"/>
+
+    <typedef resource="org/workingonit/antlib/project.xml" uri="antlib:org.workingonit.project"/>
+    <typedef resource="org/workingonit/antlib/ivy.xml" uri="antlib:org.workingonit.ivy"/>
+    <typedef resource="org/workingonit/antlib/java.xml" uri="antlib:org.workingonit.java"/>
+    <typedef resource="org/workingonit/antlib/testng.xml" uri="antlib:org.workingonit.testng"/>
+    <typedef resource="org/workingonit/antlib/release.xml" uri="antlib:org.workingonit.release"/>
+
+    <target name="init">
+        <ivy:download/>
+        <project:init/>
+    </target>
+
+    <target name="compile" depends="init">
+        <java:compile/>
+        <java:test.compile/>
+    </target>
+
+    <target name="test" depends="compile">
+        <testng:suite.execute/>
+    </target>
+
+    <target name="package" depends="compile">
+        <java:jar/>
+    </target>
+
+    <target name="documentation" depends="init">
+        <java:javadoc/>
+    </target>
+
+    <target name="release" depends="package, documentation">
+        <release:sources/>
+        <release:package/>
+    </target>
+
+</project>
