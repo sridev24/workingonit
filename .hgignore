@@ -6,3 +6,5 @@ syntax: glob
 **/target
 **/*-local.properties
 **/test-output
+glob:*/docs/images/draft.png
+glob:*/docs/images/missing.png

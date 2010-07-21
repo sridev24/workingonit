@@ -41,7 +41,6 @@
     <typedef file="src/antlib/roundup.xml" uri="antlib:org.workingonit.roundup"/>
 
     <target name="init">
-        <project:init ivysettings="conf/ivy/ivysettings.xml" ivyfile="conf/docbook/ivy.xml"/>
         <project:init ivysettings="conf/ivy/ivysettings.xml"/>
     </target>
 
@@ -93,9 +92,8 @@
     <target name="test.pdf"  description="tests pdf output (Docbook)">
         <!--
         <xslt basedir="src/docbook" includes="*-titlepage-fo.xml"
-            destdir="conf/docbook" force="true"
+            destdir="src/docbook/fo" force="true"
             extension=".xsl" style="${docbook.home}/template/titlepage.xsl"/>
-        -->
 
         <java classname="com.icl.saxon.StyleSheet"
                 fork="yes"
@@ -108,8 +106,9 @@
             <arg line="-o conf/docbook/article-titlepage-fo.xsl"/>
             <arg line="src/docbook/article-titlepage-fo.xml ${docbook.home}/template/titlepage.xsl"/>
         </java>
+        -->
 
-        <docbook:pdf.generate file="workingonit"/>
+        <docbook:pdf.generate file="workingonit" draft="yes"/>
     </target>
 
     <target name="test.html" description="tests html output (Docbook)">
@@ -127,17 +126,18 @@
     </target>
 
     <target name="install" description="install the docbook templates locally">
-        <condition property="file.protocol" value="file:///" else="file://">
-            <os family="dos"/>
-        </condition>
-
         <mkdir dir="${docbook.wkg.home}"/>
-        <copy todir="${docbook.wkg.home}" overwrite="true">
-            <fileset dir="conf/docbook" includes="*.xsl, *.xconf, *.css, images/**"/>
-            <filterset>
-                <filter token="DOCBOOK.HOME" value="${docbook.home}"/>
-                <filter token="DOCBOOK.WKG.HOME" value="${file.protocol}${docbook.wkg.home}"/>
-            </filterset>
+        <copy todir="${docbook.wkg.home}/docbook-custom-xsl" overwrite="true">
+            <fileset dir="src/docbook" includes="fo/**, html/**, images/**"/>
+        </copy>
+        <copy todir="${docbook.wkg.home}/docbook-custom-xsl/fo/images" overwrite="true">
+            <fileset dir="src/docbook/images"/>
+        </copy>
+        <copy todir="${docbook.wkg.home}/docbook-xsl" overwrite="false">
+        	<fileset dir="${docbook.home}"/>
+        </copy>
+        <copy todir="${docbook.wkg.home}/lib" flatten="true" overwrite="true">
+        	<fileset dir="${lib.dir}/docbook" includes="**/*.jar"/>
         </copy>
     </target>
 

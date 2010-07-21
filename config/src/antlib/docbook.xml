@@ -76,11 +76,14 @@
 
     <macrodef name="pdf.generate">
         <attribute name="basedir" default="docs"/>
-        <attribute name="fo-stylesheet" default="${docbook.wkg.home}/article-fo.xsl"/>
-        <attribute name="fop-config" default="${docbook.wkg.home}/fop.xconf"/>
+        <attribute name="fo-stylesheet" default="${docbook.wkg.home}/docbook-custom-xsl/fo/article-fo.xsl"/>
+        <attribute name="fop-config" default="${docbook.wkg.home}/docbook-custom-xsl/fo/fop.xconf"/>
         <attribute name="draft" default="false"/>
         <attribute name="file" default="${project.name}"/>
         <sequential>
+            <copy todir="@{basedir}/images">
+            	<fileset dir="${docbook.wkg.home}/docbook-custom-xsl/images"/>
+            </copy>
             
             <!-- 
               - Using Saxon 6.5.5 because it supports XInclude.  The more Ant 
@@ -100,8 +103,7 @@
                 <arg line="draft.mode=@{draft}"/>
             </java>
 
-            <!--
-            <xsl:param name="draft.watermark.image" value="">
+            <!-- xsl:param name="draft.watermark.image" value="">
             
             <xslt basedir="@{basedir}" includes="@{file}.docbook"
                     destdir="${target.dir}/docs/fo"
@@ -110,9 +112,8 @@
                 <classpath>
                     <path refid="docbook.classpath"/>
                 </classpath>
-            </xslt>
-            -->
-
+            </xslt -->
+            
             <mkdir dir="${dist.dir}/docs"/>
 
             <taskdef name="fop" classname="org.apache.fop.tools.anttasks.Fop">
