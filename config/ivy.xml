@@ -24,11 +24,6 @@
   - Last editor : $Author: vbossica $
   -->
 
-<!--
-  - This ivy.xml file is used to validate the source configuration files once 
-  - the final files have been produced by applying the roundup xslt templates.
-  -->
-
 <ivy-module version="2.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
@@ -41,8 +36,7 @@
 
     <configurations>
         <conf name="distributed"/>
-        <conf name="endorsed"/>
-        <conf name="default"/>
+        <conf name="docbook"/>
     </configurations>
 
     <publications>
@@ -50,9 +44,9 @@
     </publications>
 
     <dependencies>
-        <!-- required for the docbook documentation -->
-        <dependency org="org.apache.xmlgraphics" name="fop" rev="0.95" conf="endorsed->default"/>
-        <dependency org="com.icl.saxon" name="saxon" rev="6.5.5" conf="endorsed->default"/>
+        <dependency org="org.apache.log4j" name="log4j" rev="1.2.15" conf="docbook->default"/>
+        <dependency org="org.apache.xmlgraphics" name="fop" rev="0.95" conf="docbook->default"/>
+        <dependency org="com.icl.saxon" name="saxon" rev="6.5.5" conf="docbook->default"/>
     </dependencies>
 
 </ivy-module>
