@@ -52,7 +52,6 @@
 
     <target name="init">
         <ivy:download/>
-        <project:init ivyfile="conf/docbook-ivy.xml"/>
         <project:init/>
         <war:init/>
     </target>

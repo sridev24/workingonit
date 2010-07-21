@@ -18,7 +18,6 @@ do
 
         cp config/conf/ant/project-targets.xml "$file/conf/."
         cp config/conf/ivy/ivysettings.xml "$file/conf/."
-        cp config/conf/docbook/ivy.xml "$file/conf/docbook-ivy.xml"
       fi
     fi
   fi
