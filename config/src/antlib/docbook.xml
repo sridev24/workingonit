@@ -81,8 +81,14 @@
         <attribute name="draft" default="false"/>
         <attribute name="file" default="${project.name}"/>
         <sequential>
+            <path id="docbook.classpath">
+                <fileset dir="${docbook.wkg.home}/lib">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </path>
+        
             <copy todir="@{basedir}/images">
-            	<fileset dir="${docbook.wkg.home}/docbook-custom-xsl/images"/>
+                <fileset dir="${docbook.wkg.home}/docbook-custom-xsl/images"/>
             </copy>
             
             <!-- 

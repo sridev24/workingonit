@@ -60,13 +60,6 @@
         </fileset>
     </path>
 
-    <path id="docbook.classpath">
-        <fileset dir="${lib.dir}/docbook">
-            <include name="**/*.jar"/>
-        </fileset>
-        <pathelement location="conf/docbook"/>
-    </path>
-
     <target name="clean">
         <delete dir="${target.dir}"/>
     </target>
