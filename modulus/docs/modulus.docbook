@@ -43,10 +43,16 @@
 	<xi:include href="sections/abstract.docbook"/>
     </info>
 
+    <xi:include href="sections/sample-project.docbook"/>
+
     <xi:include href="sections/platform.docbook"/>
+
+    <xi:include href="sections/hibernate-session.docbook"/>
 
     <xi:include href="sections/first-examination.docbook"/>
 
     <xi:include href="sections/monitoring.docbook"/>
+
+    <xi:include href="sections/infocenter.docbook"/>
     
 </article>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2010 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Infocenter</title>
+    
+    <para>Every application needs to guide its users and help them survive its dangers.  Our KitchenSink application is no exception to the rule and we must find a way to deliver to the user accurate and pertinent information.</para>
+    
+    <para>To help us in this endeavor we have chosen the Eclipse Incenter platform. Not only because it is more mature than Java Help (and certainly with a more vibrant eco system) but also because it can easily be embedded into our web application.  The nice thing with the Eclipse Infocenter is that it leverages plain HTML files packed into an Eclipse plugin.  Here is how everything ducts tail with our existing infrastructure (Java, Ant and Docbook).</para>
+    
+    <para>First and foremost, somebody has to write the documentation for each one of our modules. This tedious part is best left to somebody else because we have more interesting things to do. Once the documents are available in our format of preference (i.e. Docbook), it is time to so some magic. The magic involved consists of:</para>
+    
+    <itemizedlist>
+    	<listitem><para>use the <filename>eclipse</filename> XSL templates from <filename>docbook-xsl</filename> to generate the HTML and the plugin configuration files</para></listitem>
+    
+    	<listitem><para>use Ant to package those files into an Eclipse plugin</para></listitem>
+    </itemizedlist>
+    
+    <para>To facilitate our life, all these steps have been defined into an Ant <code>macrodef</code>:</para>
+    
+    <example><title>Macrodef invocation</title>
+        <programlisting><![CDATA[]]></programlisting>
+    </example>
+
+    <para>Once this is done, the last step is to include those plugins into a prepared Infocenter <filename>WAR</filename> archive. Since the Infocenter web application can only be created following a manual process, the best solution is to prepare this application once, place it into a shared repository and use Ivy to retrieve it.  Once deployed, our happy users will be able to browse content sensitive help files, automatically indexed and searchable, thanks to the very powerful Infocenter library:</para>
+    
+    <figure><title>KitchenSink Infocenter</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="../images/missing.png" align="center" width="95%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+    
+</section>
+
