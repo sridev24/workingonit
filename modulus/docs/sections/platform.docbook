@@ -17,11 +17,6 @@
   -
   - You should have received a copy of the GNU General Public License along with
   - this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  - Author      : Vladimir Ritz Bossicard
-  - Version     : $Revision: 324 $
-  - Last edit   : $Date: 2010-01-19 10:02:45 +0100 (Tue, 19 Jan 2010) $
-  - Last editor : $Author: vbossica $
   -->
 
 <section xmlns="http://docbook.org/ns/docbook"
@@ -29,7 +24,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
 
-    <title>A <emphasis>platform</emphasis> to modularize the application</title>
+    <title>Spring Platform</title>
 
     <para>A Spring application is full of beans that are instantiated at startup. Usually, in a web application, the Spring configuration files are listed in the <filename>web.xml</filename> deployment file directly. This is an unwelcome side effect as soon as the same code base is used for different purposes<footnote><para>one could start the application in a safe mode, without communication to the external systems (e.g. for testing) or used the same packaged application for different tenants.</para></footnote>. A solution can be to multiply the <filename>web.xml</filename> files but I find more flexible to define one <emphasis>uber-configuration</emphasis> for each platform and replace the default Spring <code>ContextLoaderListener</code> in the <filename>web.xml</filename> by the following:</para>
 

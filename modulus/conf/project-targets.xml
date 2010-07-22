@@ -61,7 +61,7 @@
     </path>
 
     <path id="docbook.classpath">
-        <fileset dir="${lib.dir}/docbook">
+        <fileset dir="${docbook.wkg.home}/lib">
             <include name="**/*.jar"/>
         </fileset>
         <pathelement location="conf/docbook"/>
