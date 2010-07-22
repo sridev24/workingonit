@@ -47,6 +47,7 @@
         <dependency org="org.apache.commons" name="commons-cli" rev="1.+" conf="distributed->default"/>
         <dependency org="org.apache.commons" name="commons-httpclient" rev="3.+" conf="distributed->default"/>
         <dependency org="org.apache.commons" name="commons-io" rev="1.+" conf="distributed->default"/>
+        <dependency org="org.hsqldb" name="hsqldb" rev="2.0.0" conf="distributed->default"/>
         <dependency org="org.springframework" name="spring" rev="3.0.0" conf="distributed->default; endorsed->test"/>
         <dependency org="org.testng" name="testng" rev="5.9" conf="endorsed->default"/>
         <dependency org="org.workingonit" name="addenda" rev="0.+" conf="distributed"/>
