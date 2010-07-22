@@ -17,11 +17,6 @@
   -
   - You should have received a copy of the GNU Lesser General Public License
   - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  - Author      : Vladimir Ritz Bossicard
-  - Version     : $Revision: 189 $
-  - Last edit   : $Date: 2009-06-03 23:26:14 +0200 (Wed, 03 Jun 2009) $
-  - Last editor : $Author: vbossica $
   -->
 
 <ivy-module version="2.0"
