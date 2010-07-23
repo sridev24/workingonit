@@ -34,13 +34,6 @@
         </layout>
     </appender>
 
-    <appender name="FILE" class="org.apache.log4j.FileAppender">
-        <param name="File" value="build/logs/legando-beta.log"/>
-        <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[%t] %c %x - %m%n"/>
-        </layout>
-    </appender>
-
     <logger name="org.workingonit">
         <level value="info"/>
     </logger>
