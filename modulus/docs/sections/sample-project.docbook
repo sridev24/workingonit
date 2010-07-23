@@ -1,0 +1,63 @@
+﻿<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2010 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Sample Project</title>
+
+    <para>The application that will be developed as first candidate is called <emphasis>KitchenSink</emphasis>.  This application's purpose is to manage <emphasis>kitchen</emphasis> and <emphasis>sinks</emphasis> for the Acme Inc. The next schema very, very succinctly depicts the system architecture:</para>
+    
+    <figure><title>System architecture</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="../images/missing.png" align="center" width="95%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+    <para>To keep things simple, we only define three different modules:</para>
+    
+    <itemizedlist>
+        <listitem>
+            <para><emphasis>sink module</emphasis>: manages the <code>Sink</code> business object;</para>
+        </listitem>
+        <listitem>
+            <para><emphasis>kitchen module</emphasis>: manages the <code>Kitchen</code> business object and depends on the <emphasis>sink</emphasis> module;</para>
+        </listitem>
+        <listitem>
+            <para><emphasis>platform module</emphasis>: provides utility classes and glue code necessary for either the business functionality or the ingration with external libraries or systems.</para>
+        </listitem>
+    </itemizedlist>
+    
+    <para>This is of course a simplistic view and modules (especially the platform one) can be split further (e.g. into libraries that could then be externalized).  The basic idea is that the code is pushed from one module into another, as soon as its usage expends.</para>
+    
+    <para>To enforce the modularity of the system, it is very important <emphasis>not</emphasis> to place all the code into one code base. This is often made but is often paid dearly as the code base grows. For this reason, each module will have its own source directory. Certainly overkill for such a small project, but this is for the example.  As a consequence, our Eclipse project looks as follow:</para>
+
+    <figure><title>Eclipse project layout</title>
+        <screenshot><mediaobject><imageobject>
+            <imagedata fileref="../images/missing.png" align="center" width="95%"/>
+        </imageobject></mediaobject></screenshot>
+    </figure>
+
+    <para>The rest of this document presents (in no particular order) how the vision of a modular system can be implemented.</para>
+
+</section>

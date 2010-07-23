@@ -17,11 +17,6 @@
   -
   - You should have received a copy of the GNU General Public License along with
   - this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  - Author      : Vladimir Ritz Bossicard
-  - Version     : $Revision: 324 $
-  - Last edit   : $Date: 2010-01-19 10:02:45 +0100 (Tue, 19 Jan 2010) $
-  - Last editor : $Author: vbossica $
   -->
 
 <abstract xmlns="http://docbook.org/ns/docbook"
@@ -31,8 +26,8 @@
 
     <title/>
 
-    <para>If you want to develop a modular application, almost everyone will think these days of <ulink url="http://osgi.org/"><citetitle>OSGi</citetitle></ulink> and maybe of the <ulink url="www.springsource.org/dmserver"><citetitle>SpringSource DM Server</citetitle></ulink>. This is all nice if you can use such platform but for many web applications out there, OSGi is simply not an option.</para>
+    <para>This project explores ways to architect a modular application using the Spring framework but without using the OSGi bandwagon. At the end of the development, a reusable <emphasis>software platform</emphasis> should be available where <emphasis>modules</emphasis> can easily be installed.</para>
     
-    <para>This project experiments with some techniques to see how to transform a Spring base application to make is look like a true modular one without going the OSGi route.</para>
+    <para>The hidden agenda of this project is, by focusing less on the application to develop but more on the platform <emphasis>supporting</emphasis> this application, to create features that are usually left for the end of a project (e.g. management, monitoring) and usually never see the light of day.</para>
     
 </abstract>

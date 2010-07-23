@@ -17,11 +17,6 @@
   -
   - You should have received a copy of the GNU General Public License along with
   - this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  - Author      : Vladimir Ritz Bossicard
-  - Version     : $Revision: 319 $
-  - Last edit   : $Date: 2010-01-18 22:01:37 +0100 (Mon, 18 Jan 2010) $
-  - Last editor : $Author: vbossica $
   -->
 
 <ivy-module version="2.0"
@@ -47,6 +42,7 @@
         <dependency org="org.apache.commons" name="commons-cli" rev="1.+" conf="distributed->default"/>
         <dependency org="org.apache.commons" name="commons-httpclient" rev="3.+" conf="distributed->default"/>
         <dependency org="org.apache.commons" name="commons-io" rev="1.+" conf="distributed->default"/>
+        <dependency org="org.hsqldb" name="hsqldb" rev="2.0.0" conf="distributed->default"/>
         <dependency org="org.springframework" name="spring" rev="3.0.0" conf="distributed->default; endorsed->test"/>
         <dependency org="org.testng" name="testng" rev="5.9" conf="endorsed->default"/>
         <dependency org="org.workingonit" name="addenda" rev="0.+" conf="distributed"/>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2010 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Hibernate</title>
+    
+    <para>One of the problems with Hibernate and a modular application is that all the mapped Hibernate classes must all be defined at development time. This requirement is at the opposite to the one requiring configuration to be automatically discovered at startup. The solution is to let the Spring IOC container pre-configure the Hibernate <code>SessionFactory</code> with configuration snippets auto-discovered at startup. We will outline the proposed solution by starting with the following example:</para>
+    
+    <example><title>Basic Hibernate example</title>
+        <programlisting><![CDATA[]]></programlisting>
+    </example>
+    
+    <para>The first step is to split the <code>SessionFactory</code>'s configuration into several, more focused, snippets. In the Spring world, we will define one configuration bean per module:</para>
+    
+    <example><title>Bean configuration</title>
+        <programlisting><![CDATA[]]></programlisting>
+    </example>
+    
+    <para>Finally, we will define our own class for the Hibernate <code>SessionFactory</code> responsible for gathering all configurations from the registered <code>HibernateConfigurator</code> beans:</para>
+    
+    <example><title>Final configuration</title>
+        <programlisting><![CDATA[]]></programlisting>
+    </example>
+    
+    <para>This solution is not only remarkably simple but also let the configuration be defined closer to the module's code and not in some overreaching put-it-all configuration file).</para>
+    
+</section>
