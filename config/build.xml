@@ -35,7 +35,8 @@
     <property file="build.properties"/>
     
     <import file="conf/ant/project-targets.xml"/>
-    
+    <import file="conf/ant/docbook-targets.xml"/>
+
     <typedef file="src/antlib/project.xml" uri="antlib:org.workingonit.project"/>
     <typedef file="src/antlib/docbook.xml" uri="antlib:org.workingonit.docbook"/>
     <typedef file="src/antlib/roundup.xml" uri="antlib:org.workingonit.roundup"/>
@@ -128,7 +129,7 @@
     <target name="install" description="install the docbook templates locally">
         <mkdir dir="${docbook.wkg.home}"/>
         <copy todir="${docbook.wkg.home}/docbook-custom-xsl" overwrite="true">
-            <fileset dir="src/docbook" includes="fo/**, html/**, images/**"/>
+            <fileset dir="src/docbook" includes="eclipse/**, fo/**, html/**, images/**"/>
         </copy>
         <copy todir="${docbook.wkg.home}/docbook-custom-xsl/fo/images" overwrite="true">
             <fileset dir="src/docbook/images"/>

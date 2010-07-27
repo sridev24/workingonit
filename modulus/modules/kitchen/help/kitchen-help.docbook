@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<book xmlns="http://docbook.org/ns/docbook"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <info>
+        <title>Acme Kitchen</title>
+        <subtitle>Installer Guide</subtitle>
+    </info>
+
+    <chapter>
+        <title>Introduction</title>
+
+        <section>
+            <title>Kitchen Installation</title>
+            
+            <para>In order to install an Acme Kitchen<indexterm><primary>kitchen</primary><secondary>installation</secondary></indexterm>, you first have to buy one!</para>
+        </section>
+    </chapter>
+
+    <chapter>
+        <title>Troubleshooting</title>
+    </chapter>
+
+</book>

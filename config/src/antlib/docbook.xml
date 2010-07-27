@@ -100,7 +100,7 @@
                     fork="yes"
                     dir="."
                     failonerror="true">
-                <classpath refid="docbook.classpath" />
+                <classpath refid="docbook.classpath"/>
                 <jvmarg line="-Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration"/>
                 <jvmarg line="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
                 <jvmarg line="-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
@@ -134,5 +134,84 @@
                 outfile="${dist.dir}/docs/@{file}.pdf"/>
         </sequential>
     </macrodef>
+
+  <macrodef name="eclipse.generate">
+    <attribute name="basedir"/>
+    <attribute name="file"/>
+    <attribute name="namespace"/>
+    <sequential>
+      <path id="docbook.classpath">
+        <fileset dir="${docbook.wkg.home}/lib">
+          <include name="**/*.jar"/>
+        </fileset>
+      </path>
+
+      <mkdir dir="${target.dir}/@{file}/eclipse"/>
+  
+      <!-- 
+        - Using Saxon 6.5.5 because it supports XInclude.
+        -
+        - Specifying the output directory doesn't seem to work...
+        -->
+      <java classname="com.icl.saxon.StyleSheet"
+          fork="yes"
+          dir="."
+          failonerror="true">
+        <classpath refid="docbook.classpath"/>
+        <jvmarg line="-Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration"/>
+        <jvmarg line="-Djavax.xml.parsers.DocumentBuilderFactory=org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+        <jvmarg line="-Djavax.xml.parsers.SAXParserFactory=org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
+        <arg line="@{basedir}/@{file}.docbook ${docbook.wkg.home}/docbook-custom-xsl/eclipse/book-eclipse.xsl"/>
+      </java>
+  
+      <move todir="${target.dir}/@{file}/eclipse" overwrite="true">
+        <fileset dir="." includes="*.html, toc.xml, index.xml, plugin.xml"/>
+      </move>
+
+      <copy todir="${target.dir}/@{file}/eclipse" overwrite="true">
+        <fileset dir="${docbook.wkg.home}/docbook-custom-xsl/eclipse" includes="*.css"/>
+      </copy>
+  
+      <!--
+      <copy todir="${target.dir}/@{file}/eclipse" overwrite="true">
+              <fileset dir="${docbook.wkg.home}/docbook-xsl/images" includes="**/*.png, **/*.gif"/>
+              <fileset dir="${docbook.wkg.home}/docbook-xsl/html" includes="*.css"/>
+      </copy>
+  
+      <copy todir="${target.dir}/@{file}/eclipse/images" flatten="true" overwrite="true">
+              <fileset dir="@{basedir}" includes="**/*.png, **/*.gif"/>
+      </copy>
+      -->
+          
+      <!-- 
+        - each help files *must* be in their own namespaces, this is 
+        - valid for *all* generated files (also index.xml and toc.xml). 
+        - That's the reason why we have to include the namespace in the 
+        - references found in the files.
+        -->
+      <replace file="${target.dir}/@{file}/eclipse/plugin.xml">
+        <replacefilter token="DocBook Online Help Sample" value="@{file} Help"/>
+        <replacefilter token="com.example.help" value="@{namespace}.help"/>
+        <replacefilter token="Example provider" value="WorkingOnIt"/>
+        <replacefilter token="index.xml" value="@{file}/index.xml"/>
+        <replacefilter token="toc.xml" value="@{file}/toc.xml"/>
+      </replace>
+  
+      <replace file="${target.dir}/@{file}/eclipse/toc.xml">
+        <replacefilter token="topic=&quot;" value="topic=&quot;@{file}/"/>
+        <replacefilter token="href=&quot;" value="href=&quot;@{file}/"/>
+      </replace>
+          
+      <replace file="${target.dir}/@{file}/eclipse/index.xml">
+        <replacefilter token="topic=&quot;" value="topic=&quot;@{file}/"/>
+        <replacefilter token="href=&quot;" value="href=&quot;@{file}/"/>
+      </replace>
+          
+      <zip destfile="${target.dir}/@{namespace}.help.zip">
+        <zipfileset dir="${target.dir}/@{file}/eclipse" excludes="plugin.xml" prefix="@{namespace}/@{file}"/>
+        <zipfileset dir="${target.dir}/@{file}/eclipse" includes="plugin.xml" prefix="@{namespace}"/>
+      </zip>
+    </sequential>
+  </macrodef>
 
 </antlib>
