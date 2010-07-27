@@ -6,5 +6,6 @@ syntax: glob
 **/target
 **/*-local.properties
 **/test-output
+modulus/src/eclipse-infocenter.war
 glob:*/docs/images/draft.png
 glob:*/docs/images/missing.png
