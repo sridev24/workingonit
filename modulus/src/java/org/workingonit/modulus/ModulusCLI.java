@@ -13,10 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Version      : $Revision: 347 $
- * Last edit    : $Date: 2010-02-19 14:02:20 +0100 (Fri, 19 Feb 2010) $
- * Last editor  : $Author: vbossica $
  */
 package org.workingonit.modulus;
 
