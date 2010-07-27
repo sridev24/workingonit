@@ -3,20 +3,18 @@
 <!--
   - Copyright 2009-2010 Vladimir Ritz Bossicard
   -
-  - This file is part of WorkingOnIt.
+  - This program is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or
+  - (at your option) any later version.
+  - 
+  - This program is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU General Public License for more details.
   -
-  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
-  - terms of the GNU General Public License as published by the Free Software
-  - Foundation, either version 3 of the License, or (at your option) any later
-  - version.
-  -
-  - This program is distributed in the hope that it will be useful, but WITHOUT
-  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-  - more details.
-  -
-  - You should have received a copy of the GNU General Public License along with
-  - this program. If not, see <http://www.gnu.org/licenses/>.
+  - You should have received a copy of the GNU General Public License
+  - along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
 <!DOCTYPE project>
@@ -82,8 +80,21 @@
         <release:package/>
     </target>
 
+  <target name="modules">
+  	<!-- generation of the help files -->
+    <docbook:eclipse.generate basedir="modules/kitchen/help" namespace="com.acme.kitchensink.kitchen" file="kitchen-help"/>
+    <docbook:eclipse.generate basedir="modules/sink/help" namespace="com.acme.kitchensink.sink" file="sink-help"/>
+
+    <zip destfile="${dist.dir}/kitchensink-infocenter.war">
+      <zipfileset src="src/eclipse-infocenter.war"/>
+      <zipfileset src="${target.dir}/com.acme.kitchensink.kitchen.help.zip" prefix="WEB-INF/plugins"/>
+      <zipfileset src="${target.dir}/com.acme.kitchensink.sink.help.zip" prefix="WEB-INF/plugins"/>
+    </zip>
+  </target>
+
     <target name="tomcat.deploy" depends="package" description="deploys into Tomcat for testing">
-        <tomcat:deploy file="${dist.dir}/kitchensink.war" destfile="kitchensink"/>
+      <!-- tomcat:deploy file="${dist.dir}/kitchensink.war" destfile="kitchensink"/ -->
+      <tomcat:deploy file="${dist.dir}/kitchensink-infocenter.war" destfile="kitchensink-infocenter"/>
     </target>
 
 </project>

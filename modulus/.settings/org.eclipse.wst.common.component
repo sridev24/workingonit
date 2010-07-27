@@ -5,6 +5,8 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/sample/src/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/test/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/modules/kitchen/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/modules/sink/java"/>
         <property name="context-root" value="kitchensink"/>
         <property name="java-output-path"/>
     </wb-module>

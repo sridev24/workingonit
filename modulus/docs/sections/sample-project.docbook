@@ -34,15 +34,15 @@
 
     <para>To keep things simple, we only define three different modules:</para>
     
-    <itemizedlist>
+    <itemizedlist spacing="compact">
         <listitem>
-            <para><emphasis>sink module</emphasis>: manages the <code>Sink</code> business object;</para>
+            <para><emphasis role="strong">sink module</emphasis>: manages the <code>Sink</code> business object;</para>
         </listitem>
         <listitem>
-            <para><emphasis>kitchen module</emphasis>: manages the <code>Kitchen</code> business object and depends on the <emphasis>sink</emphasis> module;</para>
+            <para><emphasis role="strong">kitchen module</emphasis>: manages the <code>Kitchen</code> business object and depends on the <emphasis>sink</emphasis> module;</para>
         </listitem>
         <listitem>
-            <para><emphasis>platform module</emphasis>: provides utility classes and glue code necessary for either the business functionality or the ingration with external libraries or systems.</para>
+            <para><emphasis role="strong">platform module</emphasis>: provides utility classes and glue code necessary for either the business functionality or the ingration with external libraries or systems.</para>
         </listitem>
     </itemizedlist>
     
