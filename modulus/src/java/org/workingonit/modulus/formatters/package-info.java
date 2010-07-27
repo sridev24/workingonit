@@ -13,9 +13,5 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Version      : $Revision: 319 $
- * Last edit    : $Date: 2010-01-18 22:01:37 +0100 (Mon, 18 Jan 2010) $
- * Last editor  : $Author: vbossica $
  */
 package org.workingonit.modulus.formatters;
