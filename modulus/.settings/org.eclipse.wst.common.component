@@ -2,11 +2,12 @@
 <project-modules id="moduleCoreId" project-version="1.5.0">
     <wb-module deploy-name="kitchensink">
         <wb-resource deploy-path="/" source-path="/sample/war"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/sample/src/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test/java"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/modules/kitchen/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/modules/platform/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/modules/sink/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/modules/kitchen/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/sample/src/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test/java"/>
         <property name="context-root" value="kitchensink"/>
         <property name="java-output-path"/>
     </wb-module>

@@ -22,18 +22,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
 
-    <title>Spring Platform</title>
+  <title>Spring Configuration</title>
 
-    <para>A Spring application is full of beans that are instantiated at startup. Usually, in a web application, the Spring configuration files are listed in the <filename>web.xml</filename> deployment file directly. This is an unwelcome side effect as soon as the same code base is used for different purposes<footnote><para>one could start the application in a safe mode, without communication to the external systems (e.g. for testing) or used the same packaged application for different tenants.</para></footnote>. A solution can be to multiply the <filename>web.xml</filename> files but I find more flexible to define one <emphasis>uber-configuration</emphasis> for each platform and replace the default Spring <code>ContextLoaderListener</code> in the <filename>web.xml</filename> by the following:</para>
+  <para>Spring based application are often configured <emphasis>by layer</emphasis>. A typical example would be for all the <code>DAO</code> beans to be placed into a single configuration file, alongside the definition of the data sources. This approach is unfortunately not easily compatible with a modularized architecture and must be adapted accordingly. The new approach is to define one main configuration file for each independent module and one file for the platform. As a consequence the data sources will be defined for the platform while the individual <code>DAO</code>s will be moved to their corresponding modules.</para>
 
-    <xi:include href="fragments/webxml.docbook"/>
+  <para>The <code>PluggableXmlWebApplicationContext</code> will be used to load all these configuration files, in the correct order. This class must be used with the Spring <code>DispatcherServlet</code> and is configured in the <filename>web.xml</filename> file:</para>
+    
+  <xi:include href="fragments/webxml.docbook"/>
 
-    <para>Once everything has been packaged together, the application will be default start with the <emphasis>platformA</emphasis> but will load the <emphasis>platformB</emphasis> if the <code>-Dmodulus.platform.name=platformB</code> has been defined.</para>
-
-    <figure><title>Webapp packaging</title>
-        <screenshot><mediaobject><imageobject>
-            <imagedata fileref="images/webapp-configuration.png" align="center" width="80%"/>
-        </imageobject></mediaobject></screenshot>
-    </figure>
-
+  <para>Once this infrastructure is in place, the next steps are to make sure that all the commonly used libraries work well with this concept. This is what we will explore in the rest of this document.</para>
+  
 </section>

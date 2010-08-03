@@ -29,12 +29,10 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
+<!-- 
     <context:annotation-config/>
 
     <bean class="com.acme.kitchensink.web.ExaminationReportController"/>
-
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-        p:prefix="WEB-INF/pages/"
-        p:suffix=".jsp"/>
+ -->
 
 </beans>
