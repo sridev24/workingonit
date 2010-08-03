@@ -20,81 +20,85 @@
 <!DOCTYPE project>
 
 <project name="wkg modulus" basedir="." default="release" 
-        xmlns:ivy="antlib:org.workingonit.ivy"
-        xmlns:project="antlib:org.workingonit.project"
-        xmlns:war="antlib:org.workingonit.war"
-        xmlns:java="antlib:org.workingonit.java"
-        xmlns:docbook="antlib:org.workingonit.docbook"
-        xmlns:release="antlib:org.workingonit.release"
-        xmlns:tomcat="antlib:org.workingonit.tomcat">
+    xmlns:ivy="antlib:org.workingonit.ivy"
+    xmlns:project="antlib:org.workingonit.project"
+    xmlns:war="antlib:org.workingonit.war"
+    xmlns:java="antlib:org.workingonit.java"
+    xmlns:docbook="antlib:org.workingonit.docbook"
+    xmlns:release="antlib:org.workingonit.release"
+    xmlns:tomcat="antlib:org.workingonit.tomcat">
 
-    <property file="build-local.properties"/>
-    <property file="build.properties"/>
+	<property file="build-local.properties"/>
+	<property file="build.properties"/>
 
-    <import file="conf/project-targets.xml"/>
+	<import file="conf/project-targets.xml"/>
 
-    <typedef resource="org/workingonit/antlib/project.xml" uri="antlib:org.workingonit.project"/>
-    <typedef resource="org/workingonit/antlib/ivy.xml" uri="antlib:org.workingonit.ivy"/>
-    <typedef resource="org/workingonit/antlib/java.xml" uri="antlib:org.workingonit.java"/>
-    <typedef resource="org/workingonit/antlib/war.xml" uri="antlib:org.workingonit.war"/>
-    <typedef resource="org/workingonit/antlib/docbook.xml" uri="antlib:org.workingonit.docbook"/>
-    <typedef resource="org/workingonit/antlib/release.xml" uri="antlib:org.workingonit.release"/>
-    <typedef resource="org/workingonit/antlib/tomcat.xml" uri="antlib:org.workingonit.tomcat"/>
+	<typedef resource="org/workingonit/antlib/project.xml" uri="antlib:org.workingonit.project"/>
+	<typedef resource="org/workingonit/antlib/ivy.xml" uri="antlib:org.workingonit.ivy"/>
+	<typedef resource="org/workingonit/antlib/java.xml" uri="antlib:org.workingonit.java"/>
+	<typedef resource="org/workingonit/antlib/war.xml" uri="antlib:org.workingonit.war"/>
+	<typedef resource="org/workingonit/antlib/docbook.xml" uri="antlib:org.workingonit.docbook"/>
+	<typedef resource="org/workingonit/antlib/release.xml" uri="antlib:org.workingonit.release"/>
+	<typedef resource="org/workingonit/antlib/tomcat.xml" uri="antlib:org.workingonit.tomcat"/>
 
-    <target name="init">
-        <ivy:download/>
-        <project:init/>
-        <war:init destDir="sample/war"/>
-    </target>
+	<target name="init">
+		<ivy:download/>
+		<project:init/>
+    <war:init srcDir="${lib.dir}/platform" destDir="platform/war"/>
+    <war:init destDir="platform/war"/>
+	</target>
 
-    <target name="compile" depends="init">
-        <java:compile/>
-        <java:compile srcDir="sample/java"/>
-        <java:test.compile/>
-    </target>
+	<target name="compile" depends="init">
+		<java:compile/>
+		<!-- java:compile srcDir="platform/java"/>
+    <java:compile srcDir="modules/sink/java"/>
+    <java:compile srcDir="modules/kitchen/java"/ -->
+    <java:compile srcDir="sample/java"/>
+		<java:test.compile/>
+	</target>
 
-    <target name="package" depends="compile">
-        <java:jar/>
-        <java:jar destfile="${dist.dir}/${project.name}-client-${project.version}.jar">
-            <additional>
-                <manifest>
-                    <attribute name="Main-Class" value="org.workingonit.modulus.ModulusCLI"/>
-                </manifest>
-                <zipgroupfileset dir="${distributed.lib.dir}" includes="**/*.jar"/>
-            </additional>
-        </java:jar>
+	<target name="package" depends="compile">
+		<java:jar/>
+		<java:jar destfile="${dist.dir}/${project.name}-client-${project.version}.jar">
+			<additional>
+				<manifest>
+					<attribute name="Main-Class" value="org.workingonit.modulus.ModulusCLI"/>
+				</manifest>
+				<zipgroupfileset dir="${distributed.lib.dir}" includes="**/*.jar"/>
+			</additional>
+		</java:jar>
 
-        <java:war basedir="sample/war" destfile="${dist.dir}/kitchensink.war"/>
-    </target>
+		<java:war basedir="sample/war" destfile="${dist.dir}/kitchensink.war"/>
+	</target>
 
-    <target name="documentation" depends="init">
-        <java:javadoc/>
-    </target>
+	<target name="documentation" depends="init">
+		<java:javadoc/>
+	</target>
 
-    <target name="pdf">
-        <docbook:pdf.generate file="modulus" draft="yes"/>
-    </target>
+	<target name="pdf">
+		<docbook:pdf.generate file="modulus" draft="yes"/>
+	</target>
 
-    <target name="release" depends="package, documentation, pdf">
-        <release:sources/>
-        <release:package/>
-    </target>
+	<target name="release" depends="package, documentation, pdf">
+		<release:sources/>
+		<release:package/>
+	</target>
 
-  <target name="modules">
-  	<!-- generation of the help files -->
-    <docbook:eclipse.generate basedir="modules/kitchen/help" namespace="com.acme.kitchensink.kitchen" file="kitchen-help"/>
-    <docbook:eclipse.generate basedir="modules/sink/help" namespace="com.acme.kitchensink.sink" file="sink-help"/>
+	<target name="modules">
+		<!-- generation of the help files -->
+		<docbook:eclipse.generate basedir="modules/kitchen/help" namespace="com.acme.kitchensink.kitchen" file="kitchen-help"/>
+		<docbook:eclipse.generate basedir="modules/sink/help" namespace="com.acme.kitchensink.sink" file="sink-help"/>
 
-    <zip destfile="${dist.dir}/kitchensink-infocenter.war">
-      <zipfileset src="src/eclipse-infocenter.war"/>
-      <zipfileset src="${target.dir}/com.acme.kitchensink.kitchen.help.zip" prefix="WEB-INF/plugins"/>
-      <zipfileset src="${target.dir}/com.acme.kitchensink.sink.help.zip" prefix="WEB-INF/plugins"/>
-    </zip>
-  </target>
+		<zip destfile="${dist.dir}/kitchensink-infocenter.war">
+			<zipfileset src="src/eclipse-infocenter.war"/>
+			<zipfileset src="${target.dir}/com.acme.kitchensink.kitchen.help.zip" prefix="WEB-INF/plugins"/>
+			<zipfileset src="${target.dir}/com.acme.kitchensink.sink.help.zip" prefix="WEB-INF/plugins"/>
+		</zip>
+	</target>
 
-    <target name="tomcat.deploy" depends="package" description="deploys into Tomcat for testing">
-      <!-- tomcat:deploy file="${dist.dir}/kitchensink.war" destfile="kitchensink"/ -->
-      <tomcat:deploy file="${dist.dir}/kitchensink-infocenter.war" destfile="kitchensink-infocenter"/>
-    </target>
+	<target name="tomcat.deploy" depends="package" description="deploys into Tomcat for testing">
+		<!-- tomcat:deploy file="${dist.dir}/kitchensink.war" destfile="kitchensink"/ -->
+		<tomcat:deploy file="${dist.dir}/kitchensink-infocenter.war" destfile="kitchensink-infocenter"/>
+	</target>
 
 </project>
