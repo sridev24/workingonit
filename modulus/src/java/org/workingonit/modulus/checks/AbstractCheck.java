@@ -21,12 +21,12 @@ package org.workingonit.modulus.checks;
  */
 public abstract class AbstractCheck implements Check {
 
-    protected String description;
-    protected boolean fatal = false;
+  protected String description;
+  protected boolean fatal = false;
 
-    public AbstractCheck(String description, boolean fatal) {
-        this.description = description;
-        this.fatal = fatal;
-    }
+  public AbstractCheck(String description, boolean fatal) {
+    this.description = description;
+    this.fatal = fatal;
+  }
 
 }

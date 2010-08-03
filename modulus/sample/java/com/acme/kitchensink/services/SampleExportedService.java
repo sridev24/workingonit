@@ -26,36 +26,36 @@ import org.springframework.jmx.export.annotation.ManagedResource;
  * @author Vladimir Ritz Bossicard
  */
 @ManagedResource(
-    description="sample MBean",
-    objectName="com.acme.services:name=SampleMBean")
+  description="sample MBean",
+  objectName="com.acme.services:name=SampleMBean")
 public class SampleExportedService {
 
-    private String name;
+  private String name;
 
-    @ManagedAttribute(description="sets the name attribute")
-    public void setName(String value) {
-        this.name = value;
-    }
+  @ManagedAttribute(description = "sets the name attribute")
+  public void setName(String value) {
+    this.name = value;
+  }
 
-    @ManagedAttribute(description="returns the attribute name")
-    public String getName() {
-        return this.name;
-    }
+  @ManagedAttribute(description = "returns the attribute name")
+  public String getName() {
+    return this.name;
+  }
 
-    @ManagedOperation(description="simple processing")
-    @ManagedOperationParameters({
-        @ManagedOperationParameter(name="value1", description="The first value"),
-        @ManagedOperationParameter(name="value2", description="The second value")})
-    public void process(int value1, int value2) {
-        System.out.println("processing " + value1 + "/" + value2);
-    }
+  @ManagedOperation(description = "simple processing")
+  @ManagedOperationParameters( { 
+    @ManagedOperationParameter(name = "value1", description = "The first value"),
+    @ManagedOperationParameter(name = "value2", description = "The second value") })
+  public void process(int value1, int value2) {
+    System.out.println("processing " + value1 + "/" + value2);
+  }
 
-    @ManagedOperation(description="simple addition")
-    @ManagedOperationParameters({
-        @ManagedOperationParameter(name="value1", description="The first value"),
-        @ManagedOperationParameter(name="value2", description="The second value")})
-    public int addition(int value1, int value2) {
-        return value1 + value2;
-    }
+  @ManagedOperation(description = "simple addition")
+  @ManagedOperationParameters( { 
+    @ManagedOperationParameter(name = "value1", description = "The first value"),
+    @ManagedOperationParameter(name = "value2", description = "The second value") })
+  public int addition(int value1, int value2) {
+    return value1 + value2;
+  }
 
 }

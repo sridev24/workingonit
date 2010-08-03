@@ -33,36 +33,38 @@ import org.workingonit.modulus.Examination;
  */
 public class XslExaminationFormatter extends XmlExaminationFormatter {
 
-    private final static Log log = LogFactory.getLog(XslExaminationFormatter.class);
+  private final static Log log = LogFactory
+      .getLog(XslExaminationFormatter.class);
 
-    private String templateName;
+  private String templateName;
 
-    public XslExaminationFormatter() {
-        // noop
+  public XslExaminationFormatter() {
+    // noop
+  }
+
+  public XslExaminationFormatter(String templateName) {
+    this.templateName = templateName;
+  }
+
+  public void setTemplateName(String templateName) {
+    this.templateName = templateName;
+  }
+
+  @Override
+  public String format(Examination examination) {
+    Document doc = createXmlDocument(examination);
+
+    InputStream template = getClass().getResourceAsStream(this.templateName);
+    if (template == null) {
+      throw new IllegalArgumentException("template couldn't be found: "
+          + this.templateName);
     }
-
-    public XslExaminationFormatter(String templateName) {
-        this.templateName = templateName;
+    XsltProcessor processor = new XsltProcessor(template);
+    String content = doc.toXML();
+    if (log.isDebugEnabled()) {
+      log.debug(content);
     }
-
-    public void setTemplateName(String templateName) {
-        this.templateName = templateName;
-    }
-
-    @Override
-    public String format(Examination examination) {
-        Document doc = createXmlDocument(examination);
-
-        InputStream template = getClass().getResourceAsStream(this.templateName);
-        if (template == null) {
-            throw new IllegalArgumentException("template couldn't be find: " + this.templateName);
-        }
-        XsltProcessor processor = new XsltProcessor(template);
-        String content = doc.toXML();
-        if (log.isDebugEnabled()) {
-            log.debug(content);
-        }
-        return processor.process(content);
-    }
+    return processor.process(content);
+  }
 
 }

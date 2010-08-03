@@ -28,44 +28,44 @@ import org.workingonit.modulus.findings.Finding.Status;
  */
 public class Diagnostic implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    private String name;
-    private Finding[] findings;
-    private Status status = Status.NEUTRAL;
+  private String name;
+  private Finding[] findings;
+  private Status status = Status.NEUTRAL;
 
-    public Diagnostic(String name, Finding[] findings) {
-        this.name = name;
-        this.findings = findings;
+  public Diagnostic(String name, Finding[] findings) {
+    this.name = name;
+    this.findings = findings;
 
-        evaluateStatus();
+    evaluateStatus();
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public void addFindings(Finding[] findings) {
+    this.findings = (Finding[]) ArrayUtils.addAll(this.findings, findings);
+
+    evaluateStatus();
+  }
+
+  public Finding[] getFindings() {
+    return this.findings;
+  }
+
+  /**
+   * Returns the "maximum" status of all defined <i>findings</i>.
+   */
+  public Status getStatus() {
+    return this.status;
+  }
+
+  private void evaluateStatus() {
+    for (Finding finding : this.findings) {
+      this.status = (Status) EnumsUtils.maximum(this.status, finding.getStatus());
     }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void addFindings(Finding[] findings) {
-        this.findings = (Finding[]) ArrayUtils.addAll(this.findings, findings);
-
-        evaluateStatus();
-    }
-
-    public Finding[] getFindings() {
-        return this.findings;
-    }
-
-    /**
-     * Returns the "maximum" status of all defined <i>findings</i>.
-     */
-    public Status getStatus() {
-        return this.status;
-    }
-
-    private void evaluateStatus() {
-        for (Finding finding : this.findings) {
-            this.status = (Status) EnumsUtils.maximum(this.status, finding.getStatus());
-        }
-    }
+  }
 
 }

@@ -30,61 +30,61 @@ import org.workingonit.modulus.findings.Finding.Status;
  */
 public class TextExaminationFormatter implements ExaminationFormatter {
 
-    private final static int MARGIN = 80;
+  private final static int MARGIN = 80;
 
-    @Override
-    public String format(Examination examination) {
-        StringBuffer buffer = new StringBuffer();
+  @Override
+  public String format(Examination examination) {
+    StringBuffer buffer = new StringBuffer();
 
-        buffer.append(examination.getPlatform().getName() + "\n");
-        if (examination.getPlatform().getProperties() != null) {
-            for (Map.Entry<Object, Object> entry : examination.getPlatform().getProperties().entrySet()) {
-                buffer.append(align(entry.getKey().toString(), entry.getValue().toString()));
-            }
-        }
-        buffer.append("\n");
+    buffer.append(examination.getPlatform().getName() + "\n");
+    if (examination.getPlatform().getProperties() != null) {
+      for (Map.Entry<Object, Object> entry : examination.getPlatform().getProperties().entrySet()) {
+        buffer.append(align(entry.getKey().toString(), entry.getValue().toString()));
+      }
+    }
+    buffer.append("\n");
 
-        for (GroupedDiagnostics group : examination.getGroupedDiagnostics()) {
-            buffer.append(StringUtils.center(group.getName(), MARGIN) + "\n");
-            buffer.append(StringUtils.center(StringUtils.repeat("=", group.getName().length()), MARGIN) + "\n\n");
-            for (Diagnostic diagnostic : group.getDiagnostics()) {
-                buffer.append(outpuDiagnostic(diagnostic));
-            }
-            buffer.append(StringUtils.center("********************", MARGIN) + "\n\n");
-        }
-
-        for (Diagnostic diagnostic : examination.getDiagnostics()) {
-            buffer.append(outpuDiagnostic(diagnostic));
-        }
-
-        return buffer.toString();
+    for (GroupedDiagnostics group : examination.getGroupedDiagnostics()) {
+      buffer.append(StringUtils.center(group.getName(), MARGIN) + "\n");
+      buffer.append(StringUtils.center(StringUtils.repeat("=", group.getName().length()), MARGIN) + "\n\n");
+      for (Diagnostic diagnostic : group.getDiagnostics()) {
+        buffer.append(outpuDiagnostic(diagnostic));
+      }
+      buffer.append(StringUtils.center("********************", MARGIN) + "\n\n");
     }
 
-    private String outpuDiagnostic(Diagnostic diagnostic) {
-        StringBuffer buffer = new StringBuffer();
-
-        buffer.append(alignTitle(diagnostic.getName(), diagnostic.getStatus()));
-        for (Finding finding : diagnostic.getFindings()) {
-            Status status = finding.getStatus();
-            buffer.append(align(finding.getMessage(), status == Status.NEUTRAL ? "" : status.name()));
-            if (!finding.isSuccessful() && (finding.getCause() != null)) {
-                buffer.append("      " + finding.getCause() + "\n");
-            }
-        }
-        buffer.append("\n");
-
-        return buffer.toString();
+    for (Diagnostic diagnostic : examination.getDiagnostics()) {
+      buffer.append(outpuDiagnostic(diagnostic));
     }
 
-    private String alignTitle(String title, Status status) {
-        if (status == Status.NEUTRAL) {
-            return title + "\n";
-        }
-        return StringUtils.rightPad(title, MARGIN - status.name().length(), " ") + status.name() + "\n";
-    }
+    return buffer.toString();
+  }
 
-    private String align(String left, String right) {
-        return "   " + StringUtils.rightPad(left, MARGIN - 6 - right.length(), '.') + right + "\n";
+  private String outpuDiagnostic(Diagnostic diagnostic) {
+    StringBuffer buffer = new StringBuffer();
+
+    buffer.append(alignTitle(diagnostic.getName(), diagnostic.getStatus()));
+    for (Finding finding : diagnostic.getFindings()) {
+      Status status = finding.getStatus();
+      buffer.append(align(finding.getMessage(), status == Status.NEUTRAL ? "" : status.name()));
+      if (!finding.isSuccessful() && (finding.getCause() != null)) {
+        buffer.append("      " + finding.getCause() + "\n");
+      }
     }
+    buffer.append("\n");
+
+    return buffer.toString();
+  }
+
+  private String alignTitle(String title, Status status) {
+    if (status == Status.NEUTRAL) {
+      return title + "\n";
+    }
+    return StringUtils.rightPad(title, MARGIN - status.name().length(), " ") + status.name() + "\n";
+  }
+
+  private String align(String left, String right) {
+    return "   " + StringUtils.rightPad(left, MARGIN - 6 - right.length(), '.') + right + "\n";
+  }
 
 }

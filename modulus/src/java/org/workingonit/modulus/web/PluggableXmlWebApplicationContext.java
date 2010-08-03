@@ -60,30 +60,27 @@ public class PluggableXmlWebApplicationContext extends XmlWebApplicationContext 
   private static final String MODULE_LOCATION = "moduleConfigLocation";
 
   /**
-   * Default location for the platform configuration file. Defined as 
-   * <i>/WEB-INF/context/platformContext.xml</i>.
+   * Default location for the platform configuration file. Defined as <i>/WEB-INF/context/platformContext.xml</i>.
    */
   private static final String PLATFORM_LOCATION_DEFAULT = "/WEB-INF/context/platformContext.xml";
 
   /**
-   * Default name for the plugin configuration file. Defined as
-   * <i>classpath*:moduleContext.xml</i>.
+   * Default name for the plugin configuration file. Defined as <i>classpath*:moduleContext.xml</i>.
    */
   private static final String MODULE_LOCATION_DEFAULT = "classpath*:moduleContext.xml";
 
   private final Log log = LogFactory.getLog(PluggableXmlWebApplicationContext.class);
 
   @Override
-  protected void loadBeanDefinitions(XmlBeanDefinitionReader reader)
-      throws IOException {
+  protected void loadBeanDefinitions(XmlBeanDefinitionReader reader) throws IOException {
     super.loadBeanDefinitions(reader);
 
-    String platformLocation = StringUtils.defaultString(
-        getServletConfig().getInitParameter(PLATFORM_LOCATION), PLATFORM_LOCATION_DEFAULT);
+    String platformLocation = StringUtils.defaultString(getServletConfig().getInitParameter(PLATFORM_LOCATION),
+        PLATFORM_LOCATION_DEFAULT);
     reader.loadBeanDefinitions(platformLocation);
 
-    String modulePattern = StringUtils.defaultString(
-        getServletConfig().getInitParameter(MODULE_LOCATION), MODULE_LOCATION_DEFAULT);
+    String modulePattern = StringUtils.defaultString(getServletConfig().getInitParameter(MODULE_LOCATION),
+        MODULE_LOCATION_DEFAULT);
 
     ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
     try {

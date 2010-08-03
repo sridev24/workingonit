@@ -27,25 +27,25 @@ import org.workingonit.modulus.AvailableBean;
  * @author Vladimir Ritz Bossicard
  */
 @ManagedResource(
-    description="sample available MBean",
-    objectName="com.acme.services:name=SampleAvailableMBean")
+  description="sample available MBean",
+  objectName="com.acme.services:name=SampleAvailableMBean")
 public class SampleAvailableBean implements AvailableBean {
 
-    private int available = AVAILABLE;
+  private int available = AVAILABLE;
 
-    @ManagedOperation
-    public void enable() {
-        this.available = AVAILABLE;
-    }
+  @ManagedOperation
+  public void enable() {
+    this.available = AVAILABLE;
+  }
 
-    @ManagedOperation
-    public void disable() {
-        this.available = UNAVAILABLE;
-    }
+  @ManagedOperation
+  public void disable() {
+    this.available = UNAVAILABLE;
+  }
 
-    @ManagedAttribute
-    public int getAvailability() {
-        return this.available;
-    }
+  @ManagedAttribute
+  public int getAvailability() {
+    return this.available;
+  }
 
 }

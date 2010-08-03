@@ -24,6 +24,6 @@ import org.workingonit.modulus.findings.Finding;
  */
 public interface Check {
 
-    Finding perform();
+  Finding perform();
 
 }

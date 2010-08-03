@@ -27,22 +27,22 @@ import org.workingonit.modulus.findings.Finding.Status;
 @Test
 public class FindingsTest {
 
-    private final static String NO_MSG = "no message";
+  private final static String NO_MSG = "no message";
 
-    public void neutral() {
-        assertEquals(new Information(NO_MSG).getStatus(), Status.NEUTRAL);
-    }
+  public void neutral() {
+    assertEquals(new Information(NO_MSG).getStatus(), Status.NEUTRAL);
+  }
 
-    public void healthy() {
-        assertEquals(new EvaluatedFinding(NO_MSG, true).getStatus(), Status.OK);
-    }
+  public void healthy() {
+    assertEquals(new EvaluatedFinding(NO_MSG, true).getStatus(), Status.OK);
+  }
 
-    public void caution() {
-        assertEquals(new EvaluatedFinding(NO_MSG, false).getStatus(), Status.WARNING);
-    }
+  public void caution() {
+    assertEquals(new EvaluatedFinding(NO_MSG, false).getStatus(), Status.WARNING);
+  }
 
-    public void sick() {
-        assertEquals(new EvaluatedFinding(NO_MSG, false, true).getStatus(), Status.ERROR);
-    }
+  public void sick() {
+    assertEquals(new EvaluatedFinding(NO_MSG, false, true).getStatus(), Status.ERROR);
+  }
 
 }

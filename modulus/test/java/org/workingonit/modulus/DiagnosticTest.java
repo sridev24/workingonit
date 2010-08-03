@@ -30,40 +30,40 @@ import org.workingonit.modulus.findings.Finding.Status;
 @Test
 public class DiagnosticTest {
 
-    public void neutral_status() {
-        Diagnostic diagnostic = new Diagnostic("dummy",
-            new Finding[] { new Information("info") } );
-        assertEquals(diagnostic.getStatus(), Status.NEUTRAL);
-    }
+  public void neutral_status() {
+    Diagnostic diagnostic = new Diagnostic("dummy",
+      new Finding[] { new Information("info") } );
+    assertEquals(diagnostic.getStatus(), Status.NEUTRAL);
+  }
 
-    public void ok_status() {
-        Diagnostic diagnostic = new Diagnostic("dummy",
-            new Finding[] {
-                new Information("info"),
-                new EvaluatedFinding("ok", true)
-        } );
-        assertEquals(diagnostic.getStatus(), Status.OK);
-    }
+  public void ok_status() {
+    Diagnostic diagnostic = new Diagnostic("dummy",
+      new Finding[] {
+        new Information("info"),
+        new EvaluatedFinding("ok", true)
+    } );
+    assertEquals(diagnostic.getStatus(), Status.OK);
+  }
 
-    public void warning_status() {
-        Diagnostic diagnostic = new Diagnostic("dummy",
-            new Finding[] {
-                new Information("info"),
-                new EvaluatedFinding("ok", true),
-                new EvaluatedFinding("warning", false, false)
-        } );
-        assertEquals(diagnostic.getStatus(), Status.WARNING);
-    }
+  public void warning_status() {
+    Diagnostic diagnostic = new Diagnostic("dummy",
+      new Finding[] {
+        new Information("info"),
+        new EvaluatedFinding("ok", true),
+        new EvaluatedFinding("warning", false, false)
+    } );
+    assertEquals(diagnostic.getStatus(), Status.WARNING);
+  }
 
-    public void error_status() {
-        Diagnostic diagnostic = new Diagnostic("dummy",
-            new Finding[] {
-                new Information("info"),
-                new EvaluatedFinding("ok", true),
-                new EvaluatedFinding("warning", false, false),
-                new EvaluatedFinding("error", false, true)
-        } );
-        assertEquals(diagnostic.getStatus(), Status.ERROR);
-    }
+  public void error_status() {
+    Diagnostic diagnostic = new Diagnostic("dummy",
+      new Finding[] {
+        new Information("info"),
+        new EvaluatedFinding("ok", true),
+        new EvaluatedFinding("warning", false, false),
+        new EvaluatedFinding("error", false, true)
+    } );
+    assertEquals(diagnostic.getStatus(), Status.ERROR);
+  }
 
 }

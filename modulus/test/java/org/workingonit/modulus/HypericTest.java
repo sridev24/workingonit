@@ -34,24 +34,24 @@ import org.testng.annotations.Test;
  */
 public class HypericTest {
 
-    @Test
-    public void retrieve_metric() throws Exception {
-        String host = "localhost";
-        String port = "18080";
+  @Test
+  public void retrieve_metric() throws Exception {
+    String host = "localhost";
+    String port = "18080";
 
-        ObjectName name = new ObjectName("com.acme.services:name=SuccessfulIntrospectionMBean");
+    ObjectName name = new ObjectName("com.acme.services:name=SuccessfulIntrospectionMBean");
 
-        String service = "service:jmx:rmi:///jndi/rmi://"+ host + ":" + port + "/jmxrmi";
+    String service = "service:jmx:rmi:///jndi/rmi://" + host + ":" + port + "/jmxrmi";
 
-        JMXConnector jmxc = JMXConnectorFactory.connect(new JMXServiceURL(service), new HashMap<String,Object>());
-        MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
+    JMXConnector jmxc = JMXConnectorFactory.connect(new JMXServiceURL(service), new HashMap<String, Object>());
+    MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
 
-        MBeanInfo info = mbsc.getMBeanInfo(name);
-        System.out.println(info);
-        assertNotNull(info);
+    MBeanInfo info = mbsc.getMBeanInfo(name);
+    System.out.println(info);
+    assertNotNull(info);
 
-        Object obj = mbsc.getAttribute(name, "Availability");
-        System.out.println(obj.toString());
-    }
+    Object obj = mbsc.getAttribute(name, "Availability");
+    System.out.println(obj.toString());
+  }
 
 }

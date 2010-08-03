@@ -21,10 +21,10 @@ package org.workingonit.modulus.findings;
  */
 public class ErrorFinding extends EvaluatedFinding {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    public ErrorFinding(String type, String subject, String message) {
-        super(type, subject, message, false, true);
-    }
+  public ErrorFinding(String type, String subject, String message) {
+    super(type, subject, message, false, true);
+  }
 
 }

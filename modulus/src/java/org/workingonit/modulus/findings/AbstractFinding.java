@@ -21,33 +21,33 @@ package org.workingonit.modulus.findings;
  */
 public abstract class AbstractFinding implements Finding {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    protected String type;
-    protected String subject;
-    protected String message;
+  protected String type;
+  protected String subject;
+  protected String message;
 
-    public AbstractFinding(String type, String subject, String message) {
-        this.type = type;
-        this.subject = subject;
-        this.message = message;
-    }
+  public AbstractFinding(String type, String subject, String message) {
+    this.type = type;
+    this.subject = subject;
+    this.message = message;
+  }
 
-    public String getType() {
-        return this.type;
-    }
+  public String getType() {
+    return this.type;
+  }
 
-    public String getSubject() {
-        return this.subject;
-    }
+  public String getSubject() {
+    return this.subject;
+  }
 
-    public String getMessage() {
-        return this.subject == null ? this.message : this.subject + ": " + this.message;
-    }
+  public String getMessage() {
+    return this.subject == null ? this.message : this.subject + ": " + this.message;
+  }
 
-    @Override
-    public String toString() {
-        return this.message + ": " + getStatus().name();
-    }
+  @Override
+  public String toString() {
+    return this.message + ": " + getStatus().name();
+  }
 
 }
