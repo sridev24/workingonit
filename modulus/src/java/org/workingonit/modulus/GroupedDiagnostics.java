@@ -24,26 +24,26 @@ import java.util.List;
  */
 public class GroupedDiagnostics implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    private String name;
-    private List<Diagnostic> diagnostics;
+  private String name;
+  private List<Diagnostic> diagnostics;
 
-    /**
-     * @param name
-     * @param res
-     */
-    public GroupedDiagnostics(String name, List<Diagnostic> diagnostics) {
-        this.name = name;
-        this.diagnostics = diagnostics;
-    }
+  /**
+   * @param name
+   * @param res
+   */
+  public GroupedDiagnostics(String name, List<Diagnostic> diagnostics) {
+    this.name = name;
+    this.diagnostics = diagnostics;
+  }
 
-    public String getName() {
-        return this.name;
-    }
+  public String getName() {
+    return this.name;
+  }
 
-    public List<Diagnostic> getDiagnostics() {
-        return this.diagnostics;
-    }
+  public List<Diagnostic> getDiagnostics() {
+    return this.diagnostics;
+  }
 
 }

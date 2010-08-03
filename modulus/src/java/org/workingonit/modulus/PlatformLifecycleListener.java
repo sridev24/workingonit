@@ -32,37 +32,37 @@ import org.springframework.context.event.ContextRefreshedEvent;
  */
 public class PlatformLifecycleListener implements ApplicationListener<ApplicationEvent> {
 
-    private final static Log log = LogFactory.getLog(PlatformLifecycleListener.class);
+  private final static Log log = LogFactory.getLog(PlatformLifecycleListener.class);
 
-    @Autowired
-    private Platform platform = null;
+  @Autowired
+  private Platform platform = null;
 
-    @Override
-    public void onApplicationEvent(ApplicationEvent event) {
-        if (event instanceof ContextRefreshedEvent) {
-            onStart((ContextRefreshedEvent) event, new Date(event.getTimestamp()));
-        } else if (event instanceof ContextClosedEvent) {
-            onStop((ContextClosedEvent) event, new Date(event.getTimestamp()));
-        } else {
-            if (log.isDebugEnabled()) {
-                log.debug("unhandled event received: " + event.getClass());
-            }
+  @Override
+  public void onApplicationEvent(ApplicationEvent event) {
+    if (event instanceof ContextRefreshedEvent) {
+      onStart((ContextRefreshedEvent) event, new Date(event.getTimestamp()));
+    } else if (event instanceof ContextClosedEvent) {
+      onStop((ContextClosedEvent) event, new Date(event.getTimestamp()));
+    } else {
+      if (log.isDebugEnabled()) {
+        log.debug("unhandled event received: " + event.getClass());
+      }
+    }
+  }
+
+  protected void onStart(ContextRefreshedEvent event, Date timestamp) {
+    if (log.isInfoEnabled()) {
+      log.info("Application '" + this.platform.getName() + "' started at " + timestamp);
+      if (this.platform.getProperties() != null) {
+        for (Map.Entry<Object, Object> entry : this.platform.getProperties().entrySet()) {
+          log.info("    " + entry.getKey() + ": " + entry.getValue());
         }
+      }
     }
+  }
 
-    protected void onStart(ContextRefreshedEvent event, Date timestamp) {
-        if (log.isInfoEnabled()) {
-            log.info("Application '" + this.platform.getName() + "' started at " + timestamp);
-            if (this.platform.getProperties() != null) {
-                for (Map.Entry<Object, Object> entry : this.platform.getProperties().entrySet()) {
-                    log.info("    " + entry.getKey() + ": " + entry.getValue());
-                }
-            }
-        }
-    }
-
-    protected void onStop(ContextClosedEvent event, Date timestamp) {
-        log.info("Application '" + this.platform.getName() + "' stopped at " + timestamp);
-    }
+  protected void onStop(ContextClosedEvent event, Date timestamp) {
+    log.info("Application '" + this.platform.getName() + "' stopped at " + timestamp);
+  }
 
 }

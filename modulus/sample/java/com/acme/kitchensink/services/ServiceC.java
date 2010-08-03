@@ -33,38 +33,38 @@ import org.workingonit.modulus.findings.Information;
  * @author Vladimir Ritz Bossicard
  */
 @ManagedResource(
-    description="Service C MBean",
-    objectName="com.acme.kitchensink.services:name=ServiceCMBean")
+  description="Service C MBean",
+  objectName="com.acme.kitchensink.services:name=ServiceCMBean")
 public class ServiceC implements AuscultableBean {
 
-    private String url; // http://almaden:8080/sample
-    private int counter = 0;
+  private String url; // http://almaden:8080/sample
+  private int counter = 0;
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+  public void setUrl(String url) {
+    this.url = url;
+  }
 
-    @ManagedOperation
-    public void increaseCounter() {
-        this.counter++;
-    }
+  @ManagedOperation
+  public void increaseCounter() {
+    this.counter++;
+  }
 
-    @ManagedOperation
-    public void resetCounter() {
-        this.counter = 0;
-    }
+  @ManagedOperation
+  public void resetCounter() {
+    this.counter = 0;
+  }
 
-    @ManagedAttribute
-    public int getCounter() {
-        return this.counter;
-    }
+  @ManagedAttribute
+  public int getCounter() {
+    return this.counter;
+  }
 
-    public Diagnostic auscultate() {
-        return new DiagnosticBuilder("service C diagnostic")
-            .add(new Information("starting date " + new Date()))
-            .add(new ReacheableUrlCheck("Web service", this.url))
-            .add(new WritableFileCheck("Temp directory", new File("/tmp/dummy"), false))
-            .build();
-    }
+  public Diagnostic auscultate() {
+    return new DiagnosticBuilder("service C diagnostic")
+      .add(new Information("starting date " + new Date()))
+      .add(new ReacheableUrlCheck("Web service", this.url))
+      .add(new WritableFileCheck("Temp directory", new File("/tmp/dummy"), false))
+      .build();
+  }
 
 }

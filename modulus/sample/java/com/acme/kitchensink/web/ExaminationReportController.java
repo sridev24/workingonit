@@ -29,28 +29,28 @@ import org.workingonit.modulus.findings.Finding.Status;
 @Controller
 public class ExaminationReportController {
 
-    @Autowired
-    private AuscultableBeanRegistrar registrar;
+  @Autowired
+  private AuscultableBeanRegistrar registrar;
 
-    @RequestMapping("/medicus.htm")
-    protected ModelAndView medicus() throws Exception {
-        this.registrar.auscultate();
-        return new ModelAndView("medicus", "examination", this.registrar.lastExamination());
-    }
+  @RequestMapping("/medicus.htm")
+  protected ModelAndView medicus() throws Exception {
+    this.registrar.auscultate();
+    return new ModelAndView("medicus", "examination", this.registrar.lastExamination());
+  }
 
-    public static String format(Status status) {
-        switch (status) {
-            case NEUTRAL:
-                return "";
-            case OK:
-                return "<img src=\"themes/images/green-ball.png\"/>";
-            case WARNING:
-                return "<img src=\"themes/images/orange-ball.png\"/>";
-            case ERROR:
-                return "<img src=\"themes/images/red-ball.png\"/>";
-            default:
-                return "";
-        }
+  public static String format(Status status) {
+    switch (status) {
+      case NEUTRAL:
+        return "";
+      case OK:
+        return "<img src=\"themes/images/green-ball.png\"/>";
+      case WARNING:
+        return "<img src=\"themes/images/orange-ball.png\"/>";
+      case ERROR:
+        return "<img src=\"themes/images/red-ball.png\"/>";
+      default:
+        return "";
     }
+  }
 
 }

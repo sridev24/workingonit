@@ -32,41 +32,40 @@ import org.workingonit.modulus.findings.Finding;
  */
 public class ReacheableUrlCheck extends AbstractCheck {
 
-    private String url;
+  private String url;
 
-    public ReacheableUrlCheck(String description, String url, boolean fatal) {
-        super(description, fatal);
-        this.url = url;
+  public ReacheableUrlCheck(String description, String url, boolean fatal) {
+    super(description, fatal);
+    this.url = url;
+  }
+
+  public ReacheableUrlCheck(String description, String url) {
+    this(description, url, false);
+  }
+
+  @Override
+  public Finding perform() {
+    if (this.url == null) {
+      return new EvaluatedFinding("Url '" + this.description + "' must be defined", false, true);
     }
+    return new EvaluatedFinding(createMessage(), isReacheable(), this.fatal).addCause("unreacheable url: " + this.url);
+  }
 
-    public ReacheableUrlCheck(String description, String url) {
-        this(description, url, false);
+  private String createMessage() {
+    return this.fatal ? "Url '" + this.description + "' is reacheable (mandatory)" : "Url '" + this.description
+        + "' is reacheable (optional)";
+  }
+
+  private boolean isReacheable() {
+    try {
+      HttpClient client = new HttpClient();
+      client.getHttpConnectionManager().getParams().setConnectionTimeout(1000);
+
+      return client.executeMethod(new GetMethod(this.url)) == HttpStatus.SC_OK;
+    } catch (Exception ex) {
+      // ex.printStackTrace();
     }
-
-    @Override
-    public Finding perform() {
-        if (this.url == null) {
-            return new EvaluatedFinding("Url '" + this.description + "' must be defined", false, true);
-        }
-        return new EvaluatedFinding(createMessage(), isReacheable(), this.fatal).addCause("unreacheable url: " + this.url);
-    }
-
-    private String createMessage() {
-        return this.fatal ?
-            "Url '" + this.description + "' is reacheable (mandatory)" :
-            "Url '" + this.description + "' is reacheable (optional)";
-    }
-
-    private boolean isReacheable() {
-        try {
-            HttpClient client = new HttpClient();
-            client.getHttpConnectionManager().getParams().setConnectionTimeout(1000);
-
-            return client.executeMethod(new GetMethod(this.url)) == HttpStatus.SC_OK;
-        } catch (Exception ex) {
-            // ex.printStackTrace();
-        }
-        return false;
-    }
+    return false;
+  }
 
 }

@@ -21,6 +21,6 @@ package org.workingonit.modulus;
  */
 public interface AuscultableBean {
 
-    Diagnostic auscultate();
+  Diagnostic auscultate();
 
 }

@@ -28,20 +28,20 @@ import org.workingonit.modulus.checks.ReacheableUrlCheck;
  */
 @Group(name="Group 2")
 @ManagedResource(
-    description="Service D MBean",
-    objectName="com.acme.kitchensink.services:name=ServiceDMBean")
+  description="Service D MBean",
+  objectName="com.acme.kitchensink.services:name=ServiceDMBean")
 public class ServiceD implements AuscultableBean {
 
-    private String url; // invalid one
+  private String url; // invalid one
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+  public void setUrl(String url) {
+    this.url = url;
+  }
 
-    public Diagnostic auscultate() {
-        return new DiagnosticBuilder("service D diagnostic")
-            .add(new ReacheableUrlCheck("Web service", this.url))
-            .build();
-    }
+  public Diagnostic auscultate() {
+    return new DiagnosticBuilder("service D diagnostic")
+      .add(new ReacheableUrlCheck("Web service", this.url))
+      .build();
+  }
 
 }

@@ -32,64 +32,64 @@ import org.workingonit.modulus.findings.Finding;
  */
 public class XmlExaminationFormatter implements ExaminationFormatter {
 
-    @Override
-    public String format(Examination examination) {
-        return createXmlDocument(examination).toXML();
+  @Override
+  public String format(Examination examination) {
+    return createXmlDocument(examination).toXML();
+  }
+
+  protected Document createXmlDocument(Examination examination) {
+    Document doc = new Document(new Element("medicus"));
+    if (examination != null) {
+      doc.getRootElement().appendChild(createCheckupNode(examination));
     }
 
-    protected Document createXmlDocument(Examination examination) {
-        Document doc = new Document(new Element("medicus"));
-        if (examination != null) {
-            doc.getRootElement().appendChild(createCheckupNode(examination));
-        }
+    return doc;
+  }
 
-        return doc;
+  private Element createCheckupNode(Examination examination) {
+    Element node = new Element("examination");
+    node.addAttribute(new Attribute("date", examination.getDate().toString()));
+
+    node.appendChild(createPlatformNode(examination.getPlatform()));
+    for (Diagnostic diagnostic : examination.getDiagnostics()) {
+      node.appendChild(createDiagnosticNode(diagnostic));
     }
+    return node;
+  }
 
-    private Element createCheckupNode(Examination examination) {
-        Element node = new Element("examination");
-        node.addAttribute(new Attribute("date", examination.getDate().toString()));
+  private Element createPlatformNode(Platform platform) {
+    Element node = new Element("platform");
+    node.addAttribute(new Attribute("name", platform.getName()));
 
-        node.appendChild(createPlatformNode(examination.getPlatform()));
-        for (Diagnostic diagnostic : examination.getDiagnostics()) {
-            node.appendChild(createDiagnosticNode(diagnostic));
-        }
-        return node;
+    if (platform.getProperties() != null) {
+      for (Map.Entry<Object, Object> entry : platform.getProperties().entrySet()) {
+        Element prop = new Element("property");
+        prop.addAttribute(new Attribute("name", entry.getKey().toString()));
+        prop.addAttribute(new Attribute("value", entry.getValue().toString()));
+        node.appendChild(prop);
+      }
     }
+    return node;
+  }
 
-    private Element createPlatformNode(Platform platform) {
-        Element node = new Element("platform");
-        node.addAttribute(new Attribute("name", platform.getName()));
+  private Element createDiagnosticNode(Diagnostic diagnostic) {
+    Element node = new Element("diagnostic");
+    node.addAttribute(new Attribute("name", diagnostic.getName()));
+    node.addAttribute(new Attribute("status", diagnostic.getStatus().name()));
 
-        if (platform.getProperties() != null) {
-            for (Map.Entry<Object, Object> entry : platform.getProperties().entrySet()) {
-                Element prop = new Element("property");
-                prop.addAttribute(new Attribute("name", entry.getKey().toString()));
-                prop.addAttribute(new Attribute("value", entry.getValue().toString()));
-                node.appendChild(prop);
-            }
-        }
-        return node;
+    for (Finding finding : diagnostic.getFindings()) {
+      node.appendChild(createFindingNode(finding));
     }
+    return node;
+  }
 
-    private Element createDiagnosticNode(Diagnostic diagnostic) {
-        Element node = new Element("diagnostic");
-        node.addAttribute(new Attribute("name", diagnostic.getName()));
-        node.addAttribute(new Attribute("status", diagnostic.getStatus().name()));
+  private Element createFindingNode(Finding finding) {
+    Element node = new Element("finding");
 
-        for (Finding finding : diagnostic.getFindings()) {
-            node.appendChild(createFindingNode(finding));
-        }
-        return node;
-    }
+    node.addAttribute(new Attribute("message", finding.getMessage()));
+    node.addAttribute(new Attribute("status", finding.getStatus().toString()));
 
-    private Element createFindingNode(Finding finding) {
-        Element node = new Element("finding");
-
-        node.addAttribute(new Attribute("message", finding.getMessage()));
-        node.addAttribute(new Attribute("status", finding.getStatus().toString()));
-
-        return node;
-    }
+    return node;
+  }
 
 }

@@ -27,21 +27,20 @@ import org.testng.annotations.Test;
 @Test
 public class MedicusCLITest {
 
-    private final static String HOST = "localhost";
-    private final static String PORT = "18080";
+  private final static String HOST = "localhost";
+  private final static String PORT = "18080";
 
-    private final static String SERVICE = "service:jmx:rmi:///jndi/rmi://"+ HOST + ":" + PORT + "/jmxrmi";
+  private final static String SERVICE = "service:jmx:rmi:///jndi/rmi://" + HOST + ":" + PORT + "/jmxrmi";
 
-    public void proceed() throws Exception {
-        System.out.println(new ModulusCLI().proceed(SERVICE, "", "", "com.acme.kitchensink", "txt"));
-    }
+  public void proceed() throws Exception {
+    System.out.println(new ModulusCLI().proceed(SERVICE, "", "", "com.acme.kitchensink", "txt"));
+  }
 
-    public void generatePlugin() throws Exception {
-        String data = new ModulusCLI().generate(SERVICE, "", "", "com.acme.kitchensink");
-        System.out.println(data);
+  public void generatePlugin() throws Exception {
+    String data = new ModulusCLI().generate(SERVICE, "", "", "com.acme.kitchensink");
+    System.out.println(data);
 
-        FileUtils.writeStringToFile(new File("sample/conf/kitchensink-webapp-plugin.xml"), data, "UTF-8");
-    }
-
+    FileUtils.writeStringToFile(new File("sample/conf/kitchensink-webapp-plugin.xml"), data, "UTF-8");
+  }
 
 }

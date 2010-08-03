@@ -24,10 +24,10 @@ import org.testng.annotations.Test;
 @Test
 public class TextExaminationFormatterTest {
 
-    public void generate_text() {
-        ExaminationFormatter formatter = new TextExaminationFormatter();
-        String res = formatter.format(XmlExaminationFormatterTest.createExamination());
-        System.out.println(res);
-    }
+  public void generate_text() {
+    ExaminationFormatter formatter = new TextExaminationFormatter();
+    String res = formatter.format(XmlExaminationFormatterTest.createExamination());
+    System.out.println(res);
+  }
 
 }

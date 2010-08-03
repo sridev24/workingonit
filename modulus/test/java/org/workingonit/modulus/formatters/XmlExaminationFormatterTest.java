@@ -32,48 +32,43 @@ import org.workingonit.modulus.findings.Information;
 @Test
 public class XmlExaminationFormatterTest {
 
-    public static Examination createExamination() {
-        Examination examination = new Examination();
+  public static Examination createExamination() {
+    Examination examination = new Examination();
 
-        Platform platform = new Platform("sample application");
-        Properties props = new Properties();
-        props.put("version", "2.5.6");
-        props.put("svn version", "123424");
-        props.put("start date", new Date());
-        platform.setProperties(props);
+    Platform platform = new Platform("sample application");
+    Properties props = new Properties();
+    props.put("version", "2.5.6");
+    props.put("svn version", "123424");
+    props.put("start date", new Date());
+    platform.setProperties(props);
 
-        examination.setPlatform(platform);
+    examination.setPlatform(platform);
 
-        examination.addDiagnostic(new DiagnosticBuilder("diagnostic 1")
-            .add(new Information("Info 1"))
-            .build());
-        examination.addDiagnostic(new DiagnosticBuilder("diagnostic 2")
-            .add(new EvaluatedFinding("Evaluation 1", true))
-            .add(new EvaluatedFinding("Evaluation 2", false))
-            .add(new Information("Info 1"))
-            .build());
+    examination.addDiagnostic(new DiagnosticBuilder("diagnostic 1").add(new Information("Info 1")).build());
+    examination.addDiagnostic(new DiagnosticBuilder("diagnostic 2").add(new EvaluatedFinding("Evaluation 1", true))
+        .add(new EvaluatedFinding("Evaluation 2", false)).add(new Information("Info 1")).build());
 
-        return examination;
-    }
+    return examination;
+  }
 
-    public void generate_xml() {
-        XmlExaminationFormatter formatter = new XmlExaminationFormatter();
-        String res = formatter.format(createExamination());
-        System.out.println(res);
-    }
+  public void generate_xml() {
+    XmlExaminationFormatter formatter = new XmlExaminationFormatter();
+    String res = formatter.format(createExamination());
+    System.out.println(res);
+  }
 
-    public void generate_html() {
-        XslExaminationFormatter formatter = new XslExaminationFormatter();
-        formatter.setTemplateName("/resources/medicus-html.xsl");
-        String res = formatter.format(createExamination());
-        System.out.println(res);
-    }
+  public void generate_html() {
+    XslExaminationFormatter formatter = new XslExaminationFormatter();
+    formatter.setTemplateName("/resources/medicus-html.xsl");
+    String res = formatter.format(createExamination());
+    System.out.println(res);
+  }
 
-    public void generate_txt() {
-        XslExaminationFormatter formatter = new XslExaminationFormatter();
-        formatter.setTemplateName("/resources/medicus-txt.xsl");
-        String res = formatter.format(createExamination());
-        System.out.println(res);
-    }
+  public void generate_txt() {
+    XslExaminationFormatter formatter = new XslExaminationFormatter();
+    formatter.setTemplateName("/resources/medicus-txt.xsl");
+    String res = formatter.format(createExamination());
+    System.out.println(res);
+  }
 
 }

@@ -31,36 +31,37 @@ import org.workingonit.modulus.findings.Finding;
  */
 public class DiagnosticBuilder {
 
-    private String name;
-    private List<Finding> findings = new ArrayList<Finding>();
+  private String name;
+  private List<Finding> findings = new ArrayList<Finding>();
 
-    /**
-     * @param name the name of the platform.
-     */
-    public DiagnosticBuilder(String name) {
-        this.name = name;
-    }
+  /**
+   * @param name
+   *          the name of the platform.
+   */
+  public DiagnosticBuilder(String name) {
+    this.name = name;
+  }
 
-    public DiagnosticBuilder add(Finding finding) {
-        this.findings.add(finding);
-        return this;
-    }
+  public DiagnosticBuilder add(Finding finding) {
+    this.findings.add(finding);
+    return this;
+  }
 
-    public DiagnosticBuilder add(Check check) {
-        this.findings.addAll(Arrays.asList(check.perform()));
-        return this;
-    }
+  public DiagnosticBuilder add(Check check) {
+    this.findings.addAll(Arrays.asList(check.perform()));
+    return this;
+  }
 
-    /**
-     * Adds all {@link Finding}s from the given <code>diagnostic</code>.
-     */
-    public DiagnosticBuilder add(Diagnostic diagnostic) {
-        this.findings.addAll(Arrays.asList(diagnostic.getFindings()));
-        return this;
-    }
+  /**
+   * Adds all {@link Finding}s from the given <code>diagnostic</code>.
+   */
+  public DiagnosticBuilder add(Diagnostic diagnostic) {
+    this.findings.addAll(Arrays.asList(diagnostic.getFindings()));
+    return this;
+  }
 
-    public Diagnostic build() {
-        return new Diagnostic(this.name, this.findings.toArray(new Finding[0]));
-    }
+  public Diagnostic build() {
+    return new Diagnostic(this.name, this.findings.toArray(new Finding[0]));
+  }
 
 }

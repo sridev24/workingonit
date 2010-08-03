@@ -31,35 +31,35 @@ import org.workingonit.modulus.findings.Finding;
  * @author Vladimir Ritz Bossicard
  */
 @ContextConfiguration(locations={
-    "classpath:test-platform.xml",
-    "classpath:META-INF/spring/com.acme.kitchensink.services.xml",
-    "classpath:META-INF/spring/com.acme.kitchensink.modulus.xml"
+  "classpath:test-platform.xml",
+  "classpath:META-INF/spring/com.acme.kitchensink.services.xml",
+  "classpath:META-INF/spring/com.acme.kitchensink.modulus.xml"
 })
 public class AuscultableBeanRegistrarTest extends AbstractTestNGSpringContextTests {
 
-    @Autowired
-    @Qualifier(value="org.workingonit.modulus.AuscultableBeanRegistrar")
-    private AuscultableBeanRegistrar registrar;
+  @Autowired
+  @Qualifier(value = "org.workingonit.modulus.AuscultableBeanRegistrar")
+  private AuscultableBeanRegistrar registrar;
 
-    @Test
-    public void auscultate_all() {
-        this.registrar.auscultate();
-        List<Diagnostic> res = this.registrar.lastExamination().getDiagnostics();
-        assertEquals(res.size(), 3);
-    }
+  @Test
+  public void auscultate_all() {
+    this.registrar.auscultate();
+    List<Diagnostic> res = this.registrar.lastExamination().getDiagnostics();
+    assertEquals(res.size(), 3);
+  }
 
-    @Test(enabled=true)
-    public void print_all() {
-        this.registrar.auscultate();
-        List<Diagnostic> results = this.registrar.lastExamination().getDiagnostics();
-        for (Diagnostic summary : results) {
-            System.out.println(summary.getName());
-            for (Finding fact : summary.getFindings()) {
-                if (fact != null) {
-                    System.out.println("   " + fact.getMessage());
-                }
-            }
+  @Test(enabled = true)
+  public void print_all() {
+    this.registrar.auscultate();
+    List<Diagnostic> results = this.registrar.lastExamination().getDiagnostics();
+    for (Diagnostic summary : results) {
+      System.out.println(summary.getName());
+      for (Finding fact : summary.getFindings()) {
+        if (fact != null) {
+          System.out.println("   " + fact.getMessage());
         }
+      }
     }
+  }
 
 }

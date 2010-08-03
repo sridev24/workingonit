@@ -26,40 +26,40 @@ import org.springframework.jmx.export.annotation.ManagedResource;
  * @author Vladimir Ritz Bossicard
  */
 @ManagedResource(
-    description="multiple introspection MBean",
-    objectName="org.workingonit.modulus:name=PlatformMBean")
+  description="multiple introspection MBean",
+  objectName="org.workingonit.modulus:name=PlatformMBean")
 public class Platform implements AvailableBean, Serializable {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    private String name;
-    protected Properties props = new Properties();
+  private String name;
+  protected Properties props = new Properties();
 
-    public Platform(String name) {
-        this.name = name;
-    }
+  public Platform(String name) {
+    this.name = name;
+  }
 
-    @ManagedAttribute
-    public String getName() {
-        return this.name;
-    }
+  @ManagedAttribute
+  public String getName() {
+    return this.name;
+  }
 
-    public void setProperties(Properties props) {
-        this.props.putAll(props);
-    }
+  public void setProperties(Properties props) {
+    this.props.putAll(props);
+  }
 
-    @ManagedAttribute
-    public Properties getProperties() {
-        return this.props;
-    }
+  @ManagedAttribute
+  public Properties getProperties() {
+    return this.props;
+  }
 
-    /**
-     * Returns {@link AvailableBean#AVAILABLE} by default.
-     */
-    @Override
-    @ManagedAttribute
-    public int getAvailability() {
-        return AVAILABLE;
-    }
+  /**
+   * Returns {@link AvailableBean#AVAILABLE} by default.
+   */
+  @Override
+  @ManagedAttribute
+  public int getAvailability() {
+    return AVAILABLE;
+  }
 
 }

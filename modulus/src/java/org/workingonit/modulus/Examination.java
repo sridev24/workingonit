@@ -26,64 +26,64 @@ import java.util.List;
  */
 public class Examination implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    private String name;
-    private Platform platform;
-    private Date date;
-    private List<GroupedDiagnostics> groupedDiagnostics = new ArrayList<GroupedDiagnostics>();
-    /** all diagnostics not belonging to a particular group */
-    private List<Diagnostic> diagnostics = new ArrayList<Diagnostic>();
+  private String name;
+  private Platform platform;
+  private Date date;
+  private List<GroupedDiagnostics> groupedDiagnostics = new ArrayList<GroupedDiagnostics>();
+  /** all diagnostics not belonging to a particular group */
+  private List<Diagnostic> diagnostics = new ArrayList<Diagnostic>();
 
-    public Examination() {
-        this(null);
-    }
+  public Examination() {
+    this(null);
+  }
 
-    public Examination(String name) {
-        this.name = name;
-        this.date = new Date();
-    }
+  public Examination(String name) {
+    this.name = name;
+    this.date = new Date();
+  }
 
-    public String getName() {
-        return this.name;
-    }
+  public String getName() {
+    return this.name;
+  }
 
-    public Platform getPlatform() {
-        return this.platform;
-    }
+  public Platform getPlatform() {
+    return this.platform;
+  }
 
-    public void setPlatform(Platform platform) {
-        this.platform = platform;
-    }
+  public void setPlatform(Platform platform) {
+    this.platform = platform;
+  }
 
-    /**
-     * Returns the date when this <code>Examination</code> was done.
-     */
-    public Date getDate() {
-        return this.date;
-    }
+  /**
+   * Returns the date when this <code>Examination</code> was done.
+   */
+  public Date getDate() {
+    return this.date;
+  }
 
-    public void setDiagnostics(List<Diagnostic> diagnostics) {
-        this.diagnostics = diagnostics;
-    }
+  public void setDiagnostics(List<Diagnostic> diagnostics) {
+    this.diagnostics = diagnostics;
+  }
 
-    public void addDiagnostic(Diagnostic diagnostic) {
-        this.diagnostics.add(diagnostic);
-    }
+  public void addDiagnostic(Diagnostic diagnostic) {
+    this.diagnostics.add(diagnostic);
+  }
 
-    public List<Diagnostic> getDiagnostics() {
-        return this.diagnostics;
-    }
+  public List<Diagnostic> getDiagnostics() {
+    return this.diagnostics;
+  }
 
-    /**
-     * @param groupedDiagnostics
-     */
-    public void addGroupedDiagnostics(GroupedDiagnostics groupedDiagnostics) {
-        this.groupedDiagnostics.add(groupedDiagnostics);
-    }
+  /**
+   * @param groupedDiagnostics
+   */
+  public void addGroupedDiagnostics(GroupedDiagnostics groupedDiagnostics) {
+    this.groupedDiagnostics.add(groupedDiagnostics);
+  }
 
-    public List<GroupedDiagnostics> getGroupedDiagnostics() {
-        return this.groupedDiagnostics;
-    }
+  public List<GroupedDiagnostics> getGroupedDiagnostics() {
+    return this.groupedDiagnostics;
+  }
 
 }

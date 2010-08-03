@@ -27,29 +27,29 @@ import org.workingonit.modulus.findings.Finding;
  */
 public class ReadeableFileCheck extends AbstractCheck {
 
-    private File file;
+  private File file;
 
-    public ReadeableFileCheck(String description, File file, boolean fatal) {
-        super(description, fatal);
-        this.file = file;
-    }
+  public ReadeableFileCheck(String description, File file, boolean fatal) {
+    super(description, fatal);
+    this.file = file;
+  }
 
-    public ReadeableFileCheck(String description, File file) {
-        this(description, file, false);
-    }
+  public ReadeableFileCheck(String description, File file) {
+    this(description, file, false);
+  }
 
-    public Finding perform() {
-        if (this.file == null) {
-            return new EvaluatedFinding("File/directory '" + this.description + "' must be defined", false, true);
-        }
-        return new EvaluatedFinding(createMessage(), this.file.canRead(), this.fatal).addCause(this.file.getAbsolutePath() + " is not readable");
+  public Finding perform() {
+    if (this.file == null) {
+      return new EvaluatedFinding("File/directory '" + this.description + "' must be defined", false, true);
     }
+    return new EvaluatedFinding(createMessage(), this.file.canRead(), this.fatal).addCause(this.file.getAbsolutePath()
+        + " is not readable");
+  }
 
-    private String createMessage() {
-        String type = this.file.isDirectory() ? "Directory" : "File";
-        return this.fatal ?
-            type + " '" + this.description + "' is readable (mandatory)" :
-            type + " '" + this.description + "' is readable (optional)";
-    }
+  private String createMessage() {
+    String type = this.file.isDirectory() ? "Directory" : "File";
+    return this.fatal ? type + " '" + this.description + "' is readable (mandatory)" : type + " '" + this.description
+        + "' is readable (optional)";
+  }
 
 }

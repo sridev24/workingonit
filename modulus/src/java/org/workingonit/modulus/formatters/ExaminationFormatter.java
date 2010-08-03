@@ -26,6 +26,6 @@ import org.workingonit.modulus.Examination;
  */
 public interface ExaminationFormatter {
 
-    String format(Examination examination);
+  String format(Examination examination);
 
 }

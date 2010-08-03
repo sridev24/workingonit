@@ -31,8 +31,8 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 public @interface Group {
 
-    String NO_GROUPNAME = "NoGroup";
+  String NO_GROUPNAME = "NoGroup";
 
-    String name() default NO_GROUPNAME;
+  String name() default NO_GROUPNAME;
 
 }

@@ -32,27 +32,27 @@ import org.workingonit.modulus.checks.WritableFileCheck;
  */
 @Group(name="Group 2")
 @ManagedResource(
-    description="Service B MBean",
-    objectName="com.acme.kitchensink.services:name=ServiceBMBean")
+  description="Service B MBean",
+  objectName="com.acme.kitchensink.services:name=ServiceBMBean")
 public class ServiceB implements AuscultableBean {
 
-    private File dir;
-    private String url; // = new URL("http://www.google.ch");
+  private File dir;
+  private String url; // = new URL("http://www.google.ch");
 
-    public void setOutDir(File dir) {
-        this.dir = dir;
-    }
+  public void setOutDir(File dir) {
+    this.dir = dir;
+  }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+  public void setUrl(String url) {
+    this.url = url;
+  }
 
-    public Diagnostic auscultate() {
-        return new DiagnosticBuilder("service B diagnostic")
-            .add(new ReadeableFileCheck("output", this.dir, true))
-            .add(new WritableFileCheck("output", this.dir))
-            .add(new ReacheableUrlCheck("Output web service", this.url))
-            .build();
-    }
+  public Diagnostic auscultate() {
+    return new DiagnosticBuilder("service B diagnostic")
+      .add(new ReadeableFileCheck("output", this.dir, true))
+      .add(new WritableFileCheck("output", this.dir))
+      .add(new ReacheableUrlCheck("Output web service", this.url))
+      .build();
+  }
 
 }

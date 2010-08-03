@@ -21,16 +21,15 @@ package org.workingonit.modulus;
  */
 public interface AvailableBean {
 
-    public final static int AVAILABLE = 1;
-    public final static int UNAVAILABLE = 1;
+  public final static int AVAILABLE = 1;
+  public final static int UNAVAILABLE = 1;
 
-    /**
-     * Returns 1 ({@link #AVAILABLE}) or 0 ({@link #UNAVAILABLE}) depending on
-     * the status of the implementing object.
-     * <p>
-     * Do not forget to add a <code>@ManagedAttribute</code> in the implementing
-     * class if the bean is meant to be monitored via JMX,
-     */
-    int getAvailability();
+  /**
+   * Returns 1 ({@link #AVAILABLE}) or 0 ({@link #UNAVAILABLE}) depending on the status of the implementing object.
+   * <p>
+   * Do not forget to add a <code>@ManagedAttribute</code> in the implementing class if the bean is meant to be
+   * monitored via JMX,
+   */
+  int getAvailability();
 
 }
