@@ -24,24 +24,37 @@
 
     <title>Hibernate</title>
     
-    <para>One of the problems with Hibernate and a modular application is that all the mapped Hibernate classes must all be defined at development time. This requirement is at the opposite to the one requiring configuration to be automatically discovered at startup. The solution is to let the Spring IOC container pre-configure the Hibernate <code>SessionFactory</code> with configuration snippets auto-discovered at startup. We will outline the proposed solution by starting with the following example:</para>
+    <para>Hibernate is a framework that is not very suited for our modular architecture because it requires at <emphasis>configuration time</emphasis> (i.e. when the application is assembled) that all the entity classes be listed when creating the <code>SessionFactory</code>. Since our goal is to automatically discover the classes at <emphasis>startup time</emphasis> it is necessary to change a couple of things in how the classes are listed. Fortunately, it is not very difficult.</para>
     
-    <example><title>Basic Hibernate example</title>
-        <programlisting><![CDATA[]]></programlisting>
+    <para>The solution is to define the list of classes using a <code>SessionFactoryConfigurator</code>. Each module will typically define one of these configuration beans.</para>
+    
+    <example><title><code>SessionFactoryConfigurator</code> sample definition</title>
+        <programlisting><![CDATA[<bean class="org.workingonit.modulus.hibernate3.SessionFactoryConfigurator">
+    <property name="annotatedClasses">
+        <list>
+            <value>com.acme.kitchensink.kitchen.model.Sink</value>
+        </list>
+    </property>
+    <property name="annotatedPackages">
+        <list>
+            <value>com.acme.kitchensink.kitchen.model</value>
+        </list>
+    </property>
+</bean>]]></programlisting>
     </example>
     
-    <para>The first step is to split the <code>SessionFactory</code>'s configuration into several, more focused, snippets. In the Spring world, we will define one configuration bean per module:</para>
-    
-    <example><title>Bean configuration</title>
-        <programlisting><![CDATA[]]></programlisting>
-    </example>
-    
-    <para>Finally, we will define our own class for the Hibernate <code>SessionFactory</code> responsible for gathering all configurations from the registered <code>HibernateConfigurator</code> beans:</para>
+    <para>At startup, the special <code>ConfigurableSessionFactoryBean</code> simply finds all those beans and sums all the classes and packages that must be used to create the Hibernate <code>SessionFactory</code>.</para>
     
     <example><title>Final configuration</title>
-        <programlisting><![CDATA[]]></programlisting>
+        <programlisting><![CDATA[<bean id="sessionFactory"
+        class="org.workingonit.modulus.hibernate3.ConfigurableSessionFactoryBean"
+    p:dataSource-ref="dataSource">
+    <property name="hibernateProperties">
+        <props>
+            <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+        </props>
+    </property>
+</bean>]]></programlisting>
     </example>
-    
-    <para>This solution is not only remarkably simple but also let the configuration be defined closer to the module's code and not in some overreaching put-it-all configuration file).</para>
     
 </section>

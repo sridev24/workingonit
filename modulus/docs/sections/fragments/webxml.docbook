@@ -1,4 +1,4 @@
-<example><title>modified web.xml configuration</title>
+<example><title>modified <filename>web.xml</filename> configuration</title>
 <programlisting><![CDATA[<servlet>
     <servlet-name>kitchensink</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -10,11 +10,15 @@
     </init-param>
     <init-param>
         <param-name>platformConfigLocation</param-name>
-        <param-value>/WEB-INF/context/platformContext.xml</param-value>
+        <param-value>
+            classpath*:/META-INF/spring/com.acme.kitchensink.platform.xml
+        </param-value>
     </init-param>
     <init-param>
         <param-name>moduleConfigLocation</param-name>
-        <param-value>classpath*:/META-INF/spring/*.main.xml</param-value>
+        <param-value>
+            classpath*:/META-INF/spring/*.main.xml
+        </param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
 </servlet>]]></programlisting>
