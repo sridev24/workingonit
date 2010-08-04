@@ -51,7 +51,7 @@
     </init-param>
     <init-param>
       <param-name>platformConfigLocation</param-name>
-      <param-value>/WEB-INF/context/platformContext.xml</param-value>
+      <param-value>classpath*:/META-INF/spring/com.acme.kitchensink.platform.xml</param-value>
     </init-param>
     <init-param>
       <param-name>moduleConfigLocation</param-name>

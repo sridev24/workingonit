@@ -13,7 +13,6 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="lib" path="lib/endorsed/jars/testng/testng-jdk15-5.9.jar"/>
-	<classpathentry kind="lib" path="lib/distributed/jars/addenda/org.workingonit.addenda-0.5.jar"/>
 	<classpathentry kind="lib" path="lib/endorsed/jars/spring/org.springframework.test-3.0.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/6.0">
 		<attributes>

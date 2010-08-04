@@ -29,5 +29,20 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
     http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
- 
+  <bean class="org.workingonit.modulus.hibernate3.SessionFactoryConfigurator">
+    <property name="annotatedClasses">
+      <list>
+        <value>com.acme.kitchensink.sink.model.Sink</value>
+      </list>
+    </property>
+    <property name="annotatedPackages">
+      <list>
+        <value>com.acme.kitchensink.sink.model</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="sinkRepository" class="com.acme.kitchensink.sink.model.SinkRepository"
+    p:sessionFactory-ref="sessionFactory"/>
+
 </beans>
