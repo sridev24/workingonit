@@ -1,0 +1,33 @@
+<example><title>JMX client command line</title>
+<programlisting><![CDATA[kitchensink
+   version.............................................................5.0.12
+
+                                    Group 1                                     
+                                    =======                                     
+
+service A diagnostic                                                     WARNING
+   Url 'Web service' is reacheable (optional).........................WARNING
+      unreacheable url: http://example.org/abc
+
+                              ********************                              
+
+                                    Group 2                                     
+                                    =======                                     
+
+service B diagnostic                                                          OK
+   Directory 'output' is readable (mandatory)..............................OK
+   Directory 'output' is writable (optional)...............................OK
+   Url 'Output web service' is reacheable (optional).......................OK
+
+service D diagnostic                                                       ERROR
+   Url 'Web service' must be defined....................................ERROR
+
+                              ********************                              
+
+service C diagnostic                                                     WARNING
+   starting date Mon Jan 18 21:06:35 CET 2010................................
+   Url 'Web service' is reacheable (optional)..............................OK
+   File 'Temp directory' is writable (optional).......................WARNING
+      /tmp/dummy is not writable
+]]></programlisting>
+</example>

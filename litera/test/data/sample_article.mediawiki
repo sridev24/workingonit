@@ -1,0 +1,17 @@
+This is a very simple article to show the capabilities of the Litera project.
+
+= First section =
+
+This is a little text.
+
+== First sub-section ==
+
+This is another little text.
+
+= Second section =
+
+This is a little text.
+
+== Second sub-section ==
+
+This is another little text.

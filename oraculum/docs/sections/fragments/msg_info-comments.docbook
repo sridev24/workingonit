@@ -1,0 +1,9 @@
+<figure><title>Oracle comments</title>
+<programlisting><![CDATA[comment on table msg_info is 'MSG_INFO stores the list of Oracle mappings.';
+
+comment on column msg_info.msgmodule is 
+'Name of the module (or packages group) declaring this exception. The possible values are:
+* Oracle
+* any other application name';
+comment on column msg_info.msgtext is 'Short text used as describing the exception';]]></programlisting>
+</figure>

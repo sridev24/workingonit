@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2010 Vladimir Ritz Bossicard
+  -
+  - This program is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU Lesser General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or
+  - (at your option) any later version.
+  - 
+  - This program is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU Lesser General Public License for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public License
+  - along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!--
+  - This ivysettings file is only used to validate the roundup configuration 
+  - files locally generated.
+  -->
+  
+<ivysettings>
+
+    <settings defaultResolver="roundups"/>
+
+    <caches defaultCacheDir="${local.ivy.cache.dir}"/>
+
+    <resolvers>
+        <chain name="roundups" returnFirst="true">
+            <!-- 
+              - TODO on Linux, use file:// and on Windows file:/// .
+              -->
+            <packager name="roundup-local" buildRoot="${local.ivyroundup.build.dir}" resourceCache="${local.ivyroundup.cache.dir}">
+                <ivy pattern="file://${basedir}/conf/roundup/[organisation]/[module]/[revision]/ivy.xml"/>
+                <artifact pattern="file://${basedir}/conf/roundup/[organisation]/[module]/[revision]/packager.xml"/>
+            </packager>
+
+            <!-- 
+            <packager name="roundup" buildRoot="${ivyroundup.build.dir}" resourceCache="${ivyroundup.cache.dir}">
+                <ivy pattern="http://ivyroundup.googlecode.com/svn/trunk/repo/modules/[organisation]/[module]/[revision]/ivy.xml"/>
+                <artifact pattern="http://ivyroundup.googlecode.com/svn/trunk/repo/modules/[organisation]/[module]/[revision]/packager.xml"/>
+            </packager>
+             -->
+        </chain>
+    </resolvers>
+
+</ivysettings>

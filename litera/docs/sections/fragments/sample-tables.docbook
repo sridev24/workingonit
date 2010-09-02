@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<table xmlns="http://docbook.org/ns/docbook"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd"
+        frame="all">
+
+    <title>say Hello</title>
+
+    <tgroup cols='2' align='left' colsep='1' rowsep='1'>
+        <colspec colname='name' colwidth='1*'/>
+        <colspec colname='properties' colwidth='1*'/>
+        <thead>
+            <row>
+                <entry>name</entry>
+                <entry>properties</entry>
+            </row>
+        </thead>
+        <tbody>
+            <row>
+                <entry><para>hello</para></entry>
+                <entry><para>world</para></entry>
+            </row>
+            <row>
+                <entry><para>bonjour</para></entry>
+                <entry><para>monde</para></entry>
+            </row>
+            <row>
+                <entry><para>gruezi</para></entry>
+                <entry><para>welt</para></entry>
+            </row>
+        </tbody>
+    </tgroup>
+</table> 

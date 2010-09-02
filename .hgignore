@@ -1,0 +1,12 @@
+syntax: glob
+
+*~
+*.bak
+**/lib
+**/target
+**/*-local.properties
+**/test-output
+**/temp-testng-customsuite.xml
+modulus/src/eclipse-infocenter.war
+glob:*/docs/images/draft.png
+glob:*/docs/images/missing.png

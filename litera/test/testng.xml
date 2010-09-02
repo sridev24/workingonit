@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2009-2010 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it
+  - under the terms of the GNU Lesser General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or (at your
+  - option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  - for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public License
+  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 337 $
+  - Last edit   : $Date: 2010-01-26 23:41:24 +0100 (Tue, 26 Jan 2010) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"> 
+
+<suite name="litera" verbose="1">
+ 
+    <test name="unit">
+        <classes>
+            <class name="org.workingonit.litera.ivy.FileReportGeneratorTest"/>
+            <class name="org.workingonit.litera.mediawiki.UrlUtilsTest"/>
+            <class name="org.workingonit.litera.mediawiki.DocumentParserTest"/>
+            <class name="org.workingonit.litera.mediawiki.MediaWiki2PdfGeneratorTest"/>
+            
+            <class name="org.workingonit.litera.xml.transformers.DataTransformerTest"/>
+         </classes>
+    </test>
+
+    <test name="manual">
+        <classes>
+            <class name="org.workingonit.litera.mediawiki.HttpDocumentGrabberTest"/>
+        </classes>
+    </test>
+  
+</suite>

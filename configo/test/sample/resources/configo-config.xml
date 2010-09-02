@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration PUBLIC "-//WorkingOnIt/Configo Configuration DTD 1.0//EN" "configo.dtd" >
+
+<configuration>
+    <name>ACME KitchenSink Configuration</name>
+    <description>ACME KitchenSink is a state of the art software 
+produced by AcmeSoft Inc. that is able to do everything.</description>
+
+    <modules>
+        <module>
+            <name>Interfaces</name>
+            <description>Values needed for retrieving and storing data</description>
+            <properties>
+                <property>
+                    <name>web service url</name>
+                    <description>URL of the web service (e.g. http://server:host/acmesoft)</description>
+                    <key>com.acme.kitchensink.wsurl</key>
+                </property>
+                <property>
+                    <name>output directory</name>
+                    <description>absolute path of the directry where files are saved</description>
+                    <key>com.acme.kitchensink.outputdir</key>
+                </property>
+            </properties>
+        </module>
+    </modules>
+    
+</configuration>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+  - Copyright 2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 207 $
+  - Last edit   : $Date: 2009-06-17 23:53:48 +0200 (Wed, 17 Jun 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false" threshold="debug">
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%t] %c %x - %m%n"/>
+        </layout>
+    </appender>
+
+    <logger name="org.workingonit.oraculum">
+        <level value="debug"/>
+    </logger>
+    
+    <logger name="org.workingonit">
+        <level value="info"/>
+    </logger>
+    
+    <logger name="org.springframework">
+        <level value="warn"/>
+    </logger>
+    
+    <root>
+        <level value="debug"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</log4j:configuration>

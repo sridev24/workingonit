@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2009 Vladimir Ritz Bossicard
+  -
+  - This program is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU Lesser General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or
+  - (at your option) any later version.
+  - 
+  - This program is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU Lesser General Public License for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public License
+  - along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE project>
+
+<antlib xmlns:ivy="antlib:org.apache.ivy.ant">
+
+    <macrodef name="init">
+        <attribute name="ivyfile" default="ivy.xml"/>
+        <attribute name="ivysettings" default="conf/ivysettings.xml"/>
+        <sequential>
+            <mkdir dir="${classes.dir}"/>
+            <mkdir dir="${classes-test.dir}"/>
+            <mkdir dir="${dist.dir}"/>
+
+            <mkdir dir="${distributed.lib.dir}"/>
+            <mkdir dir="${endorsed.lib.dir}"/>
+
+            <tstamp/>
+
+            <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant">
+                <classpath>
+                    <pathelement location="${endorsed.lib.dir}/ivy-${ivy.version}.jar"/>
+                </classpath>
+            </taskdef>
+
+            <ivy:settings file="@{ivysettings}"/>
+            <ivy:resolve file="@{ivyfile}"/>
+            <ivy:retrieve pattern="lib/[conf]/[type]s/[module]/[artifact]-[revision].[ext]"/>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="version.init">
+        <attribute name="file"/>
+        <sequential>
+            <copy file="src/java/@{file}.src"
+                  tofile="src/java/@{file}.java"
+                  overwrite="true">
+                <filterset>
+                    <filter token="PROJECT.YEARS" value="${project.years}"/>
+                    <filter token="PROJECT.VERSION" value="${project.version}"/>
+                    <filter token="BUILD.DATE" value="${DSTAMP} ${TSTAMP}"/>
+                </filterset>
+            </copy>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="ivydoc">
+        <sequential>
+            <echo message="Generating ivy XML documentation"/>
+            <ivy:report todir="${target.dir}/reports/ivy" outputpattern="[module]-[conf].[ext]"
+                xml="true" dot="true" xsl="false"/>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="publish">
+        <sequential>
+            <ivy:publish artifactspattern="${dist.dir}/[artifact]-${project.version}.[ext]"
+                resolver="local"
+                pubrevision="${project.version}"
+                status="integration"
+                overwrite="true"
+                forcedeliver="true">
+            </ivy:publish>
+        </sequential>
+    </macrodef>
+
+</antlib>

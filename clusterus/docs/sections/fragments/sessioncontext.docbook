@@ -1,0 +1,18 @@
+<figure><title>SessionContext definition</title>
+<programlisting><![CDATA[import org.springframework.security.userdetails.UserDetails;
+
+public class SessionContext implements UserDetails {
+
+    private Map<String, Object> clustered = new HashMap<String, Object>();
+    private transient Map<String, Object> value = new HashMap<String, Object>();
+
+    public void addClusteredValue(String key, Object value) {
+        this.clustered.put(key, value);
+    }
+
+    public void addTransientValue(String key, Object value) {
+        this.value.put(key, value);
+    }
+    
+}]]></programlisting>
+</figure>

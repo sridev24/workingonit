@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2009 Vladimir Ritz Bossicard
+  -
+  - This file is part of WorkingOnIt.
+  -
+  - WorkingOnIt is free software: you can redistribute it and/or modify it under the
+  - terms of the GNU General Public License as published by the Free Software
+  - Foundation, either version 3 of the License, or (at your option) any later
+  - version.
+  -
+  - This program is distributed in the hope that it will be useful, but WITHOUT
+  - ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  - FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  - more details.
+  -
+  - You should have received a copy of the GNU General Public License along with
+  - this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  - Author      : Vladimir Ritz Bossicard
+  - Version     : $Revision: 289 $
+  - Last edit   : $Date: 2009-11-29 20:00:56 +0100 (Sun, 29 Nov 2009) $
+  - Last editor : $Author: vbossica $
+  -->
+
+<abstract xmlns="http://docbook.org/ns/docbook"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+ 
+    <title/>
+
+    <para>After spending time in Kindergarden, your application is now ready to play with the big guys and be installed in a cluster. Load balancing and failover are now within reach! This project plays with a couple of experiments that can be very useful when deploying a spring based application into a cluster.</para>
+
+</abstract>

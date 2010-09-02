@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2010 Vladimir Ritz Bossicard
+  -
+  - This program is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or
+  - (at your option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU General Public License for more details.
+  -
+  - You should have received a copy of the GNU General Public License
+  - along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+  <title>Spring Configuration</title>
+
+  <para>Spring based application are often configured <emphasis>by layer</emphasis>. A typical example would be for all the <code>DAO</code> beans to be placed into a single configuration file, alongside the definition of the data sources. This approach is unfortunately not easily compatible with a modularized architecture and must be adapted accordingly. The new approach is to define one main configuration file for each independent module and one file for the platform. As a consequence the data sources will be defined for the platform while the individual <code>DAO</code>s will be moved to their corresponding modules.</para>
+
+  <para>The <code>PluggableXmlWebApplicationContext</code> will be used to load all these configuration files, in the correct order. This class must be used with the Spring <code>DispatcherServlet</code> and is configured in the <filename>web.xml</filename> file:</para>
+    
+  <xi:include href="fragments/webxml.docbook"/>
+
+  <para>Once this infrastructure is in place, the next steps are to make sure that all the commonly used libraries work well with this concept. This is what we will explore in the rest of this document.</para>
+  
+</section>

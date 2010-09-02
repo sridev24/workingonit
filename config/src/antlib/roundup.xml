@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2009 Vladimir Ritz Bossicard
+  -
+  - This program is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU Lesser General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or
+  - (at your option) any later version.
+  - 
+  - This program is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU Lesser General Public License for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public License
+  - along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE project>
+
+<antlib>
+
+    <!--
+      - Uses the official Roundup xsl files to generate appropriate repository
+      - files.
+      -
+      - The Roundup repository must be checked-out locally and referenced by
+      - the ${ivyroundup.home} variable.
+      -->
+    <macrodef name="ivyfiles">
+        <attribute name="srcDir" default="${ivyroundup.home}/src/modules"/>
+        <attribute name="xslDir" default="${ivyroundup.home}/src/xsl"/>
+        <attribute name="outDir" default="conf/roundup"/>
+        <attribute name="force" default="true"/>
+        <attribute name="org"/>
+        <attribute name="name"/>
+        <attribute name="rev"/>
+        <sequential>
+            <!-- Generate ivy.xml files -->
+            <xslt style="@{xslDir}/ivy-repo.xsl"
+                    in="@{srcDir}/@{org}/@{name}/@{rev}/ivy.xml"
+                    out="@{outDir}/@{org}/@{name}/@{rev}/ivy.xml" force="@{force}">
+                <param name="filename" expression="ivy.xml"/>
+                <param name="stylesheet" expression="../../build/xsl/ivy-repo.xsl"/>
+                <param name="organisation" expression="@{org}"/>
+                <param name="module" expression="@{name}"/>
+                <param name="revision" expression="@{rev}"/>
+            </xslt>
+            <!-- Generate packager.xml files -->
+            <xslt style="@{xslDir}/packager-repo.xsl"
+                    in="@{srcDir}/@{org}/@{name}/@{rev}/packager.xml"
+                    out="@{outDir}/@{org}/@{name}/@{rev}/packager.xml" force="@{force}">
+                <param name="filename" expression="packager.xml"/>
+                <param name="stylesheet" expression="packager-repo.xsl"/>
+            </xslt>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="sha1" description="generate SHA1 for the files int the cache">
+        <sequential>
+            <echo message="calculating SHA1 on ${ivyroundup.cache.dir}"/>
+            <checksum algorithm="SHA">
+                <fileset dir="${ivyroundup.cache.dir}">
+                    <exclude name="*.SHA"/>
+                </fileset>
+            </checksum>
+        </sequential>
+    </macrodef>
+
+</antlib>

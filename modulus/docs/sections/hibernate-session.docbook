@@ -1,0 +1,60 @@
+﻿<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2010 Vladimir Ritz Bossicard
+  -
+  - This program is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or
+  - (at your option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU General Public License for more details.
+  -
+  - You should have received a copy of the GNU General Public License
+  - along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Hibernate</title>
+    
+    <para>Hibernate is a framework that is not very suited for our modular architecture because it requires at <emphasis>configuration time</emphasis> (i.e. when the application is assembled) that all the entity classes be listed when creating the <code>SessionFactory</code>. Since our goal is to automatically discover the classes at <emphasis>startup time</emphasis> it is necessary to change a couple of things in how the classes are listed. Fortunately, it is not very difficult.</para>
+    
+    <para>The solution is to define the list of classes using a <code>SessionFactoryConfigurator</code>. Each module will typically define one of these configuration beans.</para>
+    
+    <example><title><code>SessionFactoryConfigurator</code> sample definition</title>
+        <programlisting><![CDATA[<bean class="org.workingonit.modulus.hibernate3.SessionFactoryConfigurator">
+    <property name="annotatedClasses">
+        <list>
+            <value>com.acme.kitchensink.kitchen.model.Sink</value>
+        </list>
+    </property>
+    <property name="annotatedPackages">
+        <list>
+            <value>com.acme.kitchensink.kitchen.model</value>
+        </list>
+    </property>
+</bean>]]></programlisting>
+    </example>
+    
+    <para>At startup, the special <code>ConfigurableSessionFactoryBean</code> simply finds all those beans and sums all the classes and packages that must be used to create the Hibernate <code>SessionFactory</code>.</para>
+    
+    <example><title>Final configuration</title>
+        <programlisting><![CDATA[<bean id="sessionFactory"
+        class="org.workingonit.modulus.hibernate3.ConfigurableSessionFactoryBean"
+    p:dataSource-ref="dataSource">
+    <property name="hibernateProperties">
+        <props>
+            <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+        </props>
+    </property>
+</bean>]]></programlisting>
+    </example>
+    
+</section>

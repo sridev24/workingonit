@@ -1,0 +1,25 @@
+body { 
+	margin: 20px 0px; 
+	padding: 0px;
+	text-align: center; 
+}
+
+th {
+    background-color: blue;
+}
+
+th.neutral {
+    background-color: white;
+}
+
+th.ok {
+    background-color: green;
+}
+
+th.warning {
+    background-color: orange;
+}
+
+th.error {
+    background-color: red;
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<!--
+  - Copyright 2008-2010 Vladimir Ritz Bossicard
+  -
+  - This program is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU General Public License as published by
+  - the Free Software Foundation, either version 3 of the License, or
+  - (at your option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - GNU General Public License for more details.
+  -
+  - You should have received a copy of the GNU General Public License
+  - along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<section xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd">
+
+    <title>Health Checks</title>
+
+    <para>The first few minutes of an application's life are not much different than the one of a newborn: everyone is examining you to check that everything is fine. To facilitate the diagnostic, <emphasis>Modulus</emphasis> provides several classes and interfaces to make the whole process as painless as possible.</para>
+
+    <para>The first step is to define a <code>Patient</code> bean in one of the application's Spring configuration files.</para>
+
+    <xi:include href="fragments/patient-definition.docbook"/>
+
+    <para>Some information will then automatically be logged at startup and before shutdown.</para>
+
+    <xi:include href="fragments/application-startup.docbook"/>
+
+    <para>Of course, this is just a start and far from enough to see if everything is running smoothly. The first thing to do is to define the diagnostics.</para>
+
+    <section>
+        <title>Creating simple diagnostics</title>
+
+        <para>Diagnostics are short, targetted and quick validations that give an overview of a (singleton) Spring bean's health. All it takes is to implement the <code>AuscultableBean</code> interface (optionally using the <code>@NamedGroup</code> annotation) and give a <code>Diagnostic</code>. Several simple diagnostic classes are provided and it is trivial to create new one depending on the application's specific needs:</para>
+
+        <xi:include href="fragments/diagnosticbuilder.docbook"/>
+
+        <para>At startup, all beans implementing the <code>AuscultableBean</code> interface will be automatically registered and be made available through the (modulus) <code>AuscultableBeanRegistrar</code> bean.</para>
+
+        <xi:include href="fragments/bean-registrar.docbook"/>
+
+        <para>To diagnostics' results can either be displayed on a custom web page:</para>
+
+        <figure><title>Sample web report</title>
+            <screenshot>
+                <mediaobject><imageobject>
+                    <imagedata fileref="images/report.png" align="center" width="80%"/>
+                </imageobject></mediaobject>
+            </screenshot>
+        </figure>
+
+        <para>But since the <code>AuscultableBeanRegistrar</code> bean is automatically registered with the platform's JMX server, the diagnostics' results are also available to any client connecting via JMX:</para>
+
+        <xi:include href="fragments/jmxclient-output.docbook"/>
+    </section>
+    
+</section>
