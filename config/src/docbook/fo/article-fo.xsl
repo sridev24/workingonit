@@ -136,6 +136,13 @@
         <xsl:attribute name="space-after.maximum">0.8em</xsl:attribute>
     </xsl:attribute-set>
 
+    <!-- Abstract section -->
+
+    <xsl:attribute-set name="abstract.properties">
+        <xsl:attribute name="font-style">italic</xsl:attribute>
+        <xsl:attribute name="text-align">justify</xsl:attribute>
+    </xsl:attribute-set>
+
 <!--###################################################
                       Programlistings
     ################################################### -->
