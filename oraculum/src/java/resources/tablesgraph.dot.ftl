@@ -6,12 +6,12 @@ digraph "schema" {
       labeljust=l
       nodesep=0.2
       ranksep=0.5
-      fontname=Helvetica
+      fontname=Sans
       fontsize=7
    ];
 
    node [
-      fontname=Helvetica
+      fontname=Sans
       fontsize=9
       shape=plaintext
    ];
@@ -34,13 +34,23 @@ digraph "schema" {
    "${table.name}" [label=<
    <TABLE BGCOLOR="#FFD873" BORDER="0" CELLBORDER="1" CELLSPACING="0">
       <TR>
-         <TD ALIGN="CENTER" PORT="HEADER" BGCOLOR="#FFB800" COLSPAN="2">${table.name?upper_case}</TD>
+         <TD ALIGN="CENTER" PORT="HEADER" BGCOLOR="#FFB800" COLSPAN="2"><B>${table.name?upper_case}</B></TD>
       </TR>
+<!-- first prints the keys -->
 <#list table.columns as column>
-   <#if column.ignored == false>
+   <#if (column.ignored == false) && (column.primary == true)>
       <TR>
          <TD ALIGN="LEFT" PORT="${column.name}" <#if column.primary>BGCOLOR="#FFCA40"</#if>>${column.name}</TD>
-         <TD PORT="${column.name}.type" <#if column.primary>BGCOLOR="#FFCA40"</#if>>${column.type}</TD>
+         <TD PORT="${column.name}.type" <#if column.primary>BGCOLOR="#FFCA40"</#if>>${column.type?lower_case}</TD>
+      </TR>
+   </#if>
+</#list>
+<!-- then the other columns -->      
+<#list table.columns as column>
+   <#if (column.ignored == false) && (column.primary == false)>
+      <TR>
+         <TD ALIGN="LEFT" PORT="${column.name}" <#if column.primary>BGCOLOR="#FFCA40"</#if>>${column.name}</TD>
+         <TD PORT="${column.name}.type" <#if column.primary>BGCOLOR="#FFCA40"</#if>>${column.type?lower_case}</TD>
       </TR>
    </#if>
 </#list>

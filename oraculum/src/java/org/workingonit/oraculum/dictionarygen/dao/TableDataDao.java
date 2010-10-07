@@ -3,9 +3,9 @@
  *
  * This file is part of WorkingOnIt.
  *
- * WorkingOnIt is free software: you can redistribute it and/or modify it 
- * under the terms of the GNU General Public License as published by the Free 
- * Software Foundation, either version 3 of the License, or (at your option) 
+ * WorkingOnIt is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
  * any later version.
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
@@ -44,7 +44,7 @@ public class TableDataDao extends JdbcDaoSupport {
             + "WHERE all_tab_columns.table_name = ? "
             + "AND all_tab_columns.table_name = all_col_comments.table_name "
             + "AND all_tab_columns.column_name = all_col_comments.column_name "
-            + "ORDER BY column_id";
+            + "ORDER BY column_name";
     private final static String PRIMARY_KEY_QUERY = "select column_name, position "
             + "from all_cons_columns A "
             + "join all_constraints C "
@@ -62,7 +62,7 @@ public class TableDataDao extends JdbcDaoSupport {
             + "and cc.table_name = ?";
 
     @SuppressWarnings("unchecked")
-    public TableDataTO loadTableData(String table) {
+    public TableDataTO loadTableData(final String table) {
         TableDataTO res = new TableDataTO();
         res.setName(table.toLowerCase());
 
@@ -78,18 +78,18 @@ public class TableDataDao extends JdbcDaoSupport {
             new Object[] { table.toUpperCase() }, new ColumnDataRowMapper());
         res.setColumns(cols);
 
-        getJdbcTemplate().query(PRIMARY_KEY_QUERY, 
+        getJdbcTemplate().query(PRIMARY_KEY_QUERY,
             new Object[] { table.toUpperCase() }, new PrimaryKeyUpdater(res));
-            
-        getJdbcTemplate().query(FOREIGN_KEY_QUERY, 
+
+        getJdbcTemplate().query(FOREIGN_KEY_QUERY,
             new Object[] { table.toUpperCase() }, new ForeignKeyUpdater(res));
-            
+
         return res;
     }
 
     private final static class ColumnDataRowMapper implements RowMapper {
 
-        public Object mapRow(ResultSet rs, int position) throws SQLException {
+        public Object mapRow(final ResultSet rs, final int position) throws SQLException {
             ColumnDataTO res = new ColumnDataTO();
 
             res.setName(rs.getString("column_name"));
@@ -105,37 +105,37 @@ public class TableDataDao extends JdbcDaoSupport {
     private final static class PrimaryKeyUpdater implements RowCallbackHandler {
 
         private TableDataTO table;
-        
-        public PrimaryKeyUpdater(TableDataTO table) {
+
+        public PrimaryKeyUpdater(final TableDataTO table) {
             this.table = table;
         }
-        
+
         @Override
-        public void processRow(ResultSet rs) throws SQLException {
+        public void processRow(final ResultSet rs) throws SQLException {
             String name = rs.getString("column_name");
-            ColumnDataTO column = table.getColumn(name);
+            ColumnDataTO column = this.table.getColumn(name);
             if (column != null) {
                 column.setPrimary(true);
             }
         }
     }
-    
+
     private final static class ForeignKeyUpdater implements RowCallbackHandler {
 
         private TableDataTO table;
-        
-        public ForeignKeyUpdater(TableDataTO table) {
+
+        public ForeignKeyUpdater(final TableDataTO table) {
             this.table = table;
         }
-        
+
         @Override
-        public void processRow(ResultSet rs) throws SQLException {
+        public void processRow(final ResultSet rs) throws SQLException {
             String name = rs.getString("column_name");
-            ColumnDataTO column = table.getColumn(name);
+            ColumnDataTO column = this.table.getColumn(name);
             if (column != null) {
                 column.addForeignKey(new RefTableDataTO(rs.getString("ref_table"), rs.getString("ref_column")));
             }
         }
     }
-    
+
 }
