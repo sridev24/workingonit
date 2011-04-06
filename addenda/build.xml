@@ -54,8 +54,8 @@
     </target>
 
     <target name="compile" depends="init">
-        <java:compile/>
-        <java:test.compile/>
+        <java:compile compliance="1.5"/>
+        <java:test.compile compliance="1.5"/>
 
         <groovy:compile/>
         <groovy:test.compile/>
@@ -76,16 +76,17 @@
     </target>
 
     <target name="test" depends="package">
-        <testng:suite.execute/>
+        <!-- testng:suite.execute/ -->
 
         <taskdef resource="wkg-addenda.properties">
             <classpath>
                 <path refid="distributed.classpath"/>
                 <path refid="endorsed.classpath"/>
-                <pathelement location="${dist.dir}/${project.name}-${project.version}.jar"/>
+                <pathelement location="${dist.dir}/org.workingonit.${project.name}-${project.version}.jar"/>
             </classpath>
         </taskdef>
 
+    	<!--
         <svninfo prefix="local."/>
 
         <echo message="(local) last author = ${local.author}"/>
@@ -100,6 +101,14 @@
         <echo message="(remote) last revision number = ${remote.rev}"/>
         <echo message="(remote) remote url = ${remote.url}"/>
         <echo message="(remote) url name = ${remote.urlname}"/>
+    	-->
+    	
+    	<svninfo url="http://svn/svn/Core/Legando/tags/legando-3.4.23.1.E" username="bob" password="bob" prefix="leg."/>
+        <echo message="(leg) last author = ${leg.author}"/>
+        <echo message="(leg) last commit date = ${leg.date}"/>
+        <echo message="(leg) last revision number = ${leg.rev}"/>
+        <echo message="(leg) remote url = ${leg.url}"/>
+        <echo message="(leg) url name = ${leg.urlname}"/>
     </target>
 
     <target name="publish" depends="release">

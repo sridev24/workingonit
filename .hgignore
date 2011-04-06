@@ -10,3 +10,9 @@ syntax: glob
 modulus/src/eclipse-infocenter.war
 glob:*/docs/images/draft.png
 glob:*/docs/images/missing.png
+glob:*/.gradle
+glob:*.iml
+glob:*.ipr
+glob:*.iws
+glob:**/build
+glob:**/out
