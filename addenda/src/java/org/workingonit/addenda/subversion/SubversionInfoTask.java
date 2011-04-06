@@ -28,6 +28,7 @@ import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.types.LogLevel;
 import org.tmatesoft.svn.core.SVNException;
+import org.tmatesoft.svn.core.SVNRevisionProperty;
 import org.tmatesoft.svn.core.SVNURL;
 import org.tmatesoft.svn.core.auth.BasicAuthenticationManager;
 import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
@@ -165,8 +166,8 @@ public class SubversionInfoTask extends Task {
 
         long rev = repository.getLatestRevision();
         return new String[] {
-            repository.getRevisionPropertyValue(rev, "svn:author").getString(),
-            repository.getRevisionPropertyValue(rev, "svn:date").getString(),
+            repository.getRevisionPropertyValue(rev, SVNRevisionProperty.AUTHOR).getString(),
+            repository.getRevisionPropertyValue(rev, SVNRevisionProperty.DATE).getString(),
             String.valueOf(rev),
             url
         };
