@@ -266,7 +266,7 @@ public class QueryStringBuilder {
     /**
      * Add the <code>sessionid</code> to the url.
      * 
-     * @param id the session id
+     * @param sessionid the session id
      */
     public QueryStringBuilder addSessionId(String sessionid) {
         this.sessionid = sessionid;
