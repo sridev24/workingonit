@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Vladimir Ritz Bossicard
+ * Copyright 2009,2011 Vladimir Ritz Bossicard
  *
  * This file is part of WorkingOnIt.
  *
@@ -15,29 +15,13 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
- *
- * Version     : $Revision: 232 $
- * Last edit   : $Date: 2009-07-09 16:56:36 +0200 (Thu, 09 Jul 2009) $
- * Last editor : $Author: vbossica $
  */
 package org.workingonit.addenda.subversion;
-
-import java.io.File;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.types.LogLevel;
 import org.tmatesoft.svn.core.SVNException;
-import org.tmatesoft.svn.core.SVNRevisionProperty;
-import org.tmatesoft.svn.core.SVNURL;
-import org.tmatesoft.svn.core.auth.BasicAuthenticationManager;
-import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
-import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
-import org.tmatesoft.svn.core.io.SVNRepository;
-import org.tmatesoft.svn.core.io.SVNRepositoryFactory;
-import org.tmatesoft.svn.core.wc.SVNStatus;
-import org.tmatesoft.svn.core.wc.SVNStatusClient;
-import org.tmatesoft.svn.core.wc.SVNWCUtil;
 
 /**
  * Task that makes available various Subversion information via Ant properties.
@@ -125,52 +109,20 @@ public class SubversionInfoTask extends Task {
     @Override
     public void execute() throws BuildException {
         try {
-            ISVNAuthenticationManager manager = null;
-            if (this.username != null && this.password != null) {
-                manager = new BasicAuthenticationManager(this.username, this.password);
-            }
+            String[] res = new SubversionInfoResolver().resolve(username, password, url);
+            
+            getProject().setProperty(this.prefix + "author", res[0]);
+            getProject().setProperty(this.prefix + "date", res[1]);
+            getProject().setProperty(this.prefix + "rev", res[2]);
+            getProject().setProperty(this.prefix + "url", res[3]);
 
-            String[] values = this.url == null ? seachLocalProperties(manager) : searchRemoteProperties(manager, this.url);
-
-            getProject().setProperty(this.prefix + "author", values[0]);
-            getProject().setProperty(this.prefix + "date", values[1]);
-            getProject().setProperty(this.prefix + "rev", values[2]);
-            getProject().setProperty(this.prefix + "url", values[3]);
-
-            getProject().setProperty(this.prefix + "urlname", findName(values[3]));
+            getProject().setProperty(this.prefix + "urlname", findName(res[3]));
         } catch (SVNException ex) {
             if (this.failonerror) {
                 throw new BuildException(ex);
             }
             log("error occured while retrieving Subversion information: " + ex.getMessage(), ex, LogLevel.WARN.getLevel());
         }
-    }
-
-    private String[] seachLocalProperties(final ISVNAuthenticationManager manager) throws SVNException {
-        SVNStatusClient statusClient =
-            new SVNStatusClient(manager, SVNWCUtil.createDefaultOptions(true));
-
-        SVNStatus status = statusClient.doStatus(new File("."), false);
-        return new String[] {
-            status.getAuthor(),
-            status.getCommittedDate().toString(),
-            status.getRevision().toString(),
-            status.getURL().toString()
-        };
-    }
-
-    private String[] searchRemoteProperties(final ISVNAuthenticationManager manager, final String url) throws SVNException {
-        DAVRepositoryFactory.setup();
-        SVNRepository repository = SVNRepositoryFactory.create(SVNURL.parseURIEncoded(url));
-        repository.setAuthenticationManager(manager);
-
-        long rev = repository.getLatestRevision();
-        return new String[] {
-            repository.getRevisionPropertyValue(rev, SVNRevisionProperty.AUTHOR).getString(),
-            repository.getRevisionPropertyValue(rev, SVNRevisionProperty.DATE).getString(),
-            String.valueOf(rev),
-            url
-        };
     }
 
     /**
