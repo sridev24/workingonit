@@ -16,3 +16,7 @@ glob:*.ipr
 glob:*.iws
 glob:**/build
 glob:**/out
+glob:.classpath
+glob:.project
+glob:.settings
+glob:**/bin
