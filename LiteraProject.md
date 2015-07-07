@@ -1,0 +1,1 @@
+Please read the <a href='http://wiki.workingonit.googlecode.com/hg/litera.pdf'>reference guide</a> and the <a href='http://code.google.com/p/workingonit/source/browse/#hg/litera'>code base</a> for more information.
